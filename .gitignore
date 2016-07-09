@@ -1,0 +1,32 @@
+.DS_Store
+nvim/plugged
+ranger/bookmarks
+ranger/history
+local/bin
+.zprezto/
+
+*.sublime_license
+SFTP.sublime-settings
+SVN.sublime-settings
+*.sublime_session
+*.last-run
+*.merged-ca-bundle
+*.system-ca-bundle
+*.user-ca-bundle
+*.cache
+*.sublime-package
+
+cfg/SublimeText/Backup
+cfg/SublimeText/Cache
+cfg/SublimeText/Index
+cfg/SublimeText/Packages/*
+!cfg/SublimeText/Packages/User/
+cfg/SublimeText/Packages/User/*
+!cfg/SublimeText/Packages/HTML-CSS-JS Prettify/
+cfg/SublimeText/Packages/HTML-CSS-JS Prettify/*
+
+!Package Control.sublime-package
+!Package Control.sublime-settings
+!Preferences.sublime-settings
+!HTMLPrettify.sublime-settings
+!cfg/SublimeText/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc
