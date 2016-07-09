@@ -2,8 +2,10 @@
 nvim/plugged
 ranger/bookmarks
 ranger/history
-local/bin
+local/
 .zprezto/
+.zhistory
+.zcompdump*
 
 *.sublime_license
 SFTP.sublime-settings
