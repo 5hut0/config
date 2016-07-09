@@ -1,0 +1,21 @@
+set guifont=Ricty\ Regular\ for\ Powerline:h15
+set visualbell t_vb=
+
+"ツールバーなし
+set guioptions-=T
+"メニューバーなし
+set guioptions-=m
+"右スクロールバーなし
+set guioptions-=r
+set guioptions-=R
+"左スクロールバーなし
+set guioptions-=l
+set guioptions-=
+"下スクロールバーなし
+set guioptions-=b
+
+set guioptions-=e
+set guioptions-=L
+
+" Always show tab bar
+set showtabline=2

@@ -1,0 +1,47 @@
+"              _
+" __  ____   _(_)_ __ ___  _ __ ___
+" \ \/ /\ \ / / | '_ ` _ \| '__/ __|
+"  >  <  \ V /| | | | | | | | | (__
+" /_/\_\  \_/ |_|_| |_| |_|_|  \___|
+
+
+" 検索後にジャンプした際に検索単語を画面中央に持ってくる
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+
+" ノーマルモード時だけ ; と : を入れ替える
+nnoremap ; :
+nnoremap : ;
+
+
+" 入力モード中に素早くJJと入力した場合はESCとみなす
+inoremap jj <Esc>
+
+
+
+" vを二回で行末まで選択
+vnoremap v $h
+
+" TABにて対応ペアにジャンプ
+nnoremap &lt;Tab&gt; %
+vnoremap &lt;Tab&gt; %
+
+
+
+
+"インサートモードでも移動
+inoremap <c-d> <delete>
+inoremap <c-j> <down>
+inoremap <c-k> <up>
+inoremap <c-h> <left>
+inoremap <c-l> <right>
+"画面切り替え
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
