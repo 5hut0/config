@@ -1,11 +1,11 @@
 #!/usr/local/bin/zsh
 selectType=()
 selectType+=("Update Homebrew")
-selectType+=("Reinstall Xvim")
 selectType+=("Update npm modules")
+selectType+=("Update dotfiles")
 selectType+=("Install Stable Node.js")
 selectType+=("Relink dotfiles")
-selectType+=("Update dotfiles")
+selectType+=("Reinstall Xvim")
 
 for v in $selectType; do
  echo $v
@@ -44,8 +44,9 @@ __  __      _
 
 EOT
 echo 'Reinstall Xvim'
-git clone https://github.com/XVimProject/XVim ~/.config/XVim
-cd ~/.config/XVim
+rm -rf ~/.config/local/XVim
+git clone https://github.com/XVimProject/XVim ~/.config/local/XVim
+cd ~/.config/local/XVim
 make
 ;;
 
