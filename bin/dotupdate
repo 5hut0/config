@@ -1,0 +1,124 @@
+#!/usr/local/bin/zsh
+selectType=()
+selectType+=("Update Homebrew")
+selectType+=("Reinstall Xvim")
+selectType+=("Update npm modules")
+selectType+=("Install Stable Node.js")
+selectType+=("Relink dotfiles")
+selectType+=("Update dotfiles")
+
+for v in $selectType; do
+ echo $v
+done | peco | while read i; do
+
+case $i in
+
+#==============================================================================
+# Update Homebrew
+#==============================================================================
+"Update Homebrew")
+cat << 'EOT'
+ _   _                      _
+| | | | ___  _ __ ___   ___| |__  _ __ _____      __
+| |_| |/ _ \| '_ ` _ \ / _ \ '_ \| '__/ _ \ \ /\ / /
+|  _  | (_) | | | | | |  __/ |_) | | |  __/\ V  V /
+|_| |_|\___/|_| |_| |_|\___|_.__/|_|  \___| \_/\_/
+
+EOT
+echo 'Update Homebrew'
+brew update
+brew upgrade
+brew cleanup
+;;
+
+#==============================================================================
+# Reinstall Xvim
+#==============================================================================
+"Reinstall Xvim")
+cat << 'EOT'
+__  __      _
+\ \/ /_   _(_)_ __ ___
+ \  /\ \ / / | '_ ` _ \
+ /  \ \ V /| | | | | | |
+/_/\_\ \_/ |_|_| |_| |_|
+
+EOT
+echo 'Reinstall Xvim'
+git clone https://github.com/XVimProject/XVim ~/.config/XVim
+cd ~/.config/XVim
+make
+;;
+
+#==============================================================================
+# Update npm modules
+#==============================================================================
+"Update npm modules")
+cat << 'EOT'
+
+ _ __  _ __  _ __ ___
+| '_ \| '_ \| '_ ` _ \
+| | | | |_) | | | | | |
+|_| |_| .__/|_| |_| |_|
+      |_|
+EOT
+echo 'Update npm modules'
+npm upgrade -g
+;;
+
+#==============================================================================
+# Install Stable Node.js
+#==============================================================================
+"Install Stable Node.js")
+cat << 'EOT'
+ _   _           _         _
+| \ | | ___   __| | ___   (_)___
+|  \| |/ _ \ / _` |/ _ \  | / __|
+| |\  | (_) | (_| |  __/_ | \__ \
+|_| \_|\___/ \__,_|\___(_)/ |___/
+                        |__/
+EOT
+echo 'Install Stable Node.js'
+nodebrew install-binary stable
+nodebrew use stable
+;;
+
+#==============================================================================
+# Relink dotfiles
+#==============================================================================
+"Relink dotfiles")
+cat << 'EOT'
+ ____      _ _       _
+|  _ \ ___| (_)_ __ | | __
+| |_) / _ \ | | '_ \| |/ /
+|  _ <  __/ | | | | |   <
+|_| \_\___|_|_|_| |_|_|\_\
+
+EOT
+echo 'Relink dotfiles'
+sh ~/.config/scripts/link_dotfiles.sh
+;;
+
+#==============================================================================
+# Update dotfiles
+#==============================================================================
+"Update dotfiles")
+cat << 'EOT'
+ _   _           _       _             _       _    __ _ _
+| | | |_ __   __| | __ _| |_ ___    __| | ___ | |_ / _(_) | ___  ___
+| | | | '_ \ / _` |/ _` | __/ _ \  / _` |/ _ \| __| |_| | |/ _ \/ __|
+| |_| | |_) | (_| | (_| | ||  __/ | (_| | (_) | |_|  _| | |  __/\__ \
+ \___/| .__/ \__,_|\__,_|\__\___|  \__,_|\___/ \__|_| |_|_|\___||___/
+      |_|
+EOT
+echo 'Update dotfiles'
+cd ~/.config
+git pull origin
+git submodule update --init --recursive
+
+echo 'Update prezto'
+cd ~/.config/zsh/.zprezto
+git pull origin master
+;;
+
+esac
+done

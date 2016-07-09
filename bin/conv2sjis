@@ -1,0 +1,17 @@
+#!/bin/bash
+#================================
+# convert to Shift-JIS
+#================================
+nfkcommand=`which nkf`
+if [ "${nfkcommand}" = "" ]; then
+  echo "you need 'nfk' command!"
+  exit 1
+else
+  for var in $*
+  do
+    tmp=`cat ${var} | ${nfkcommand} -s `
+    echo ${tmp} > ${var}
+  done
+  exit 0
+fi
+
