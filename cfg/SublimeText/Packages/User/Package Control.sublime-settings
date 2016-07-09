@@ -1,0 +1,36 @@
+{
+	"bootstrapped": true,
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"AlignTab",
+		"Better CoffeeScript",
+		"Better Completion",
+		"Better JavaScript",
+		"BracketHighlighter",
+		"Clickable URLs",
+		"ColorPicker",
+		"Dotfiles Syntax Highlighting",
+		"Emmet",
+		"Figlet Big ASCII Text",
+		"FileOpTabContextMenu",
+		"Function Name Display",
+		"GitGutter",
+		"Hayaku - tools for writing CSS faster",
+		"HTML-CSS-JS Prettify",
+		"Material Theme",
+		"Open-Include",
+		"Package Control",
+		"Pug",
+		"rsub",
+		"Sass",
+		"SCSS",
+		"SFTP",
+		"SideBarEnhancements",
+		"Stylus",
+		"Sublime Files",
+		"SublimeLinter",
+		"SVN",
+		"Zip Browser"
+	]
+}
