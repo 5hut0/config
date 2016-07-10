@@ -6,6 +6,11 @@ local/
 .zprezto/
 .zhistory
 .zcompdump*
+chromium
+fcitx
+menus/
+.netrwhist
+dconf/user
 
 *.sublime_license
 SFTP.sublime-settings

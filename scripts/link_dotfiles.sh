@@ -38,9 +38,9 @@ rm -rf ~/.editorconfig
 rm -rf ~/.tigrc
 rm -rf ~/.uncrustify.cfg
 if [[ "$OSTYPE" != darwin* ]]; then
-  ln -s ~/.Xdefaults
-  ln -s ~/.xprofile
-  ln -s ~/.i3
+  rm -rf ~/.Xdefaults
+  rm -rf ~/.xprofile
+  rm -rf ~/.i3
 fi
 
 # =============================================================================
@@ -71,7 +71,11 @@ ln -s ~/.config/cfg/tmux.conf ~/.tmux.conf
 # editorconfig
 # =============================================================================
 echo 'link .editorconfig'
-ln -s ~/.config/cfg/editorconfig ~/.editorconfig
+if [[ "$OSTYPE" != darwin* ]]; then
+  ln -s ~/.config/cfg/editorconfig_arch ~/.editorconfig
+else
+  ln -s ~/.config/cfg/editorconfig ~/.editorconfig
+fi
 
 # =============================================================================
 # tig
