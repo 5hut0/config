@@ -56,6 +56,11 @@
 	"font_face": "Ricty",
 	"font_size": 13.5,
 	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage",
+		"JavaScript"
+	],
 	"match_brackets": true,
 	"match_brackets_angle": false,
 	"match_brackets_braces": true,
