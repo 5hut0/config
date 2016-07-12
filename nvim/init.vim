@@ -57,13 +57,19 @@ Plug 'tyru/caw.vim'
 
 " C / C++
 Plug 'octol/vim-cpp-enhanced-highlight' , { 'for': ['c','cpp'] }
-Plug 'bbchung/clighter' , { 'for': ['c','cpp'] }
+
+if has('nvim')
+  Plug 'bbchung/Clamp' , { 'for': ['c','cpp'] }
+else
+  Plug 'bbchung/clighter' , { 'for': ['c','cpp'] }
+endif
 
 if executable('uncrustify')
   Plug 'ompugao/uncrustify-vim' , { 'for': ['c','cpp'] }
 endif
 
 " HTML, CSS, JS
+Plug 'elzr/vim-json'  , { 'for': ['json'] }
 Plug 'othree/html5.vim'  , { 'for': ['html'] }
 Plug 'hail2u/vim-css3-syntax' , { 'for': ['css'] }
 Plug 'pangloss/vim-javascript' , { 'for': ['javascript'] }
@@ -88,7 +94,7 @@ unlet b:commandDepends
 " Plug 'szw/vim-ctrlspace'
 
 " linter
-Plug 'scrooloose/syntastic' , { 'do': 'npm install -g eslint' }
+Plug 'scrooloose/syntastic' , { 'do': 'npm install -g eslint', 'for': ['html', 'css', 'javascript'] }
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -192,6 +198,7 @@ else
 endif
 
 syntax on                       " シンタックスカラーリング有効
+set synmaxcol=300               " ハイライト処理を300列までに限定
 set laststatus=2                " ステータスラインを2行にする
 set showcmd                     " 入力中のコマンドを表示
 set showmode                    " 現在のモードを表示
@@ -460,15 +467,21 @@ let g:ycm_min_num_of_chars_for_completion = 2
 " autocmd Vimrc FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " ==============================================================================
-" clighter
+" Clighter / Clamp
 " ==============================================================================
-let g:clighter_autostart = 1
-let g:clighter_libclang_file = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
-" let g:clighter_libclang_file = "/usr/local/Cellar/llvm/3.6.2/lib/libclang.dylib"
-let g:clighter_heuristic_compile_args = 0
-let g:ClighterOccurrences = 0
-nnoremap <silent> <Leader><C-r> :call clighter#Rename()<CR>
-
+if has('nvim')
+  let g:clamp_autostart = 1
+  let g:clamp_libclang_file = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+  let g:clamp_heuristic_compile_args = 0
+  let g:ClampOccurrences = 0
+  nnoremap <silent> <Leader><C-r> :call ClampRename()<CR>
+else
+  let g:clighter_autostart = 1
+  let g:clighter_libclang_file = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+  let g:clighter_heuristic_compile_args = 0
+  let g:ClighterOccurrences = 0
+  nnoremap <silent> <Leader><C-r> :call clighter#Rename()<CR>
+endif
 
 " ==============================================================================
 " vim-jsbeautify
@@ -487,6 +500,7 @@ augroup END
 " ==============================================================================
 let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_html_tidy_exec = 'tidy'
+let g:syntastic_disabled_filetypes=['c','cpp']
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -510,3 +524,7 @@ let g:syntastic_html_tidy_ignore_errors = [
   \ 'discarding unexpected'
   \ ]
 
+" ==============================================================================
+" elzr/vim-json
+" ==============================================================================
+let g:vim_json_syntax_conceal = 0
