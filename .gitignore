@@ -2,6 +2,7 @@
 nvim/plugged
 ranger/bookmarks
 ranger/history
+ranger/tagged
 local/
 .zprezto/
 .zhistory
@@ -33,6 +34,7 @@ cfg/SublimeText/Packages/User/*
 cfg/SublimeText/Packages/HTML-CSS-JS Prettify/*
 cfg/SublimeText/Installed Packages/pyv8/osx-p3/pack.zip
 cfg/SublimeText/Installed Packages/pyv8/osx-p3/config.json
+cfg/SublimeText/Installed Packages/pyv8/osx-p3/
 
 !Package Control.sublime-package
 !Package Control.sublime-settings
