@@ -1,5 +1,6 @@
 .DS_Store
 nvim/plugged
+ycm_extra_conf.pyc
 ranger/bookmarks
 ranger/history
 ranger/tagged
