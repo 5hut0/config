@@ -32,28 +32,35 @@ Plug 'vim-airline/vim-airline-themes'
 " Color Scheme
 Plug 'altercation/vim-colors-solarized'
 
+" Files and Buffers
+Plug 'justinmk/vim-dirvish'
+Plug 'vim-ctrlspace/vim-ctrlspace'
+Plug 'ctrlpvim/ctrlp.vim'
+
 " Editing
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'Shougo/context_filetype.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-endwise'
 Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-expand-region'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'haya14busa/incsearch.vim'
-Plug 'kana/vim-smartinput'
-Plug 'cohama/vim-smartinput-endwise'
+Plug 'cohama/lexima.vim'
 
 " Auto Complete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 
 " Signature
 Plug 'kshenoy/vim-signature'
 
 " Comment out
 Plug 'tyru/caw.vim'
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " C / C++
 Plug 'octol/vim-cpp-enhanced-highlight' , { 'for': ['c','cpp'] }
@@ -82,16 +89,6 @@ Plug 'kchmck/vim-coffee-script' , { 'for': ['coffee'] }
 Plug 'leafgarland/typescript-vim' , { 'for': ['typescript'] }
 Plug 'wavded/vim-stylus' , { 'for': ['stylus'] }
 Plug 'digitaltoad/vim-pug' , { 'for': ['pug', 'jade'] }
-
-" Unite, filer
-Plug 'Shougo/vimproc.vim', { 'dir': '~/.config/nvim/plugged/vimproc.vim', 'do': 'make' }
-let b:commandDepends = ['Unite', 'UniteWithBufferDir', 'VimFilerCurrentDir', 'VimFilerBufferDir']
-Plug 'Shougo/unite.vim', {'on': b:commandDepends, 'for': ['unite']}
-      \ | Plug 'Shougo/vimfiler', {'on': b:commandDepends}
-unlet b:commandDepends
-" Plug 'scrooloose/nerdtree'
-" Plug 'kien/ctrlp.vim'
-" Plug 'szw/vim-ctrlspace'
 
 " linter
 Plug 'scrooloose/syntastic' , { 'do': 'npm install -g eslint', 'for': ['html', 'css', 'javascript'] }
@@ -357,53 +354,6 @@ let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 
 " ==============================================================================
-" unite.vim
-" vimfiler
-" ==============================================================================
-" VimFilerをデフォルトのファイラにする
-let g:vimfiler_as_default_explorer = 1
-
-" セーフモードを無効にした状態で起動する
-let g:vimfiler_safe_mode_by_default = 0
-
-let g:vimfiler_ignore_pattern = ['^\.DS_Store$']
-
-nnoremap <silent><C-p> :VimFilerBufferDir -buffer-name=files -toggle<CR>
-nnoremap <silent><C-Space> :Unite buffer -buffer-name=buffers<CR>
-
-" タブで開く
-au FileType vimfiler nnoremap <silent> <buffer> <expr> t vimfiler#do_switch_action('tabopen')
-
-" ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-S> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-S> unite#do_action('split')
-au FileType vimfiler nnoremap <silent> <buffer> <expr> <C-S> vimfiler#do_switch_action('split')
-au FileType vimfiler inoremap <silent> <buffer> <expr> <C-S> vimfiler#do_switch_action('split')
-
-" ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-V> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-V> unite#do_action('vsplit')
-au FileType vimfiler nnoremap <silent> <buffer> <expr> <C-V> vimfiler#do_switch_action('vsplit')
-au FileType vimfiler inoremap <silent> <buffer> <expr> <C-V> vimfiler#do_switch_action('vsplit')
-
-" ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-au FileType vimfiler nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType vimfiler inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-
-"デフォルトのキーマッピングを変更
-augroup vimrc
-  autocmd FileType vimfiler call s:vimfiler_my_settings()
-augroup END
-
-function! s:vimfiler_my_settings()
-  nmap <buffer> q <Plug>(vimfiler_exit)
-  nmap <buffer> Q <Plug>(vimfiler_hide)
-endfunction
-
-
-" ==============================================================================
 " emmet-vim
 " ==============================================================================
 let g:user_emmet_leader_key='<c-e>'
@@ -424,8 +374,8 @@ map g/ <Plug>(incsearch-stay)
 " ==============================================================================
 " caw.vim
 " ==============================================================================
-nmap <C-d> <Plug>(caw:hatpos:toggle)
-vmap <C-d> <Plug>(caw:hatpos:toggle)
+nmap <C-c> <Plug>(caw:hatpos:toggle)
+vmap <C-c> <Plug>(caw:hatpos:toggle)
 
 " ==============================================================================
 " uncrustify-vim
@@ -451,20 +401,59 @@ hi PmenuThumb guifg=#586e75 ctermfg=10
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_cache_omnifunc = 1
+let g:ycm_auto_trigger = 1
+let g:ycm_use_ultisnips_completer = 1
 let g:ycm_complete_in_comments_and_strings = 1
 let g:ycm_min_num_identifier_candidate_chars = 3
 let g:ycm_min_num_of_chars_for_completion = 2
+" let g:ycm_key_invoke_completion = '<C-.>'
 
 
-" let g:ycm_global_ycm_extra_conf = '~/.vim/conf/ycm/ycm_extra_conf.py'
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>kk :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/ycm_extra_conf.py'
 " let g:ycm_collect_identifiers_from_tags_files = 1
-" let g:UltiSnipsExpandTrigger = '<C-j>'
-" let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-" let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-" let g:EclimCompletionMethod = 'omnifunc'
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+let g:EclimCompletionMethod = 'omnifunc'
 " autocmd Vimrc FileType javascript nnoremap ,gd :<C-u>YcmCompleter GetDoc<CR>
 " autocmd Vimrc Filetype javascript nnoremap ,gt :<C-u>YcmCompleter GoTo<CR>
 " autocmd Vimrc FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+
+function! MyOnCompleteDone()
+    if !exists('v:completed_item') || empty(v:completed_item)
+        return
+    endif
+
+    let complete_str = v:completed_item.word
+    if complete_str == ''
+        return
+    endif
+    let abbr = v:completed_item.abbr
+    let startIdx = match(abbr,"(")
+    let endIdx = match(abbr,")")
+    if endIdx - startIdx > 1
+        let argsStr = strpart(abbr, startIdx+1, endIdx - startIdx -1)
+        let argsList = split(argsStr, ",")
+        let snippet = ""
+        let c = 1
+        for i in argsList
+            if c > 1
+                let snippet = snippet. ", "
+            endif
+            " strip space
+            let arg = substitute(i, '^\s*\(.\{-}\)\s*$', '\1', '')
+            let snippet = snippet . '${'.c.":".arg.'}'
+            let c += 1
+        endfor
+        let snippet = snippet . ")$0"
+        call UltiSnips#Anon(snippet)
+    endif
+endfunction
+" autocmd CompleteDone *.cpp  call MyOnCompleteDone()
 
 " ==============================================================================
 " Clighter / Clamp
@@ -528,3 +517,87 @@ let g:syntastic_html_tidy_ignore_errors = [
 " elzr/vim-json
 " ==============================================================================
 let g:vim_json_syntax_conceal = 0
+
+" ==============================================================================
+" airblade/vim-gitgutter
+" ==============================================================================
+let g:gitgutter_max_signs = 500
+set updatetime=250
+
+" ==============================================================================
+" vim-ctrlspace/vim-ctrlspace
+" ==============================================================================
+nnoremap <silent><C-Space> :CtrlSpace<CR>
+if executable("ag")
+  let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+endif
+
+hi CtrlSpaceNormal   guifg=#073642 guibg=#586e75 ctermfg=0 ctermbg=10 gui=reverse
+hi CtrlSpaceSelected guifg=#586e75 guibg=#93a1a1 ctermfg=10 ctermbg=8 gui=reverse
+hi CtrlSpaceSearch   guifg=#073642 guibg=#073642 ctermfg=0 ctermbg=0
+hi CtrlSpaceStatus   guifg=#586e75 ctermfg=10
+
+" ==============================================================================
+" justinmk/vim-dirvish
+" ==============================================================================
+nnoremap <silent><C-d> :call <SID>toggle_dirvish()<CR>
+
+augroup dirvish_plugin
+  autocmd!
+  " Map t to open in new tab.
+  autocmd FileType dirvish
+        \  nnoremap <buffer> t :call dirvish#open('tabedit', 0)<CR>
+        \ |xnoremap <buffer> t :call dirvish#open('tabedit', 0)<CR>
+        \ |nnoremap <buffer> s :call dirvish#open('split', 0)<CR>
+        \ |xnoremap <buffer> s :call dirvish#open('split', 0)<CR>
+        \ |nnoremap <buffer> v :call dirvish#open('vsplit', 0)<CR>
+        \ |xnoremap <buffer> v :call dirvish#open('vsplit', 0)<CR>
+
+  " Enable :Gstatus and friends.
+  autocmd FileType dirvish call fugitive#detect(@%)
+
+  " Map CTRL-R to reload the Dirvish buffer.
+  autocmd FileType dirvish nnoremap <buffer> <C-R> :<C-U>Dirvish %<CR>:sort r /[^\/]$/<CR>
+
+  " Map `gh` to hide dot-prefixed files.
+  autocmd FileType dirvish nnoremap <buffer>
+        \ gh :keeppatterns g@\v/\.[^\/]+/?$@d<cr>
+augroup END
+
+function! s:toggle_dirvish()
+  if &filetype == 'dirvish'
+    if exists('b:dirvish')
+      if winnr('$') > 1
+        wincmd c
+      else
+        bdelete
+      endif
+    endif
+  else
+    let l:path = expand('%:~:h')
+
+    if len(l:path) == 0
+      execute 'Dirvish'
+    else
+      execute 'Dirvish %'
+    endif
+    execute 'sort r /[^\/]$/'
+  endif
+endfunction
+
+
+" ==============================================================================
+" ctrlpvim/ctrlp.vim
+" ==============================================================================
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+" set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+"   \ 'file': '\v\.(exe|so|dll)$',
+"   \ 'link': 'some_bad_symbolic_links',
+"   \ }
