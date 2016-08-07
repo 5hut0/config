@@ -53,6 +53,8 @@ brew install xpdf
 brew install imlib2
 
 # files
+brew install ag
+brew install xz
 brew install nkf
 brew install atool
 
