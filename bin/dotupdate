@@ -29,6 +29,7 @@ echo 'Update Homebrew'
 brew update
 brew upgrade
 brew cleanup
+brew linkapps macvim
 ;;
 
 #==============================================================================
