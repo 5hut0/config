@@ -36,35 +36,23 @@ import ycm_core
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
 flags = [
 '-Wall',
-# '-Wextra',
-# '-Werror',
-# '-Wc++98-compat',
-# '-Wno-long-long',
-# '-Wno-variadic-macros',
-# '-fexceptions',
-# '-DNDEBUG',
-# You 100% do NOT need -DUSE_CLANG_COMPLETER in your flags; only the YCM
-# source code needs it.
-# '-DUSE_CLANG_COMPLETER',
-# THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
-# language to use when compiling headers. So it will guess. Badly. So C++
-# headers will be compiled as C headers. You don't want that so ALWAYS specify
-# a "-std=<something>".
-# For a C project, you would set this to something like 'c99' instead of
-# 'c++11'.
 '-stdlib=libc++',
-'-std=c++11',
+'-std=c++14',
 '-x', 'c++',
 # '-isystem', '../BoostParts',
-'-isystem', '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.3.0/include',
+'-isystem', '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/7.3.0/include',
 '-isystem', '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
 '-isystem', '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include',
 '-isystem', '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks',
 '-isystem', '/System/Library/Frameworks/Python.framework/Headers',
 '-isystem', '../llvm/include',
 '-isystem', '../llvm/tools/clang/include',
+# JUCE
+'-isystem', '/Applications/JUCE/modules',
+# JUCE
 '-I', '.',
 '-I', './ClangCompleter',
+'-I', '../JuceLibraryCode',
 ]
 
 

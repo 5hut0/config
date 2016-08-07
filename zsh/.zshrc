@@ -32,6 +32,7 @@ alias ta='tig --all'
 alias ts='tig status'
 alias prty='uncrustify --replace --no-backup'
 alias pqall='find . -name "*.png" -type f | xargs pngquant --ext .png --verbose --force'
+alias gf='git-flow'
 
 bindkey -v
 bindkey 'jj' vi-cmd-mode
