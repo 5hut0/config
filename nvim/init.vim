@@ -29,13 +29,14 @@ Plug 'thinca/vim-quickrun'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Color Scheme
-Plug 'altercation/vim-colors-solarized'
-
 " Files and Buffers
 Plug 'justinmk/vim-dirvish'
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'ctrlpvim/ctrlp.vim'
+
+" Search and replace
+Plug 'rking/ag.vim'
+Plug 'thinca/vim-qfreplace'
 
 " Editing
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -63,10 +64,13 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " C / C++
+Plug 'vim-scripts/a.vim' , { 'for': ['c','cpp'] }
 Plug 'octol/vim-cpp-enhanced-highlight' , { 'for': ['c','cpp'] }
+Plug 'jeaye/color_coded' , { 'for': ['c','cpp'],'do': 'cmake . && make && make install'}
 
 if has('nvim')
   Plug 'bbchung/Clamp' , { 'for': ['c','cpp'] }
+  Plug 'arakashic/chromatica.nvim' , { 'for': ['c','cpp'] }
 else
   Plug 'bbchung/clighter' , { 'for': ['c','cpp'] }
 endif
@@ -96,6 +100,9 @@ Plug 'scrooloose/syntastic' , { 'do': 'npm install -g eslint', 'for': ['html', '
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+
+" Color Scheme
+Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 
@@ -408,20 +415,16 @@ let g:ycm_min_num_identifier_candidate_chars = 3
 let g:ycm_min_num_of_chars_for_completion = 2
 " let g:ycm_key_invoke_completion = '<C-.>'
 
-
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>kk :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/ycm_extra_conf.py'
 " let g:ycm_collect_identifiers_from_tags_files = 1
-let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 let g:EclimCompletionMethod = 'omnifunc'
-" autocmd Vimrc FileType javascript nnoremap ,gd :<C-u>YcmCompleter GetDoc<CR>
-" autocmd Vimrc Filetype javascript nnoremap ,gt :<C-u>YcmCompleter GoTo<CR>
-" autocmd Vimrc FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 function! MyOnCompleteDone()
     if !exists('v:completed_item') || empty(v:completed_item)
@@ -472,6 +475,14 @@ else
   nnoremap <silent> <Leader><C-r> :call clighter#Rename()<CR>
 endif
 
+" ==============================================================================
+" arakashic/chromatica.nvim
+" ==============================================================================
+if has('nvim')
+  let g:chromatica#libclang_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+  let g:chromatica#responsive_mode=1
+
+endif
 " ==============================================================================
 " vim-jsbeautify
 " ==============================================================================
@@ -528,6 +539,7 @@ set updatetime=250
 " vim-ctrlspace/vim-ctrlspace
 " ==============================================================================
 nnoremap <silent><C-Space> :CtrlSpace<CR>
+
 if executable("ag")
   let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 endif
@@ -592,12 +604,87 @@ endfunction
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-" set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-
+set wildignore+=*/tmp/*,*node_modules*,*.so,*.png,*.jpg,*.ai,*.pkg,*.swp,*.zip,*.tag
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-"   \ 'file': '\v\.(exe|so|dll)$',
-"   \ 'link': 'some_bad_symbolic_links',
-"   \ }
+let g:ctrlp_max_depth = 10
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:50'
+let g:ctrlp_user_command = 'ag %s -l'
+
+" ==============================================================================
+" vim-scripts/a.vim
+" ==============================================================================
+nnoremap <silent> <Leader>a :A<CR>
+
+" ==============================================================================
+" rking/ag.vim
+" ==============================================================================
+let g:ag_mapping_message=0
+let g:ag_highlight=1
+
+
+" ==============================================================================
+" jeaye/color_coded
+" ==============================================================================
+let g:color_coded_enabled = 1
+let g:color_coded_filetypes = ['c', 'cpp', 'objc']
+
+hi default link ClassDecl Identifier
+hi default link EnumConstant Constant
+hi default link EnumDecl Identifier
+hi default link Member Identifier
+hi default link Namespace Identifier
+hi default link Variable Identifier
+hi default link UnionDecl Identifier
+hi default link StructDecl Type
+" hi link Namespace IncSearch
+
+" hi default link Decl Identifier
+" hi default link DeclRefExprCall Type
+" hi default link DeclRefExprEnum Constant
+" hi link FieldDecl Identifier
+" hi link Function Type
+" hi default link FunctionDecl Constant
+" hi default link MacroInstantiation Constant
+" hi default link MemberRefExprCall Type
+" hi default link MemberRefExprVar Type
+" hi default link NamespaceRef Type
+" hi default link NamespaceAlias Type
+" hi default link Occurrences IncSearch
+" hi default link ParmDecl Identifier
+" hi default link Prepro PreProc
+" hi default link Ref Type
+" hi default link TemplateNoneTypeParameter Identifier
+" hi default link TemplateRef Type
+" hi default link TemplateTypeParameter Identifier
+" hi default link TypeRef Type
+
+" ==============================================================================
+" thinca/vim-quickrun
+" ==============================================================================
+if executable("clang++")
+  let g:syntastic_cpp_compiler = 'clang++'
+  let g:syntastic_cpp_compiler_options = '--std=c++14 --stdlib=libc++'
+  let g:quickrun_config = {}
+  let g:quickrun_config['cpp/clang++14'] = {
+      \ 'cmdopt': '--std=c++14 --stdlib=libc++',
+      \ 'type': 'cpp/clang++'
+    \ }
+  let g:quickrun_config['cpp'] = {'type': 'cpp/clang++14'}
+endif
+
+" ==============================================================================
+" cpp
+" ==============================================================================
+function! s:cpp()
+  " インクルードパスを設定する
+  setlocal path+=/Applications/JUCE/modules/juce_audio_basics
+  " 括弧を構成する設定に <> を追加する
+  setlocal matchpairs+=<:>
+endfunction
+
+
+augroup vimrc-cpp
+  autocmd!
+  autocmd FileType cpp call s:cpp()
+augroup END
