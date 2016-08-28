@@ -51,7 +51,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'cohama/lexima.vim'
 
 " Auto Complete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 
 " Signature
 Plug 'kshenoy/vim-signature'
@@ -160,7 +160,15 @@ set undodir=$HOME/.vimundo
 
 
 " 保存時に行末の空白を除去する
-autocmd BufWritePre * :%s/\s\+$//ge
+fun! StripTrailingWhitespace()
+  " Don't strip on these filetypes
+  if &ft =~ 'markdown\|perl'
+    return
+  endif
+  %s/\s\+$//ge
+endfun
+
+autocmd BufWritePre * call StripTrailingWhitespace()
 
 " 外部保存をチェックする
 augroup vimrc_checktime
@@ -418,6 +426,10 @@ let g:ycm_min_num_of_chars_for_completion = 2
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>kk :YcmCompleter GoToDefinitionElseDeclaration<CR>
+augroup YouCompleteMe
+  autocmd!
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+augroup END
 
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/ycm_extra_conf.py'
 " let g:ycm_collect_identifiers_from_tags_files = 1
@@ -544,10 +556,10 @@ if executable("ag")
   let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 endif
 
-hi CtrlSpaceNormal   guifg=#073642 guibg=#586e75 ctermfg=0 ctermbg=10 gui=reverse
-hi CtrlSpaceSelected guifg=#586e75 guibg=#93a1a1 ctermfg=10 ctermbg=8 gui=reverse
-hi CtrlSpaceSearch   guifg=#073642 guibg=#073642 ctermfg=0 ctermbg=0
-hi CtrlSpaceStatus   guifg=#586e75 ctermfg=10
+hi link CtrlSpaceNormal   Comment
+hi link CtrlSpaceSelected CursorLine
+hi link CtrlSpaceSearch   Search
+hi link CtrlSpaceStatus   StatusLine
 
 " ==============================================================================
 " justinmk/vim-dirvish
@@ -605,11 +617,47 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*node_modules*,*.so,*.png,*.jpg,*.ai,*.pkg,*.swp,*.zip,*.tag
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|png|jpg|gif|ai|pkg|swp|zip|tag|so)$'
 let g:ctrlp_max_depth = 10
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:50'
-let g:ctrlp_user_command = 'ag %s -l'
+
+if executable('ag')
+  let g:ctrlp_use_caching=0
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore ".git"
+      \ --ignore ".svn"
+      \ --ignore ".hg"
+      \ --ignore "*.jpg"
+      \ --ignore "*.svg"
+      \ --ignore "*.png"
+      \ --ignore "*.gif"
+      \ --ignore "*.psd"
+      \ --ignore "*.ai"
+      \ --ignore "*.sketch"
+      \ --ignore "*.zip"
+      \ --ignore "*.pkg"
+      \ --ignore "*.aac"
+      \ --ignore "*.aif"
+      \ --ignore "*.wav"
+      \ --ignore "*.ttf"
+      \ --ignore "*.eot"
+      \ --ignore "*.otf"
+      \ --ignore "*.wof"
+      \ --ignore "*.woff"
+      \ --ignore "*.woff2"
+      \ --ignore "node_modules"
+      \ --ignore ".DS_Store"
+      \ --ignore "**/*.pyc"
+      \ -g ""'
+endif
+
+hi link CtrlPNoEntries Error
+hi link CtrlPMatch     Type
+hi link CtrlPLinePre   Identifier
+hi link CtrlPPrtBase   Comment
+hi link CtrlPPrtText   Normal
+hi link CtrlPPrtCursor Constant
 
 " ==============================================================================
 " vim-scripts/a.vim
