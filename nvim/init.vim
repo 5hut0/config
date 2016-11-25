@@ -51,7 +51,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'cohama/lexima.vim'
 
 " Auto Complete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer --gocode-completer' }
 
 " Signature
 Plug 'kshenoy/vim-signature'
@@ -66,10 +66,10 @@ Plug 'honza/vim-snippets'
 " C / C++
 Plug 'vim-scripts/a.vim' , { 'for': ['c','cpp'] }
 Plug 'octol/vim-cpp-enhanced-highlight' , { 'for': ['c','cpp'] }
-Plug 'jeaye/color_coded' , { 'for': ['c','cpp'],'do': 'cmake . && make && make install'}
+" Plug 'jeaye/color_coded' , { 'for': ['c','cpp'],'do': 'cmake . && make && make install'}
 
 if has('nvim')
-  Plug 'bbchung/Clamp' , { 'for': ['c','cpp'] }
+  " Plug 'bbchung/Clamp' , { 'for': ['c','cpp'] }
   Plug 'arakashic/chromatica.nvim' , { 'for': ['c','cpp'] }
 else
   Plug 'bbchung/clighter' , { 'for': ['c','cpp'] }
@@ -88,7 +88,7 @@ Plug 'othree/yajs.vim' , { 'for': ['javascript'] }
 Plug 'ryym/vim-riot' , { 'for': ['javascript'] }
 Plug 'othree/es.next.syntax.vim' , { 'for': ['javascript'] }
 Plug 'maksimr/vim-jsbeautify', { 'do': 'npm install -g js-beautify' }
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','javascript'] }
 Plug 'kchmck/vim-coffee-script' , { 'for': ['coffee'] }
 Plug 'leafgarland/typescript-vim' , { 'for': ['typescript'] }
 Plug 'wavded/vim-stylus' , { 'for': ['stylus'] }
@@ -103,6 +103,7 @@ Plug 'airblade/vim-gitgutter'
 
 " Color Scheme
 Plug 'altercation/vim-colors-solarized'
+Plug 'rakr/vim-one'
 
 call plug#end()
 
@@ -132,15 +133,24 @@ set t_Co=256
 set mouse=a         " マウスモード有効
 set timeout ttimeout timeoutlen=500 ttimeoutlen=100
 
+" Turn off paste mode when leaving insert
+autocmd InsertLeave * set nopaste
+
 
 " ==============================================================================
 " CLIP BOARD
 " ==============================================================================
-if !has('nvim')
-  set clipboard+=unnamed
+" if has('nvim')
+" else
+"   " set clipboard=unnamed
+" endif
+
+if has('nvim')
+  set clipboard=unnamedplus
+else
+  " set clipboard=unnamed,autoselect
   set clipboard=unnamed
 endif
-
 
 " ==============================================================================
 " FILES
@@ -226,9 +236,11 @@ set showmatch                   " 括弧の対応をハイライト
 set matchpairs& matchpairs+=<:> " 対応括弧に<と>のペアを追加
 set matchtime=3                 " 対応括弧の表示秒数を3秒にする
 set list                        " 不可視文字を表示
+
 set background=dark
 colorscheme solarized
-
+" colorscheme one
+" let g:airline_theme='one'
 
 hi ZenkakuSpace guibg=NONE gui=underline ctermfg=LightBlue cterm=underline
 match ZenkakuSpace /　/
@@ -372,6 +384,11 @@ let g:vimfiler_force_overwrite_statusline = 0
 " emmet-vim
 " ==============================================================================
 let g:user_emmet_leader_key='<c-e>'
+let g:user_emmet_settings = {
+\  'javascript' : {
+\      'extends' : 'jsx',
+\  },
+\}
 
 " ==============================================================================
 " vim-easy-align
@@ -474,11 +491,11 @@ endfunction
 " Clighter / Clamp
 " ==============================================================================
 if has('nvim')
-  let g:clamp_autostart = 1
-  let g:clamp_libclang_file = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
-  let g:clamp_heuristic_compile_args = 0
-  let g:ClampOccurrences = 0
-  nnoremap <silent> <Leader><C-r> :call ClampRename()<CR>
+  " let g:clamp_autostart = 1
+  " let g:clamp_libclang_file = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+  " let g:clamp_heuristic_compile_args = 0
+  " let g:ClampOccurrences = 0
+  " nnoremap <silent> <Leader><C-r> :call ClampRename()<CR>
 else
   let g:clighter_autostart = 1
   let g:clighter_libclang_file = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
@@ -493,7 +510,6 @@ endif
 if has('nvim')
   let g:chromatica#libclang_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
   let g:chromatica#responsive_mode=1
-
 endif
 " ==============================================================================
 " vim-jsbeautify
@@ -736,3 +752,4 @@ augroup vimrc-cpp
   autocmd!
   autocmd FileType cpp call s:cpp()
 augroup END
+

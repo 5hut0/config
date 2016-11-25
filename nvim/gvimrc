@@ -1,4 +1,5 @@
 set guifont=Ricty\ Regular\ for\ Powerline:h15
+set guifontwide=Ricty\ Regular\ for\ Powerline:h15
 set visualbell t_vb=
 
 "ツールバーなし
