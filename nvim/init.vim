@@ -95,7 +95,7 @@ Plug 'wavded/vim-stylus' , { 'for': ['stylus'] }
 Plug 'digitaltoad/vim-pug' , { 'for': ['pug', 'jade'] }
 
 " linter
-Plug 'scrooloose/syntastic' , { 'do': 'npm install -g eslint', 'for': ['html', 'css', 'javascript'] }
+Plug 'neomake/neomake'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -524,33 +524,29 @@ augroup beautifyjs
 augroup END
 
 " ==============================================================================
-" syntastic
+" neomake
 " ==============================================================================
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_html_tidy_exec = 'tidy'
-let g:syntastic_disabled_filetypes=['c','cpp']
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_html_tidy_ignore_errors = [
-  \ 'trimming empty <span>',
-  \ 'proprietary attribute "if"',
-  \ 'proprietary attribute "name"',
-  \ 'proprietary attribute "each"',
-  \ 'proprietary attribute "show"',
-  \ 'proprietary attribute "hide"',
-  \ "isn't allowed in",
-  \ "inserting implicit",
-  \ "missing </form>",
-  \ 'trimming empty <i>',
-  \ 'trimming empty <li>',
-  \ 'is not recognized!',
-  \ 'discarding unexpected'
-  \ ]
+" autocmd! BufWritePost * Neomake " 保存時に実行する
+
+" let g:neomake_open_list = 2
+
+let g:neomake_error_sign = {'text': '✖', 'texthl': 'DiffDelete'}
+let g:neomake_warning_sign = { 'text': '⚠', 'texthl': 'DiffChange'}
+let g:neomake_message_sign = { 'text': '➤', 'texthl': 'DiffText'}
+
+augroup neomake_run
+  " 保存時とenter時にlintする
+  autocmd! BufWritePost,BufEnter * Neomake
+
+  " インサートモードを抜けた時もlint
+  autocmd! InsertLeave *.js Neomake
+
+  " vim終了時にeslint_dを終了
+  autocmd! VimLeave *.js  !eslint_d stop
+augroup END
+
+let g:neomake_javascript_enabled_makers = ['eslint_d']
+let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint_d | tr -d "\n"')
 
 " ==============================================================================
 " elzr/vim-json
@@ -752,4 +748,5 @@ augroup vimrc-cpp
   autocmd!
   autocmd FileType cpp call s:cpp()
 augroup END
+
 
