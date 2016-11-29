@@ -37,6 +37,7 @@ rm -rf ~/.xvimrc
 rm -rf ~/.editorconfig
 rm -rf ~/.tigrc
 rm -rf ~/.uncrustify.cfg
+rm -rf ~/.tern-project
 if [[ "$OSTYPE" != darwin* ]]; then
   rm -rf ~/.Xdefaults
   rm -rf ~/.xprofile
@@ -82,6 +83,12 @@ fi
 # =============================================================================
 echo 'link .tigrc'
 ln -s ~/.config/cfg/tigrc ~/.tigrc
+
+# =============================================================================
+# tig
+# =============================================================================
+echo 'link .tern-project'
+ln -s ~/.config/cfg/tern-project ~/.tern-project
 
 # =============================================================================
 # uncrustify

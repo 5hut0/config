@@ -3,7 +3,6 @@ selectType=()
 selectType+=("Update Homebrew")
 selectType+=("Update npm modules")
 selectType+=("Update dotfiles")
-selectType+=("Install Stable Node.js")
 selectType+=("Relink dotfiles")
 selectType+=("Reinstall Xvim")
 
@@ -65,23 +64,6 @@ cat << 'EOT'
 EOT
 echo 'Update npm modules'
 npm upgrade -g
-;;
-
-#==============================================================================
-# Install Stable Node.js
-#==============================================================================
-"Install Stable Node.js")
-cat << 'EOT'
- _   _           _         _
-| \ | | ___   __| | ___   (_)___
-|  \| |/ _ \ / _` |/ _ \  | / __|
-| |\  | (_) | (_| |  __/_ | \__ \
-|_| \_|\___/ \__,_|\___(_)/ |___/
-                        |__/
-EOT
-echo 'Install Stable Node.js'
-nodebrew install-binary stable
-nodebrew use stable
 ;;
 
 #==============================================================================
