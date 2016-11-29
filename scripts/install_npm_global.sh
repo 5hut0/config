@@ -11,5 +11,5 @@ EOT
 
 echo 'npm install -g'
 echo 'coffee-script gulp coffeelint eslint js-beautify babel-core webpack'
-npm install -g coffee-script gulp coffeelint eslint js-beautify babel-core webpack
+npm install -g coffee-script gulp eslint js-beautify babel-core webpack
 

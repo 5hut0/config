@@ -81,7 +81,7 @@ brew install pngquant
 brew install imagemagick
 
 # js
-brew install nodebrew
+brew install node
 brew install phantomjs
 brew install jq
 brew install jo
@@ -118,13 +118,11 @@ brew cask install --appdir="/Applications" firefox
 brew cask install --appdir="/Applications" google-chrome
 brew cask install --appdir="/Applications" texturepacker
 brew cask install --appdir="/Applications" kaleidoscope
-# brew cask install --appdir="/Applications" adobe-creative-cloud
 brew cask install --appdir="/Applications" mou
 brew cask install --appdir="/Applications" marked
 brew cask install --appdir="/Applications" keycastr
 
 brew cask install sketch-tool
-brew cask install google-japanese-ime
 brew cask install qlcolorcode
 brew cask install qlstephen
 brew cask install qlmarkdown

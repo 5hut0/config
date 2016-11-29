@@ -45,7 +45,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
   sh ~/.config/scripts/setup_iterm.sh
   sh ~/.config/scripts/setup_karabiner.sh
   sh ~/.config/scripts/setup_macos_dock.sh
-  sh ~/.config/scripts/setup_nodejs.sh
   sh ~/.config/scripts/setup_alfred.sh
   sh ~/.config/scripts/setup_sublimetext.sh
   sh ~/.config/scripts/setup_icloud_files.sh
