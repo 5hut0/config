@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 cat <<-'EOT'
                          _           _        _ _
  _ __  _ __  _ __ ___   (_)_ __  ___| |_ __ _| | |         __ _
@@ -9,7 +7,6 @@ cat <<-'EOT'
       |_|                                                 |___/
 EOT
 
-echo 'npm install -g'
-echo 'coffee-script gulp coffeelint eslint js-beautify babel-core webpack'
-npm install -g coffee-script gulp eslint js-beautify babel-core webpack
+echo 'npm install -g babel-core coffee-script coffeelint electron electron-packager create-react-app eslint eslint_d eslint-plugin-react js-beautify gulp webpack'
+npm install -g babel-core coffee-script coffeelint electron electron-packager create-react-app eslint eslint_d eslint-plugin-react js-beautify gulp webpack
 
