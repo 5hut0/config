@@ -518,6 +518,7 @@ augroup beautifyjs
   autocmd!
   autocmd BufWrite,FileWritePre,FileAppendPre *.es6 call JsBeautify()
   autocmd BufWrite,FileWritePre,FileAppendPre *.js call JsBeautify()
+  autocmd BufWrite,FileWritePre,FileAppendPre *.jsx call JsBeautify()
   autocmd BufWrite,FileWritePre,FileAppendPre *.tag call HtmlBeautify()
   autocmd BufWrite,FileWritePre,FileAppendPre *.css call CSSBeautify()
   autocmd BufWrite,FileWritePre,FileAppendPre *.html call HtmlBeautify()
