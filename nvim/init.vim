@@ -698,27 +698,27 @@ hi default link Namespace Identifier
 hi default link Variable Identifier
 hi default link UnionDecl Identifier
 hi default link StructDecl Type
-" hi link Namespace IncSearch
 
-" hi default link Decl Identifier
-" hi default link DeclRefExprCall Type
-" hi default link DeclRefExprEnum Constant
-" hi link FieldDecl Identifier
-" hi link Function Type
-" hi default link FunctionDecl Constant
-" hi default link MacroInstantiation Constant
-" hi default link MemberRefExprCall Type
-" hi default link MemberRefExprVar Type
-" hi default link NamespaceRef Type
-" hi default link NamespaceAlias Type
-" hi default link Occurrences IncSearch
-" hi default link ParmDecl Identifier
-" hi default link Prepro PreProc
-" hi default link Ref Type
-" hi default link TemplateNoneTypeParameter Identifier
-" hi default link TemplateRef Type
-" hi default link TemplateTypeParameter Identifier
-" hi default link TypeRef Type
+hi link Namespace IncSearch
+hi default link Decl Identifier
+hi default link DeclRefExprCall Type
+hi default link DeclRefExprEnum Constant
+hi link FieldDecl Identifier
+hi link Function Type
+hi default link FunctionDecl Constant
+hi default link MacroInstantiation Constant
+hi default link MemberRefExprCall Type
+hi default link MemberRefExprVar Type
+hi default link NamespaceRef Type
+hi default link NamespaceAlias Type
+hi default link Occurrences IncSearch
+hi default link ParmDecl Identifier
+hi default link Prepro PreProc
+hi default link Ref Type
+hi default link TemplateNoneTypeParameter Identifier
+hi default link TemplateRef Type
+hi default link TemplateTypeParameter Identifier
+hi default link TypeRef Type
 
 " ==============================================================================
 " thinca/vim-quickrun
