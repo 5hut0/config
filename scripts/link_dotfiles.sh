@@ -57,6 +57,7 @@ echo 'link .vim/'
 ln -s ~/.config/nvim ~/.vim
 echo 'link .vimrc'
 ln -s ~/.config/nvim/init.vim ~/.vimrc
+ln -s ~/.config/cfg/color_coded ~/.color_coded
 echo 'link .gvimrc'
 ln -s ~/.config/nvim/gvimrc ~/.gvimrc
 echo 'link .xvimrc'

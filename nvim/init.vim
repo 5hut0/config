@@ -451,6 +451,11 @@ let g:ycm_use_ultisnips_completer = 1
 let g:ycm_complete_in_comments_and_strings = 1
 let g:ycm_min_num_identifier_candidate_chars = 3
 let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_error_symbol = 'X'
+let g:ycm_warning_symbol = '>'
+" let g:ycm_show_diagnostics_ui = 0
+" let g:syntastic_enable_highlighting = 0
+" let g:ycm_enable_diagnostic_highlighting = 0
 " let g:ycm_key_invoke_completion = '<C-.>'
 
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
@@ -542,6 +547,7 @@ augroup END
 " ==============================================================================
 " autocmd! BufWritePost * Neomake " 保存時に実行する
 
+" let g:neomake_verbose = 1
 " let g:neomake_open_list = 2
 
 let g:neomake_error_sign = {'text': '✖', 'texthl': 'DiffDelete'}
@@ -550,7 +556,7 @@ let g:neomake_message_sign = { 'text': '➤', 'texthl': 'DiffText'}
 
 augroup neomake_run
   " 保存時とenter時にlintする
-  autocmd! BufWritePost,BufEnter * Neomake
+  autocmd! BufWritePost,BufEnter *.js Neomake
 
   " インサートモードを抜けた時もlint
   autocmd! InsertLeave *.js Neomake
@@ -561,72 +567,11 @@ augroup END
 
 let g:neomake_javascript_enabled_makers = ['eslint_d']
 let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint_d | tr -d "\n"')
-let g:neomake_cpp_enable_makers = ['clang']
-let g:neomake_cpp_clang_maker = {'exe': 'clang'}
-let g:neomake_cpp_clang_args = [
-      \'-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
-      \'-x',
-      \'-std=c++14',
-      \'-stdlib=libc++',
-      \'-Wall',
-      \'-Werror',
-      \'-Wextra',
-      \'-Weverything',
-      \'-pedantic',
-      \'-arch i386',
-      \'-fmessage-length=238',
-      \'-fdiagnostics-show-note-include-stack',
-      \'-fmacro-backtrace-limit=0',
-      \'-fcolor-diagnostics',
-      \'-Wno-trigraphs',
-      \'-fpascal-strings',
-      \'-Wno-missing-field-initializers',
-      \'-Wno-missing-prototypes',
-      \'-Wnon-virtual-dtor',
-      \'-Wno-overloaded-virtual',
-      \'-Wno-exit-time-destructors',
-      \'-Wno-missing-braces',
-      \'-Wparentheses',
-      \'-Wswitch',
-      \'-Wno-unused-function',
-      \'-Wno',
-      \'-unused-label',
-      \'-Wno-unused-parameter',
-      \'-Wunused-variable',
-      \'-Wunused-value',
-      \'-Wno-empty-body',
-      \'-Wno-uninitialized',
-      \'-Wno-unknown-pragmas',
-      \'-Wno-shadow',
-      \'-Wno-four-char-constants',
-      \'-Wno-conversion',
-      \'-Wno-constant-conversion',
-      \'-Wno-int-conversion',
-      \'-Wno-bool-conversion',
-      \'-Wno-enum-conversion',
-      \'-Wno-shorten-64-to-32',
-      \'-Wno-newline-eof',
-      \'-Wno-c++11-extensions',
-      \'-D_DEBUG=1',
-      \'-DDEBUG=1',
-      \'-DJUCER_XCODE_MAC_F6D2F4CF=1',
-      \'-DJUCE_APP_VERSION=1.0.0',
-      \'-DJUCE_APP_VERSION_HEX=0x10000',
-      \'-fasm-blocks',
-      \'-fstrict-aliasing',
-      \'-Wdeprecated-declarations',
-      \'-Winvalid-offsetof',
-      \'-mmacosx-version-min=10.10',
-      \'-isystem /usr/local/include',
-      \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include',
-      \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
-      \'-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include',
-      \'-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks',
-      \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1',
-      \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
-      \'-isystem /Applications/JUCE/modules'
-      \]
-
+" let g:neomake_cpp_enable_makers = ['clang']
+" let g:neomake_cpp_clang_maker = {
+"    \ 'exe': '/usr/bin/clang',
+"    \ 'args': ['-Wall', '-Wextra', '-Weverything', '-pedantic', '-Wno-sign-conversion'],
+"    \ }
 
 " ==============================================================================
 " jeaye/color_coded
@@ -634,49 +579,50 @@ let g:neomake_cpp_clang_args = [
 let g:color_coded_enabled = 1
 let g:color_coded_filetypes = ['c', 'cpp', 'objc']
 
-hi link ClassDecl                     Title
-hi link Constant                      Title
-hi link Decl                          Title
-hi link DeclRefExprCall               Title
-hi link DeclRefExprEnum               Title
-hi link EnumConstant                  Title
-hi link EnumDecl                      Title
-hi link FieldDecl                     Title
-hi link Function                      Title
-hi link FunctionDecl                  Title
-hi link Identifier                    Title
-hi link IncSearch                     Title
-hi link MacroInstantiation            Title
-hi link Member                        Title
-hi link MemberRefExprCall             Title
-hi link MemberRefExprVar              Title
-hi link Namespace                     Title
-hi link NamespaceAlias                Title
-hi link NamespaceRef                  Title
-hi link Occurrences                   Title
-hi link ParmDecl                      Title
-hi link PreProc                       Title
-hi link Prepro                        Title
-hi link Ref                           Title
-hi link StructDecl                    Title
-hi link TemplateNoneTypeParameter     Title
-hi link TemplateRef                   Title
-hi link TemplateTypeParameter         Title
-" hi link Title                         Title
-hi link Type                          Title
-hi link TypeRef                       Title
-hi link UnionDecl                     Title
-hi link Variable                      Title
-hi link ClassDecl                     Title
-hi link EnumConstant                  Title
-hi link EnumDecl                      Title
-hi link Member                        Title
-hi link Namespace                     Title
-hi link Variable                      Title
-hi link UnionDecl                     Title
-hi link StructDecl                    Title
+hi Decl                          ctermfg=13 guifg=#6c71c4
+hi DeclRefExprCall               ctermfg=13 guifg=#6c71c4
+hi DeclRefExprEnum               ctermfg=13 guifg=#6c71c4
+hi EnumConstant                  ctermfg=13 guifg=#6c71c4
+hi EnumDecl                      ctermfg=13 guifg=#6c71c4
+hi Identifier                    ctermfg=6  guifg=#2aa198
+hi IncSearch                     ctermfg=13 guifg=#6c71c4
+hi MacroInstantiation            ctermfg=13 guifg=#6c71c4
+hi Member                        ctermfg=6  guifg=#2aa198
+hi MemberRef                     ctermfg=6  guifg=#ffffff
+hi MemberRefExpr                 ctermfg=13 guifg=#ffffff
+hi MemberRefExprCall             ctermfg=13 guifg=#6c71c4
+hi MemberRefExprVar              ctermfg=13 guifg=#6c71c4
+hi Occurrences                   ctermfg=13 guifg=#6c71c4
+hi ParmDecl                      ctermfg=13 guifg=#6c71c4
+hi Prepro                        ctermfg=9  guifg=#cb4b16
+hi Ref                           ctermfg=13 guifg=#6c71c4
+hi StorageClass                  ctermfg=13 guifg=#6c71c4
+hi StructDecl                    ctermfg=13 guifg=#6c71c4
+hi Structure                     ctermfg=13 guifg=#6c71c4
+hi TemplateNoneTypeParameter     ctermfg=13 guifg=#6c71c4
+hi TemplateRef                   ctermfg=13 guifg=#6c71c4
+hi TemplateTypeParameter         ctermfg=13 guifg=#6c71c4
+hi Title                         ctermfg=13 guifg=#6c71c4
+hi TypeRef                       ctermfg=13 guifg=#6c71c4
+hi Typedef                       ctermfg=13 guifg=#6c71c4
+hi UnionDecl                     ctermfg=13 guifg=#6c71c4
+hi FieldDecl                     ctermfg=9  guifg=#cb4b16
+hi Variable                      ctermfg=9  guifg=#cb4b16
 
+" ==============================================================================
 
+hi ClassDecl                     ctermfg=13 guifg=#6c71c4
+hi Constant                      ctermfg=6  guifg=#2aa198
+hi Type                          ctermfg=10 guifg=#b58900
+hi Function                      ctermfg=11 guifg=#268bd2
+hi FunctionDecl                  ctermfg=11 guifg=#268bd2
+hi PreProc                       ctermfg=9  guifg=#cb4b16
+hi Special                       ctermfg=9  guifg=#cb4b16
+
+"TODO
+hi Namespace                     ctermfg=0  guifg=#d33682
+hi NamespaceAlias                ctermfg=0  guifg=#d33682
+hi NamespaceRef                  ctermfg=0  guifg=#d33682
 " ==============================================================================
 " elzr/vim-json
 " ==============================================================================

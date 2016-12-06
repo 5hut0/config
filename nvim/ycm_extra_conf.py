@@ -70,22 +70,6 @@ flags = [
 '-Wdeprecated-declarations',
 '-Winvalid-offsetof',
 '-Wconversion',
-# '-Wno-empty-body',
-'-Wno-exit-time-destructors',
-'-Wno-four-char-constants',
-'-Wno-missing-field-initializers',
-'-Wno-missing-prototypes',
-'-Wno-newline-eof',
-# '-Wno-shorten-64-to-32',
-'-Wnon-virtual-dtor',
-'-fasm-blocks',
-'-fcolor-diagnostics',
-'-fdiagnostics-show-note-include-stack',
-'-fmacro-backtrace-limit=0',
-'-fmessage-length=238',
-'-fpascal-strings',
-'-fstrict-aliasing',
-'-pedantic',
 ]
 
 

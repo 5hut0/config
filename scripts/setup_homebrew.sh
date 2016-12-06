@@ -98,6 +98,7 @@ pip install neovim
 brew install tidy-html5
 brew install linkchecker
 brew install googlecl
+brew install go
 
 # fonts
 brew tap sanemat/font
