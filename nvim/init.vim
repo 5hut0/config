@@ -52,6 +52,7 @@ Plug 'cohama/lexima.vim'
 
 " Auto Complete
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer --gocode-completer' }
+" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 " Signature
 Plug 'kshenoy/vim-signature'
@@ -65,14 +66,14 @@ Plug 'honza/vim-snippets'
 
 " C / C++
 Plug 'vim-scripts/a.vim' , { 'for': ['c','cpp'] }
-Plug 'octol/vim-cpp-enhanced-highlight' , { 'for': ['c','cpp'] }
-" Plug 'jeaye/color_coded' , { 'for': ['c','cpp'],'do': 'cmake . && make && make install'}
+" Plug 'octol/vim-cpp-enhanced-highlight' , { 'for': ['c','cpp'] }
 
 if has('nvim')
   " Plug 'bbchung/Clamp' , { 'for': ['c','cpp'] }
-  Plug 'arakashic/chromatica.nvim' , { 'for': ['c','cpp'] }
+  " Plug 'arakashic/chromatica.nvim' , { 'for': ['c','cpp'] }
 else
-  Plug 'bbchung/clighter' , { 'for': ['c','cpp'] }
+  Plug 'jeaye/color_coded' , { 'for': ['c','cpp'],'do': 'cmake . && make && make install'}
+  " Plug 'bbchung/clighter' , { 'for': ['c','cpp'] }
 endif
 
 if executable('uncrustify')
@@ -115,6 +116,18 @@ call plug#end()
 " |_____\__,_|_|\__\___/|_|    |____/ \___|\__|\__|_|_| |_|\__, |
 "                                                          |___/
 " ==============================================================================
+
+" ==============================================================================
+" PATH
+" ==============================================================================
+set path+=/usr/local/include
+set path+=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include
+set path+=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+set path+=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include
+set path+=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
+set path+=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1
+set path+=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+set path+=/Applications/JUCE/modules
 
 " ==============================================================================
 " COMMON
@@ -548,6 +561,121 @@ augroup END
 
 let g:neomake_javascript_enabled_makers = ['eslint_d']
 let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint_d | tr -d "\n"')
+let g:neomake_cpp_enable_makers = ['clang']
+let g:neomake_cpp_clang_maker = {'exe': 'clang'}
+let g:neomake_cpp_clang_args = [
+      \'-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
+      \'-x',
+      \'-std=c++14',
+      \'-stdlib=libc++',
+      \'-Wall',
+      \'-Werror',
+      \'-Wextra',
+      \'-Weverything',
+      \'-pedantic',
+      \'-arch i386',
+      \'-fmessage-length=238',
+      \'-fdiagnostics-show-note-include-stack',
+      \'-fmacro-backtrace-limit=0',
+      \'-fcolor-diagnostics',
+      \'-Wno-trigraphs',
+      \'-fpascal-strings',
+      \'-Wno-missing-field-initializers',
+      \'-Wno-missing-prototypes',
+      \'-Wnon-virtual-dtor',
+      \'-Wno-overloaded-virtual',
+      \'-Wno-exit-time-destructors',
+      \'-Wno-missing-braces',
+      \'-Wparentheses',
+      \'-Wswitch',
+      \'-Wno-unused-function',
+      \'-Wno',
+      \'-unused-label',
+      \'-Wno-unused-parameter',
+      \'-Wunused-variable',
+      \'-Wunused-value',
+      \'-Wno-empty-body',
+      \'-Wno-uninitialized',
+      \'-Wno-unknown-pragmas',
+      \'-Wno-shadow',
+      \'-Wno-four-char-constants',
+      \'-Wno-conversion',
+      \'-Wno-constant-conversion',
+      \'-Wno-int-conversion',
+      \'-Wno-bool-conversion',
+      \'-Wno-enum-conversion',
+      \'-Wno-shorten-64-to-32',
+      \'-Wno-newline-eof',
+      \'-Wno-c++11-extensions',
+      \'-D_DEBUG=1',
+      \'-DDEBUG=1',
+      \'-DJUCER_XCODE_MAC_F6D2F4CF=1',
+      \'-DJUCE_APP_VERSION=1.0.0',
+      \'-DJUCE_APP_VERSION_HEX=0x10000',
+      \'-fasm-blocks',
+      \'-fstrict-aliasing',
+      \'-Wdeprecated-declarations',
+      \'-Winvalid-offsetof',
+      \'-mmacosx-version-min=10.10',
+      \'-isystem /usr/local/include',
+      \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include',
+      \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
+      \'-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include',
+      \'-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks',
+      \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1',
+      \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
+      \'-isystem /Applications/JUCE/modules'
+      \]
+
+
+" ==============================================================================
+" jeaye/color_coded
+" ==============================================================================
+let g:color_coded_enabled = 1
+let g:color_coded_filetypes = ['c', 'cpp', 'objc']
+
+hi link ClassDecl                     Title
+hi link Constant                      Title
+hi link Decl                          Title
+hi link DeclRefExprCall               Title
+hi link DeclRefExprEnum               Title
+hi link EnumConstant                  Title
+hi link EnumDecl                      Title
+hi link FieldDecl                     Title
+hi link Function                      Title
+hi link FunctionDecl                  Title
+hi link Identifier                    Title
+hi link IncSearch                     Title
+hi link MacroInstantiation            Title
+hi link Member                        Title
+hi link MemberRefExprCall             Title
+hi link MemberRefExprVar              Title
+hi link Namespace                     Title
+hi link NamespaceAlias                Title
+hi link NamespaceRef                  Title
+hi link Occurrences                   Title
+hi link ParmDecl                      Title
+hi link PreProc                       Title
+hi link Prepro                        Title
+hi link Ref                           Title
+hi link StructDecl                    Title
+hi link TemplateNoneTypeParameter     Title
+hi link TemplateRef                   Title
+hi link TemplateTypeParameter         Title
+" hi link Title                         Title
+hi link Type                          Title
+hi link TypeRef                       Title
+hi link UnionDecl                     Title
+hi link Variable                      Title
+hi link ClassDecl                     Title
+hi link EnumConstant                  Title
+hi link EnumDecl                      Title
+hi link Member                        Title
+hi link Namespace                     Title
+hi link Variable                      Title
+hi link UnionDecl                     Title
+hi link StructDecl                    Title
+
 
 " ==============================================================================
 " elzr/vim-json
@@ -685,54 +813,17 @@ let g:ag_highlight=1
 
 
 " ==============================================================================
-" jeaye/color_coded
-" ==============================================================================
-let g:color_coded_enabled = 1
-let g:color_coded_filetypes = ['c', 'cpp', 'objc']
-
-hi default link ClassDecl Identifier
-hi default link EnumConstant Constant
-hi default link EnumDecl Identifier
-hi default link Member Identifier
-hi default link Namespace Identifier
-hi default link Variable Identifier
-hi default link UnionDecl Identifier
-hi default link StructDecl Type
-
-hi link Namespace IncSearch
-hi default link Decl Identifier
-hi default link DeclRefExprCall Type
-hi default link DeclRefExprEnum Constant
-hi link FieldDecl Identifier
-hi link Function Type
-hi default link FunctionDecl Constant
-hi default link MacroInstantiation Constant
-hi default link MemberRefExprCall Type
-hi default link MemberRefExprVar Type
-hi default link NamespaceRef Type
-hi default link NamespaceAlias Type
-hi default link Occurrences IncSearch
-hi default link ParmDecl Identifier
-hi default link Prepro PreProc
-hi default link Ref Type
-hi default link TemplateNoneTypeParameter Identifier
-hi default link TemplateRef Type
-hi default link TemplateTypeParameter Identifier
-hi default link TypeRef Type
-
-" ==============================================================================
 " thinca/vim-quickrun
 " ==============================================================================
 if executable("clang++")
-  let g:syntastic_cpp_compiler = 'clang++'
-  let g:syntastic_cpp_compiler_options = '--std=c++14 --stdlib=libc++'
   let g:quickrun_config = {}
   let g:quickrun_config['cpp/clang++14'] = {
-      \ 'cmdopt': '--std=c++14 --stdlib=libc++',
+      \ 'cmdopt': '--std=c++14 --stdlib=libc++ -isystem /usr/local/include -isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include -isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1 -isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -isystem /Applications/JUCE/modules',
       \ 'type': 'cpp/clang++'
     \ }
   let g:quickrun_config['cpp'] = {'type': 'cpp/clang++14'}
 endif
+
 
 " ==============================================================================
 " cpp
