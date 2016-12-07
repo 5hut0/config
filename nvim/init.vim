@@ -579,50 +579,74 @@ let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which esl
 let g:color_coded_enabled = 1
 let g:color_coded_filetypes = ['c', 'cpp', 'objc']
 
-hi Decl                          ctermfg=13 guifg=#6c71c4
-hi DeclRefExprCall               ctermfg=13 guifg=#6c71c4
-hi DeclRefExprEnum               ctermfg=13 guifg=#6c71c4
-hi EnumConstant                  ctermfg=13 guifg=#6c71c4
-hi EnumDecl                      ctermfg=13 guifg=#6c71c4
-hi Identifier                    ctermfg=6  guifg=#2aa198
-hi IncSearch                     ctermfg=13 guifg=#6c71c4
-hi MacroInstantiation            ctermfg=13 guifg=#6c71c4
-hi Member                        ctermfg=6  guifg=#2aa198
-hi MemberRef                     ctermfg=6  guifg=#ffffff
-hi MemberRefExpr                 ctermfg=13 guifg=#ffffff
-hi MemberRefExprCall             ctermfg=13 guifg=#6c71c4
-hi MemberRefExprVar              ctermfg=13 guifg=#6c71c4
-hi Occurrences                   ctermfg=13 guifg=#6c71c4
-hi ParmDecl                      ctermfg=13 guifg=#6c71c4
-hi Prepro                        ctermfg=9  guifg=#cb4b16
-hi Ref                           ctermfg=13 guifg=#6c71c4
-hi StorageClass                  ctermfg=13 guifg=#6c71c4
-hi StructDecl                    ctermfg=13 guifg=#6c71c4
-hi Structure                     ctermfg=13 guifg=#6c71c4
-hi TemplateNoneTypeParameter     ctermfg=13 guifg=#6c71c4
-hi TemplateRef                   ctermfg=13 guifg=#6c71c4
-hi TemplateTypeParameter         ctermfg=13 guifg=#6c71c4
-hi Title                         ctermfg=13 guifg=#6c71c4
-hi TypeRef                       ctermfg=13 guifg=#6c71c4
-hi Typedef                       ctermfg=13 guifg=#6c71c4
-hi UnionDecl                     ctermfg=13 guifg=#6c71c4
-hi FieldDecl                     ctermfg=9  guifg=#cb4b16
-hi Variable                      ctermfg=9  guifg=#cb4b16
+" hi Decl                          ctermfg=9  guifg=#cb4b16
+" hi DeclRefExprCall               ctermfg=9  guifg=#cb4b16
+" hi DeclRefExprEnum               ctermfg=9  guifg=#cb4b16
+" hi EnumConstant                  ctermfg=9  guifg=#cb4b16
+" hi EnumDecl                      ctermfg=9  guifg=#cb4b16
+" hi Identifier                    ctermfg=9  guifg=#cb4b16
+" hi IncSearch                     ctermfg=9  guifg=#cb4b16
+" hi Occurrences                   ctermfg=9  guifg=#cb4b16
+" hi Prepro                        ctermfg=9  guifg=#cb4b16
+" hi Ref                           ctermfg=9  guifg=#cb4b16
 
 " ==============================================================================
 
-hi ClassDecl                     ctermfg=13 guifg=#6c71c4
+" Gray ctermfg=11 guifg=#586e75
+hi NamespaceRef                  ctermfg=11 guifg=#586e75
+
+" Cyan ctermfg=6  guifg=#2aa198
 hi Constant                      ctermfg=6  guifg=#2aa198
-hi Type                          ctermfg=10 guifg=#b58900
-hi Function                      ctermfg=11 guifg=#268bd2
-hi FunctionDecl                  ctermfg=11 guifg=#268bd2
+hi MacroInstantiation            ctermfg=6  guifg=#2aa198
+
+" Orange ctermfg=9  guifg=#cb4b16
 hi PreProc                       ctermfg=9  guifg=#cb4b16
 hi Special                       ctermfg=9  guifg=#cb4b16
+hi Constructor                   ctermfg=9  guifg=#cb4b16
+hi Destructor                    ctermfg=9  guifg=#cb4b16
+
+" Yellow ctermfg=10 guifg=#b58900
+hi Type                          ctermfg=10 guifg=#b58900
+hi VariableRef                   ctermfg=10 guifg=#b58900
+hi Variable                      ctermfg=10 guifg=#b58900
+hi StorageClass                  ctermfg=10 guifg=#b58900
+hi NamespaceAlias                ctermfg=10 guifg=#b58900
+hi Structure                     ctermfg=10 guifg=#b58900
+hi Member                        ctermfg=10 guifg=#b58900
+hi MemberRef                     ctermfg=10 guifg=#b58900
+hi MemberRefExprCall             ctermfg=10 guifg=#b58900
+hi MemberRefExprVar              ctermfg=10 guifg=#b58900
+
+" Blue ctermfg=11 guifg=#268bd2
+hi Namespace                     ctermfg=11 guifg=#268bd2
+hi Function                      ctermfg=11 guifg=#268bd2
+hi MemberRefExpr                 ctermfg=11 guifg=#268bd2
+hi FunctionDecl                  ctermfg=11 guifg=#268bd2
+hi ParmDecl                      ctermfg=11 guifg=#268bd2
+hi VarDecl                       ctermfg=11 guifg=#268bd2
+hi FieldDecl                     ctermfg=11 guifg=#268bd2
+hi TypeRef                       ctermfg=11 guifg=#268bd2
+hi ClassDecl                     ctermfg=11 guifg=#268bd2
+hi ClassTemplate                 ctermfg=11 guifg=#268bd2
+hi UnionDecl                     ctermfg=11 guifg=#268bd2
+hi StructDecl                    ctermfg=11 guifg=#268bd2
+
+" Purple ctermfg=13 guifg=#6c71c4
+hi TemplateRef                   ctermfg=13 guifg=#6c71c4
+
+" Green ctermfg=14 guifg=#859900
+
+" Magenta ctermfg=0  guifg=#d33682
+hi TemplateNoneTypeParameter     ctermfg=0  guifg=#d33682
+hi TemplateTypeParameter         ctermfg=0  guifg=#d33682
+hi TemplateTemplateParameter     ctermfg=0  guifg=#d33682
+hi BlockExpr     ctermfg=0  guifg=#d33682
+hi FirstExpr     ctermfg=0  guifg=#d33682
+hi Punctuation     ctermfg=0  guifg=#d33682
+
+
 
 "TODO
-hi Namespace                     ctermfg=0  guifg=#d33682
-hi NamespaceAlias                ctermfg=0  guifg=#d33682
-hi NamespaceRef                  ctermfg=0  guifg=#d33682
 " ==============================================================================
 " elzr/vim-json
 " ==============================================================================
