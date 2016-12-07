@@ -582,8 +582,6 @@ let g:color_coded_filetypes = ['c', 'cpp', 'objc']
 " hi Decl                          ctermfg=9  guifg=#cb4b16
 " hi DeclRefExprCall               ctermfg=9  guifg=#cb4b16
 " hi DeclRefExprEnum               ctermfg=9  guifg=#cb4b16
-" hi EnumConstant                  ctermfg=9  guifg=#cb4b16
-" hi EnumDecl                      ctermfg=9  guifg=#cb4b16
 " hi Identifier                    ctermfg=9  guifg=#cb4b16
 " hi IncSearch                     ctermfg=9  guifg=#cb4b16
 " hi Occurrences                   ctermfg=9  guifg=#cb4b16
@@ -598,9 +596,12 @@ hi NamespaceRef                  ctermfg=11 guifg=#586e75
 " Cyan ctermfg=6  guifg=#2aa198
 hi Constant                      ctermfg=6  guifg=#2aa198
 hi MacroInstantiation            ctermfg=6  guifg=#2aa198
+hi EnumConstant                  ctermfg=6  guifg=#2aa198
+hi EnumConstantDecl              ctermfg=6  guifg=#2aa198
 
 " Orange ctermfg=9  guifg=#cb4b16
 hi PreProc                       ctermfg=9  guifg=#cb4b16
+hi MacroDefinition               ctermfg=9  guifg=#cb4b16
 hi Special                       ctermfg=9  guifg=#cb4b16
 hi Constructor                   ctermfg=9  guifg=#cb4b16
 hi Destructor                    ctermfg=9  guifg=#cb4b16
@@ -616,6 +617,7 @@ hi Member                        ctermfg=10 guifg=#b58900
 hi MemberRef                     ctermfg=10 guifg=#b58900
 hi MemberRefExprCall             ctermfg=10 guifg=#b58900
 hi MemberRefExprVar              ctermfg=10 guifg=#b58900
+hi EnumDecl                      ctermfg=10 guifg=#b58900
 
 " Blue ctermfg=11 guifg=#268bd2
 hi Namespace                     ctermfg=11 guifg=#268bd2
@@ -630,6 +632,7 @@ hi ClassDecl                     ctermfg=11 guifg=#268bd2
 hi ClassTemplate                 ctermfg=11 guifg=#268bd2
 hi UnionDecl                     ctermfg=11 guifg=#268bd2
 hi StructDecl                    ctermfg=11 guifg=#268bd2
+hi CXXMethod                     ctermfg=11 guifg=#268bd2
 
 " Purple ctermfg=13 guifg=#6c71c4
 hi TemplateRef                   ctermfg=13 guifg=#6c71c4
