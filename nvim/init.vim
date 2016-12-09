@@ -73,7 +73,8 @@ if has('nvim')
   " Plug 'arakashic/chromatica.nvim' , { 'for': ['c','cpp'] }
 else
   Plug 'jeaye/color_coded' , { 'for': ['c','cpp'],'do': 'cmake . && make && make install'}
-  " Plug 'bbchung/clighter' , { 'for': ['c','cpp'] }
+  Plug 'bbchung/clighter' , { 'for': ['c','cpp'] }
+  " Plug 'bbchung/clighter8'
 endif
 
 if executable('uncrustify')
@@ -517,8 +518,22 @@ if has('nvim')
 else
   let g:clighter_autostart = 1
   let g:clighter_libclang_file = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
-  let g:clighter_heuristic_compile_args = 0
+  " let g:clighter_heuristic_compile_args = 0
   let g:ClighterOccurrences = 0
+  let g:clighter_compile_args = [
+        \'-x',
+        \'c++',
+        \'--std=c++14',
+        \'--stdlib=libc++',
+        \'-isystem /usr/local/include',
+        \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include',
+        \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
+        \'-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include',
+        \'-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks',
+        \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1',
+        \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
+        \'-isystem /Applications/JUCE/modules'
+        \]
   nnoremap <silent> <Leader><C-r> :call clighter#Rename()<CR>
 endif
 
