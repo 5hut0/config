@@ -70,7 +70,7 @@ Plug 'vim-scripts/a.vim' , { 'for': ['c','cpp'] }
 
 if has('nvim')
   " Plug 'bbchung/Clamp' , { 'for': ['c','cpp'] }
-  " Plug 'arakashic/chromatica.nvim' , { 'for': ['c','cpp'] }
+  Plug 'arakashic/chromatica.nvim' , { 'for': ['c','cpp'] }
 else
   Plug 'jeaye/color_coded' , { 'for': ['c','cpp'],'do': 'cmake . && make && make install'}
   Plug 'bbchung/clighter' , { 'for': ['c','cpp'] }
@@ -538,13 +538,6 @@ else
 endif
 
 " ==============================================================================
-" arakashic/chromatica.nvim
-" ==============================================================================
-if has('nvim')
-  let g:chromatica#libclang_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
-  let g:chromatica#responsive_mode=1
-endif
-" ==============================================================================
 " vim-jsbeautify
 " ==============================================================================
 augroup beautifyjs
@@ -621,46 +614,46 @@ hi Special                       ctermfg=9  guifg=#cb4b16
 hi Constructor                   ctermfg=9  guifg=#cb4b16
 hi Destructor                    ctermfg=9  guifg=#cb4b16
 
-" Yellow ctermfg=10 guifg=#b58900
-hi Type                          ctermfg=10 guifg=#b58900
-hi VariableRef                   ctermfg=10 guifg=#b58900
-hi Variable                      ctermfg=10 guifg=#b58900
-hi StorageClass                  ctermfg=10 guifg=#b58900
-hi NamespaceAlias                ctermfg=10 guifg=#b58900
-hi Structure                     ctermfg=10 guifg=#b58900
-hi Member                        ctermfg=10 guifg=#b58900
-hi MemberRef                     ctermfg=10 guifg=#b58900
-hi MemberRefExprCall             ctermfg=10 guifg=#b58900
-hi MemberRefExprVar              ctermfg=10 guifg=#b58900
-hi EnumDecl                      ctermfg=10 guifg=#b58900
+" Yellow ctermfg=3 guifg=#b58900
+hi Type                          ctermfg=3 guifg=#b58900
+hi VariableRef                   ctermfg=3 guifg=#b58900
+hi Variable                      ctermfg=3 guifg=#b58900
+hi StorageClass                  ctermfg=3 guifg=#b58900
+hi NamespaceAlias                ctermfg=3 guifg=#b58900
+hi Structure                     ctermfg=3 guifg=#b58900
+hi Member                        ctermfg=3 guifg=#b58900
+hi MemberRef                     ctermfg=3 guifg=#b58900
+hi MemberRefExprCall             ctermfg=3 guifg=#b58900
+hi MemberRefExprVar              ctermfg=3 guifg=#b58900
+hi EnumDecl                      ctermfg=3 guifg=#b58900
 
-" Blue ctermfg=11 guifg=#268bd2
-hi Namespace                     ctermfg=11 guifg=#268bd2
-hi Function                      ctermfg=11 guifg=#268bd2
-hi MemberRefExpr                 ctermfg=11 guifg=#268bd2
-hi FunctionDecl                  ctermfg=11 guifg=#268bd2
-hi ParmDecl                      ctermfg=11 guifg=#268bd2
-hi VarDecl                       ctermfg=11 guifg=#268bd2
-hi FieldDecl                     ctermfg=11 guifg=#268bd2
-hi TypeRef                       ctermfg=11 guifg=#268bd2
-hi ClassDecl                     ctermfg=11 guifg=#268bd2
-hi ClassTemplate                 ctermfg=11 guifg=#268bd2
-hi UnionDecl                     ctermfg=11 guifg=#268bd2
-hi StructDecl                    ctermfg=11 guifg=#268bd2
-hi CXXMethod                     ctermfg=11 guifg=#268bd2
+" Blue ctermfg=4 guifg=#268bd2
+hi Namespace                     ctermfg=4 guifg=#268bd2
+hi Function                      ctermfg=4 guifg=#268bd2
+hi MemberRefExpr                 ctermfg=4 guifg=#268bd2
+hi FunctionDecl                  ctermfg=4 guifg=#268bd2
+hi ParmDecl                      ctermfg=4 guifg=#268bd2
+hi VarDecl                       ctermfg=4 guifg=#268bd2
+hi FieldDecl                     ctermfg=4 guifg=#268bd2
+hi TypeRef                       ctermfg=4 guifg=#268bd2
+hi ClassDecl                     ctermfg=4 guifg=#268bd2
+hi ClassTemplate                 ctermfg=4 guifg=#268bd2
+hi UnionDecl                     ctermfg=4 guifg=#268bd2
+hi StructDecl                    ctermfg=4 guifg=#268bd2
+hi CXXMethod                     ctermfg=4 guifg=#268bd2
 
 " Purple ctermfg=13 guifg=#6c71c4
 hi TemplateRef                   ctermfg=13 guifg=#6c71c4
 
-" Green ctermfg=14 guifg=#859900
+" Green ctermfg=2 guifg=#859900
 
-" Magenta ctermfg=0  guifg=#d33682
-hi TemplateNoneTypeParameter     ctermfg=0  guifg=#d33682
-hi TemplateTypeParameter         ctermfg=0  guifg=#d33682
-hi TemplateTemplateParameter     ctermfg=0  guifg=#d33682
-hi BlockExpr     ctermfg=0  guifg=#d33682
-hi FirstExpr     ctermfg=0  guifg=#d33682
-hi Punctuation     ctermfg=0  guifg=#d33682
+" Magenta ctermfg=5  guifg=#d33682
+hi TemplateNoneTypeParameter     ctermfg=5  guifg=#d33682
+hi TemplateTypeParameter         ctermfg=5  guifg=#d33682
+hi TemplateTemplateParameter     ctermfg=5  guifg=#d33682
+hi BlockExpr                     ctermfg=5  guifg=#d33682
+hi FirstExpr                     ctermfg=5  guifg=#d33682
+hi Punctuation                   ctermfg=5  guifg=#d33682
 
 
 
@@ -829,4 +822,115 @@ augroup vimrc-cpp
   autocmd FileType cpp call s:cpp()
 augroup END
 
+" ==============================================================================
+" arakashic/chromatica.nvim
+" ==============================================================================
+if has('nvim')
+  let g:chromatica#libclang_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+  let g:chromatica#enable_at_startup=1
+  let g:chromatica#responsive_mode=1
+
+" hi link chromaticaInclusionDirective
+" hi link chromaticaDeclRefExprEnum
+" hi link chromaticaDeclRefExprCall
+" hi link chromaticaMemberRefExprCall
+" hi link chromaticaMemberRefExprVar
+" hi link chromaticaTemplateNoneTypeParameter
+" hi link chromaticaStructDecl
+" hi link chromaticaUnionDecl
+" hi link chromaticaClassDecl
+" hi link chromaticaEnumDecl
+" hi link chromaticaFieldDecl
+" hi link chromaticaEnumConstantDecl
+" hi link chromaticaVarDecl
+" hi link chromaticaParmDecl
+" hi link chromaticaObjCInterfaceDecl
+" hi link chromaticaObjCCategoryDecl
+" hi link chromaticaObjCProtocolDecl
+" hi link chromaticaObjCPropertyDecl
+" hi link chromaticaObjCIvarDecl
+" hi link chromaticaObjCInstanceMethodDecl
+" hi link chromaticaObjCClassMethodDecl
+" hi link chromaticaObjCImplementationDecl
+" hi link chromaticaObjCCategoryImplDecl
+" hi link chromaticaTypedefDecl
+" hi link chromaticaLinkageSpec
+" hi link chromaticaConstructor
+" hi link chromaticaDestructor
+" hi link chromaticaTemplateTypeParameter
+" hi link chromaticaNonTypeTemplateParameter
+" hi link chromaticaTemplateTemplateParameter
+" hi link chromaticaFunctionTemplate
+" hi link chromaticaClassTemplate
+" hi link chromaticaNamespaceAlias
+" hi link chromaticaUsingDirective
+" hi link chromaticaUsingDeclaration
+" hi link chromaticaTypeAliasDecl
+" hi link chromaticaObjCSynthesizeDecl
+" hi link chromaticaObjCDynamicDecl
+" hi link chromaticaCXXAccessSpecifier
+" hi link chromaticaObjCSuperClassRef
+" hi link chromaticaObjCProtocolRef
+" hi link chromaticaObjCClassRef
+" hi link chromaticaTypeRef
+" hi link chromaticaCXXBaseSpecifier
+" hi link chromaticaTemplateRef
+" hi link chromaticaNamespaceRef
+" hi link chromaticaMemberRef
+" hi link chromaticaLabelRef
+" hi link chromaticaOverloadedDeclRef
+" hi link chromaticaVariableRef
+" hi link chromaticaFirstInvalid
+" hi link chromaticaInvalidFile
+" hi link chromaticaNoDeclFound
+" hi link chromaticaNotImplemented
+" hi link chromaticaInvalidCode
+" hi link chromaticaFirstExpr
+" hi link chromaticaDeclRefExpr
+" hi link chromaticaCallExpr
+" hi link chromaticaObjCMessageExpr
+" hi link chromaticaBlockExpr
+" hi link chromaticaMacroDefinition
+" hi link chromaticaMacroInstantiation
+" hi link chromaticaIntegerLiteral
+" hi link chromaticaFloatingLiteral
+" hi link chromaticaImaginaryLiteral
+" hi link chromaticaStringLiteral
+" hi link chromaticaCharacterLiteral
+" hi link chromaticaPunctuation
+" hi link chromaticaIf
+" hi link chromaticaSwitch
+" hi link chromaticaLoop
+" hi link chromaticaStatement
+" hi link chromaticaType
+" hi link chromaticaBoolean
+" hi link chromaticaConstant
+" hi link chromaticaCXXCast
+" hi link chromaticaCStyleCast
+" hi link chromaticaExceptionStatement
+" hi link chromaticaExceptionAttr
+" hi link chromaticaTypeAliasStatement
+" hi link chromaticaFile
+" hi link chromaticaIncludedHeaderFile
+" hi link chromaticaFinalAttr
+" hi link chromaticaOverrideAttr
+" hi link chromaitcaConstAttr
+" hi link chromaticaTypedef
+" hi link chromaticaStorageClass
+" hi link chromaticaOperatorOverload
+" hi link chromaticaAccessQual
+" hi link chromaticaSpecifier
+" hi link chromaticaLinkage
+" hi link chromaticaAutoType
+" hi link chromaticaRegister
+" hi link chromaticaThreadLocal
+" hi link chromaticaRegister
+" hi link chromaticaRegister
+" hi link chromaticaConditionalOperator
+" hi link chromaticaNamespace
+" hi link chromaticaCXXMethod
+" hi link chromaticaFunctionDecl
+" hi link chromaticaConversionFunction
+" hi link chromaticaMemberRefExpr
+endif
 
