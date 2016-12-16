@@ -49,6 +49,7 @@ Plug 'terryma/vim-expand-region'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'cohama/lexima.vim'
+Plug 'sk1418/HowMuch'
 
 " Auto Complete
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer --gocode-completer' }
@@ -829,108 +830,109 @@ if has('nvim')
   let g:chromatica#libclang_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
   let g:chromatica#enable_at_startup=1
   let g:chromatica#responsive_mode=1
+  let g:chromatica#dotclangfile_search_path="~/"
 
-" hi link chromaticaInclusionDirective
-" hi link chromaticaDeclRefExprEnum
-" hi link chromaticaDeclRefExprCall
-" hi link chromaticaMemberRefExprCall
-" hi link chromaticaMemberRefExprVar
-" hi link chromaticaTemplateNoneTypeParameter
-" hi link chromaticaStructDecl
-" hi link chromaticaUnionDecl
-" hi link chromaticaClassDecl
-" hi link chromaticaEnumDecl
-" hi link chromaticaFieldDecl
-" hi link chromaticaEnumConstantDecl
-" hi link chromaticaVarDecl
-" hi link chromaticaParmDecl
-" hi link chromaticaObjCInterfaceDecl
-" hi link chromaticaObjCCategoryDecl
-" hi link chromaticaObjCProtocolDecl
-" hi link chromaticaObjCPropertyDecl
-" hi link chromaticaObjCIvarDecl
-" hi link chromaticaObjCInstanceMethodDecl
-" hi link chromaticaObjCClassMethodDecl
-" hi link chromaticaObjCImplementationDecl
-" hi link chromaticaObjCCategoryImplDecl
-" hi link chromaticaTypedefDecl
-" hi link chromaticaLinkageSpec
-" hi link chromaticaConstructor
-" hi link chromaticaDestructor
-" hi link chromaticaTemplateTypeParameter
-" hi link chromaticaNonTypeTemplateParameter
-" hi link chromaticaTemplateTemplateParameter
-" hi link chromaticaFunctionTemplate
-" hi link chromaticaClassTemplate
-" hi link chromaticaNamespaceAlias
-" hi link chromaticaUsingDirective
-" hi link chromaticaUsingDeclaration
-" hi link chromaticaTypeAliasDecl
-" hi link chromaticaObjCSynthesizeDecl
-" hi link chromaticaObjCDynamicDecl
-" hi link chromaticaCXXAccessSpecifier
-" hi link chromaticaObjCSuperClassRef
-" hi link chromaticaObjCProtocolRef
-" hi link chromaticaObjCClassRef
-" hi link chromaticaTypeRef
-" hi link chromaticaCXXBaseSpecifier
-" hi link chromaticaTemplateRef
-" hi link chromaticaNamespaceRef
-" hi link chromaticaMemberRef
-" hi link chromaticaLabelRef
-" hi link chromaticaOverloadedDeclRef
-" hi link chromaticaVariableRef
-" hi link chromaticaFirstInvalid
-" hi link chromaticaInvalidFile
-" hi link chromaticaNoDeclFound
-" hi link chromaticaNotImplemented
-" hi link chromaticaInvalidCode
-" hi link chromaticaFirstExpr
-" hi link chromaticaDeclRefExpr
-" hi link chromaticaCallExpr
-" hi link chromaticaObjCMessageExpr
-" hi link chromaticaBlockExpr
-" hi link chromaticaMacroDefinition
-" hi link chromaticaMacroInstantiation
-" hi link chromaticaIntegerLiteral
-" hi link chromaticaFloatingLiteral
-" hi link chromaticaImaginaryLiteral
-" hi link chromaticaStringLiteral
-" hi link chromaticaCharacterLiteral
-" hi link chromaticaPunctuation
-" hi link chromaticaIf
-" hi link chromaticaSwitch
-" hi link chromaticaLoop
-" hi link chromaticaStatement
-" hi link chromaticaType
-" hi link chromaticaBoolean
-" hi link chromaticaConstant
-" hi link chromaticaCXXCast
-" hi link chromaticaCStyleCast
-" hi link chromaticaExceptionStatement
-" hi link chromaticaExceptionAttr
-" hi link chromaticaTypeAliasStatement
-" hi link chromaticaFile
-" hi link chromaticaIncludedHeaderFile
-" hi link chromaticaFinalAttr
-" hi link chromaticaOverrideAttr
-" hi link chromaitcaConstAttr
-" hi link chromaticaTypedef
-" hi link chromaticaStorageClass
-" hi link chromaticaOperatorOverload
-" hi link chromaticaAccessQual
-" hi link chromaticaSpecifier
-" hi link chromaticaLinkage
-" hi link chromaticaAutoType
-" hi link chromaticaRegister
-" hi link chromaticaThreadLocal
-" hi link chromaticaRegister
-" hi link chromaticaRegister
-" hi link chromaticaConditionalOperator
-" hi link chromaticaNamespace
-" hi link chromaticaCXXMethod
-" hi link chromaticaFunctionDecl
-" hi link chromaticaConversionFunction
-" hi link chromaticaMemberRefExpr
+  hi link chromaticaInclusionDirective        InclusionDirective
+  hi link chromaticaDeclRefExprEnum           DeclRefExprEnum
+  hi link chromaticaDeclRefExprCall           DeclRefExprCall
+  hi link chromaticaMemberRefExprCall         MemberRefExprCall
+  hi link chromaticaMemberRefExprVar          MemberRefExprVar
+  hi link chromaticaTemplateNoneTypeParameter TemplateNoneTypeParameter
+  hi link chromaticaStructDecl                StructDecl
+  hi link chromaticaUnionDecl                 UnionDecl
+  hi link chromaticaClassDecl                 ClassDecl
+  hi link chromaticaEnumDecl                  EnumDecl
+  hi link chromaticaFieldDecl                 FieldDecl
+  hi link chromaticaEnumConstantDecl          EnumConstantDecl
+  hi link chromaticaVarDecl                   VarDecl
+  hi link chromaticaParmDecl                  ParmDecl
+  hi link chromaticaObjCInterfaceDecl         ObjCInterfaceDecl
+  hi link chromaticaObjCCategoryDecl          ObjCCategoryDecl
+  hi link chromaticaObjCProtocolDecl          ObjCProtocolDecl
+  hi link chromaticaObjCPropertyDecl          ObjCPropertyDecl
+  hi link chromaticaObjCIvarDecl              ObjCIvarDecl
+  hi link chromaticaObjCInstanceMethodDecl    ObjCInstanceMethodDecl
+  hi link chromaticaObjCClassMethodDecl       ObjCClassMethodDecl
+  hi link chromaticaObjCImplementationDecl    ObjCImplementationDecl
+  hi link chromaticaObjCCategoryImplDecl      ObjCCategoryImplDecl
+  hi link chromaticaTypedefDecl               TypedefDecl
+  hi link chromaticaLinkageSpec               LinkageSpec
+  hi link chromaticaConstructor               Constructor
+  hi link chromaticaDestructor                Destructor
+  hi link chromaticaTemplateTypeParameter     TemplateTypeParameter
+  hi link chromaticaNonTypeTemplateParameter  NonTypeTemplateParameter
+  hi link chromaticaTemplateTemplateParameter TemplateTemplateParameter
+  hi link chromaticaFunctionTemplate          FunctionTemplate
+  hi link chromaticaClassTemplate             ClassTemplate
+  hi link chromaticaNamespaceAlias            NamespaceAlias
+  hi link chromaticaUsingDirective            UsingDirective
+  hi link chromaticaUsingDeclaration          UsingDeclaration
+  hi link chromaticaTypeAliasDecl             TypeAliasDecl
+  hi link chromaticaObjCSynthesizeDecl        ObjCSynthesizeDecl
+  hi link chromaticaObjCDynamicDecl           ObjCDynamicDecl
+  hi link chromaticaCXXAccessSpecifier        CXXAccessSpecifier
+  hi link chromaticaObjCSuperClassRef         ObjCSuperClassRef
+  hi link chromaticaObjCProtocolRef           ObjCProtocolRef
+  hi link chromaticaObjCClassRef              ObjCClassRef
+  hi link chromaticaTypeRef                   TypeRef
+  hi link chromaticaCXXBaseSpecifier          CXXBaseSpecifier
+  hi link chromaticaTemplateRef               TemplateRef
+  hi link chromaticaNamespaceRef              NamespaceRef
+  hi link chromaticaMemberRef                 MemberRef
+  hi link chromaticaLabelRef                  LabelRef
+  hi link chromaticaOverloadedDeclRef         OverloadedDeclRef
+  hi link chromaticaVariableRef               VariableRef
+  hi link chromaticaFirstInvalid              FirstInvalid
+  hi link chromaticaInvalidFile               InvalidFile
+  hi link chromaticaNoDeclFound               NoDeclFound
+  hi link chromaticaNotImplemented            NotImplemented
+  hi link chromaticaInvalidCode               InvalidCode
+  hi link chromaticaFirstExpr                 FirstExpr
+  hi link chromaticaDeclRefExpr               DeclRefExpr
+  hi link chromaticaCallExpr                  CallExpr
+  hi link chromaticaObjCMessageExpr           ObjCMessageExpr
+  hi link chromaticaBlockExpr                 BlockExpr
+  hi link chromaticaMacroDefinition           MacroDefinition
+  hi link chromaticaMacroInstantiation        MacroInstantiation
+  hi link chromaticaIntegerLiteral            IntegerLiteral
+  hi link chromaticaFloatingLiteral           FloatingLiteral
+  hi link chromaticaImaginaryLiteral          ImaginaryLiteral
+  hi link chromaticaStringLiteral             StringLiteral
+  hi link chromaticaCharacterLiteral          CharacterLiteral
+  hi link chromaticaPunctuation               Punctuation
+  hi link chromaticaIf                        If
+  hi link chromaticaSwitch                    Switch
+  hi link chromaticaLoop                      Loop
+  hi link chromaticaStatement                 Statement
+  hi link chromaticaType                      Type
+  hi link chromaticaBoolean                   Boolean
+  hi link chromaticaConstant                  Constant
+  hi link chromaticaCXXCast                   CXXCast
+  hi link chromaticaCStyleCast                CStyleCast
+  hi link chromaticaExceptionStatement        ExceptionStatement
+  hi link chromaticaExceptionAttr             ExceptionAttr
+  hi link chromaticaTypeAliasStatement        TypeAliasStatement
+  hi link chromaticaFile                      File
+  hi link chromaticaIncludedHeaderFile        IncludedHeaderFile
+  hi link chromaticaFinalAttr                 FinalAttr
+  hi link chromaticaOverrideAttr              OverrideAttr
+  hi link chromaticaConstAttr                 ConstAttr
+  hi link chromaticaTypedef                   Typedef
+  hi link chromaticaStorageClass              StorageClass
+  hi link chromaticaOperatorOverload          OperatorOverload
+  hi link chromaticaAccessQual                AccessQual
+  hi link chromaticaSpecifier                 Specifier
+  hi link chromaticaLinkage                   Linkage
+  hi link chromaticaAutoType                  AutoType
+  hi link chromaticaRegister                  Register
+  hi link chromaticaThreadLocal               ThreadLocal
+  hi link chromaticaRegister                  Register
+  hi link chromaticaRegister                  Register
+  hi link chromaticaConditionalOperator       ConditionalOperator
+  hi link chromaticaNamespace                 Namespace
+  hi link chromaticaCXXMethod                 CXXMethod
+  hi link chromaticaFunctionDecl              FunctionDecl
+  hi link chromaticaConversionFunction        ConversionFunction
+  hi link chromaticaMemberRefExpr             MemberRefExpr
 endif
 

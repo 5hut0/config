@@ -36,6 +36,7 @@ rm -rf ~/.gvimrc
 rm -rf ~/.xvimrc
 rm -rf ~/.editorconfig
 rm -rf ~/.tigrc
+rm -rf ~/.clang
 rm -rf ~/.uncrustify.cfg
 rm -rf ~/.tern-project
 if [[ "$OSTYPE" != darwin* ]]; then
@@ -96,6 +97,7 @@ ln -s ~/.config/cfg/tern-project ~/.tern-project
 # =============================================================================
 echo 'link .uncrustify.cfg'
 ln -s ~/.config/cfg/uncrustify.cfg ~/.uncrustify.cfg
+ln -s ~/.config/cfg/clang ~/.clang
 
 # =============================================================================
 # arch
