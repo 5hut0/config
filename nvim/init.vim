@@ -33,6 +33,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'justinmk/vim-dirvish'
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-scripts/ctrlp-funky'
+Plug 'mattn/ctrlp-filer'
+Plug 'sgur/ctrlp-extensions.vim'
 
 " Search and replace
 Plug 'rking/ag.vim'
@@ -74,7 +77,7 @@ if has('nvim')
   Plug 'arakashic/chromatica.nvim' , { 'for': ['c','cpp'] }
 else
   Plug 'jeaye/color_coded' , { 'for': ['c','cpp'],'do': 'cmake . && make && make install'}
-  Plug 'bbchung/clighter' , { 'for': ['c','cpp'] }
+  " Plug 'bbchung/clighter' , { 'for': ['c','cpp'] }
   " Plug 'bbchung/clighter8'
 endif
 
@@ -130,6 +133,8 @@ set path+=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/D
 set path+=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1
 set path+=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
 set path+=/Applications/JUCE/modules
+set path+=~/SDKs/link/include
+set path+=~/SDKs/link/modules/asio-standalone/asio/include
 
 " ==============================================================================
 " COMMON
@@ -445,6 +450,7 @@ hi PmenuSel guifg=#586e75 guibg=#93a1a1 ctermfg=10 ctermbg=8 gui=reverse
 hi PmenuSbar guifg=#073642 guibg=#073642 ctermfg=0 ctermbg=0
 hi PmenuThumb guifg=#586e75 ctermfg=10
 
+let g:ycm_always_populate_location_list = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_cache_omnifunc = 1
@@ -463,6 +469,7 @@ let g:ycm_warning_symbol = '>'
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>kk :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>ff :YcmCompleter FixIt<CR>
 augroup YouCompleteMe
   autocmd!
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -533,7 +540,9 @@ else
         \'-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks',
         \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1',
         \'-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
-        \'-isystem /Applications/JUCE/modules'
+        \'-isystem /Applications/JUCE/modules',
+        \'-isystem ~/SDKs/link/include',
+        \'-isystem ~/SDKs/link/modules/asio-standalone/asio/include',
         \]
   nnoremap <silent> <Leader><C-r> :call clighter#Rename()<CR>
 endif
@@ -702,6 +711,8 @@ augroup dirvish_plugin
 
   " Enable :Gstatus and friends.
   autocmd FileType dirvish call fugitive#detect(@%)
+  autocmd FileType dirvish sort ir /^.*[^\/]$/
+  autocmd FileType dirvish silent keeppatterns g/.DS_Store\|node_modules/d
 
   " Map CTRL-R to reload the Dirvish buffer.
   autocmd FileType dirvish nnoremap <buffer> <C-R> :<C-U>Dirvish %<CR>:sort r /[^\/]$/<CR>
@@ -728,7 +739,6 @@ function! s:toggle_dirvish()
     else
       execute 'Dirvish %'
     endif
-    execute 'sort r /[^\/]$/'
   endif
 endfunction
 
@@ -744,6 +754,8 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|png|jpg|gif|ai|pkg|swp|zip|tag|
 let g:ctrlp_max_depth = 10
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:50'
+let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_extensions = ['quickfix', 'dir', 'line', 'mixed']
 
 if executable('ag')
   let g:ctrlp_use_caching=0
