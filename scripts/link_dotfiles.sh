@@ -38,6 +38,7 @@ rm -rf ~/.editorconfig
 rm -rf ~/.tigrc
 rm -rf ~/.clang
 rm -rf ~/.uncrustify.cfg
+rm -rf ~/.agignore
 rm -rf ~/.tern-project
 if [[ "$OSTYPE" != darwin* ]]; then
   rm -rf ~/.Xdefaults
@@ -59,6 +60,7 @@ ln -s ~/.config/nvim ~/.vim
 echo 'link .vimrc'
 ln -s ~/.config/nvim/init.vim ~/.vimrc
 ln -s ~/.config/cfg/color_coded ~/.color_coded
+ln -s ~/.config/cfg/agignore ~/.agignore
 echo 'link .gvimrc'
 ln -s ~/.config/nvim/gvimrc ~/.gvimrc
 echo 'link .xvimrc'
