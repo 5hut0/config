@@ -6,6 +6,7 @@ ranger/history
 ranger/tagged
 local/
 .zprezto/
+plugin/
 .zhistory
 .zcompdump*
 chromium
