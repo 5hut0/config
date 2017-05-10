@@ -56,7 +56,8 @@ Plug 'sk1418/HowMuch'
 
 " Auto Complete
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer --gocode-completer' }
-" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+" Plug 'justmao945/vim-clang'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 " Signature
 Plug 'kshenoy/vim-signature'
@@ -457,10 +458,11 @@ let g:ycm_cache_omnifunc = 1
 let g:ycm_auto_trigger = 1
 let g:ycm_use_ultisnips_completer = 1
 let g:ycm_complete_in_comments_and_strings = 1
-let g:ycm_min_num_identifier_candidate_chars = 3
-let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_error_symbol = 'X'
 let g:ycm_warning_symbol = '>'
+let g:ycm_confirm_extra_conf = 0
 " let g:ycm_show_diagnostics_ui = 0
 " let g:syntastic_enable_highlighting = 0
 " let g:ycm_enable_diagnostic_highlighting = 0
