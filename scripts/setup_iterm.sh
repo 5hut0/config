@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 cat <<-'EOT'
- _ _____                   ____
-(_)_   _|__ _ __ _ __ ___ |___ \
-| | | |/ _ \ '__| '_ ` _ \  __) |
-| | | |  __/ |  | | | | | |/ __/
-|_| |_|\___|_|  |_| |_| |_|_____|
+ _                      _             _
+| |_ ___ _ __ _ __ ___ (_)_ __   __ _| |
+| __/ _ \ '__| '_ ` _ \| | '_ \ / _` | |
+| ||  __/ |  | | | | | | | | | | (_| | |
+ \__\___|_|  |_| |_| |_|_|_| |_|\__,_|_|
 
 EOT
 
@@ -21,6 +21,7 @@ echo "Only use UTF-8 in Terminal.app"
 defaults write com.apple.terminal StringEncodings -array 4
 
 echo "Solarized Dark theme by default in Terminal.app"
+
 osascript <<EOD
 
 tell application "Terminal"
@@ -28,6 +29,7 @@ tell application "Terminal"
   local allOpenedWindows
   local initialOpenedWindows
   local windowID
+
   set themeName to "Solarized Dark xterm-256color"
 
   (* Store the IDs of all the open terminal windows. *)
@@ -66,8 +68,3 @@ tell application "Terminal"
 end tell
 
 EOD
-
-echo "restore iTerm2 default setting"
-sudo \cp -f $HOME/.config/cfg/iTerm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
-
-

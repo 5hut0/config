@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
 cat <<-'EOT'
  ____  _____ _____ _   _ ____
 / ___|| ____|_   _| | | |  _ \
@@ -6,16 +7,6 @@ cat <<-'EOT'
  ___) | |___  | | | |_| |  __/
 |____/|_____| |_|  \___/|_|
 EOT
-
-#==============================================================================
-# Xcode Command Line Tools
-#==============================================================================
-if [[ "$OSTYPE" == darwin* ]]; then
-  open -a Xcode.app
-  xcode-select --install
-  echo "Check Xcode term and Install Command Line Tools"
-  read wait
-fi
 
 #==============================================================================
 # Clone config file
@@ -32,8 +23,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #==============================================================================
   # Homebrew
   #==============================================================================
-  sh ~/.config/scripts/setup_homebrew.sh
-
   #==============================================================================
   # macOS theme
   #==============================================================================
@@ -45,14 +34,11 @@ if [[ "$OSTYPE" == darwin* ]]; then
   sh ~/.config/scripts/setup_iterm.sh
   sh ~/.config/scripts/setup_karabiner.sh
   sh ~/.config/scripts/setup_macos_dock.sh
-  sh ~/.config/scripts/setup_alfred.sh
-  sh ~/.config/scripts/setup_sublimetext.sh
-  sh ~/.config/scripts/setup_icloud_files.sh
 
   #==============================================================================
-  # zsh
+  # fish
   #==============================================================================
-  sh ~/.config/scripts/setup_zsh.sh
+  sh ~/.config/scripts/setup_fish.sh
 fi
 
 #==============================================================================

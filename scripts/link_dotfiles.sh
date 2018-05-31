@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 cat <<-'EOT'
      _       _    __ _ _
@@ -8,13 +8,6 @@ cat <<-'EOT'
  \__,_|\___/ \__|_| |_|_|\___||___/
 
 EOT
-
-# =============================================================================
-# check prezto
-# =============================================================================
-if [ ! -e ~/.config/zsh/.zprezto ]; then
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.config/zsh/.zprezto
-fi
 
 # =============================================================================
 # Create local/bin dir
@@ -28,7 +21,6 @@ fi
 # remove old
 # =============================================================================
 echo 'remove old dotfiles'
-rm -rf ~/.zshenv
 rm -rf ~/.tmux.conf
 rm -rf ~/.vim
 rm -rf ~/.vimrc
@@ -36,35 +28,26 @@ rm -rf ~/.gvimrc
 rm -rf ~/.xvimrc
 rm -rf ~/.editorconfig
 rm -rf ~/.tigrc
-rm -rf ~/.clang
 rm -rf ~/.uncrustify.cfg
 rm -rf ~/.agignore
 rm -rf ~/.tern-project
-if [[ "$OSTYPE" != darwin* ]]; then
-  rm -rf ~/.Xdefaults
-  rm -rf ~/.xprofile
-  rm -rf ~/.i3
-fi
-
-# =============================================================================
-# zsh
-# =============================================================================
-echo 'link .zshenv'
-ln -s ~/.config/zsh/.zshenv ~/.zshenv
 
 # =============================================================================
 # vim
 # =============================================================================
 echo 'link .vim/'
-ln -s ~/.config/nvim ~/.vim
+ln -s ~/.config/vim ~/.vim
+
 echo 'link .vimrc'
-ln -s ~/.config/nvim/init.vim ~/.vimrc
+ln -s ~/.config/vim/init.vim ~/.vimrc
 ln -s ~/.config/cfg/color_coded ~/.color_coded
 ln -s ~/.config/cfg/agignore ~/.agignore
+
 echo 'link .gvimrc'
-ln -s ~/.config/nvim/gvimrc ~/.gvimrc
+ln -s ~/.config/vim/gvimrc ~/.gvimrc
+
 echo 'link .xvimrc'
-ln -s ~/.config/nvim/xvimrc ~/.xvimrc
+ln -s ~/.config/vim/xvimrc ~/.xvimrc
 
 # =============================================================================
 # tmux
@@ -99,17 +82,4 @@ ln -s ~/.config/cfg/tern-project ~/.tern-project
 # =============================================================================
 echo 'link .uncrustify.cfg'
 ln -s ~/.config/cfg/uncrustify.cfg ~/.uncrustify.cfg
-ln -s ~/.config/cfg/clang ~/.clang
-
-# =============================================================================
-# arch
-# =============================================================================
-if [[ "$OSTYPE" != darwin* ]]; then
-  echo 'link .Xdefaults'
-  ln -s ~/.config/arch/Xdefaults ~/.Xdefaults
-  echo 'link .xprofile'
-  ln -s ~/.config/arch/xprofile ~/.xprofile
-  echo 'link .i3/'
-  ln -s ~/.config/arch/i3 ~/.i3
-fi
 

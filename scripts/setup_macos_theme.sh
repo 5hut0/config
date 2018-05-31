@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 cat <<-'EOT'
                        ___  ____    _   _
@@ -78,15 +78,6 @@ defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 echo "Disable Resume system-wide"
 defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 
-echo "Overwrite Apple's wallpapers"
-sudo cp -f ~/.config/etc/wallpaper/default.jpg /Library/Desktop\ Pictures/Wave.jpg
-sudo cp -f ~/.config/etc/wallpaper/default.jpg /Library/Desktop\ Pictures/Yosemite.jpg
-sudo cp -f ~/.config/etc/wallpaper/default.jpg /Library/Desktop\ Pictures/Yosemite\ 2.jpg
-sudo cp -f ~/.config/etc/wallpaper/default.jpg /Library/Desktop\ Pictures/Yosemite\ 3.jpg
-sudo cp -f ~/.config/etc/wallpaper/default.jpg /Library/Desktop\ Pictures/Yosemite\ 4.jpg
-sudo cp -f ~/.config/etc/wallpaper/default.jpg /Library/Desktop\ Pictures/Yosemite\ 5.jpg
-
-
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -111,7 +102,6 @@ echo "Disable auto-correct"
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 
-
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
@@ -134,17 +124,15 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 # Finder                                                                      #
 ###############################################################################
 
-echo "Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons"
-defaults write com.apple.finder QuitMenuItem -bool true
-
 echo "Finder: disable window animations and Get Info animations"
 defaults write com.apple.finder DisableAllAnimations -bool true
 
-echo "Show icons for hard drives, servers, and removable media on the desktop"
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+echo "Do not show icons on the desktop"
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+defaults write com.apple.finder CreateDesktop -boolean false
 
 # Finder: show hidden files by default
 #defaults write com.apple.finder AppleShowAllFiles -bool true
@@ -214,7 +202,6 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 12
 echo "Show the ~/Library folder"
 chflags nohidden ~/Library
 
-
 echo "Expand the following File Info panes:"
 echo "    General, Open with, and Sharing & Permissions"
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
@@ -275,12 +262,6 @@ defaults write com.apple.dock autohide -bool true
 echo "Make Dock icons of hidden applications translucent"
 defaults write com.apple.dock showhidden -bool true
 
-# Disable the Launchpad gesture (pinch with thumb and three fingers)
-#defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
-
-echo "Reset Launchpad, but keep the desktop wallpaper intact"
-find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
-
 echo "Add iOS Simulator to Launchpad"
 sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/iOS Simulator.app" "/Applications/iOS Simulator.app"
 
@@ -306,54 +287,6 @@ defaults write com.apple.dock wvous-tr-modifier -int 0
 echo "Bottom left screen corner → Start screen saver"
 defaults write com.apple.dock wvous-bl-corner -int 5
 defaults write com.apple.dock wvous-bl-modifier -int 0
-
-###############################################################################
-# Safari & WebKit                                                             #
-###############################################################################
-
-echo "Privacy: don't send search queries to Apple"
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
-
-echo "Press Tab to highlight each item on a web page"
-defaults write com.apple.Safari WebKitTabToLinksPreferenceKey -bool true
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true
-
-echo "Show the full URL in the address bar (note: this still hides the scheme)"
-defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
-
-echo "Set Safari’s home page to `about:blank` for faster loading"
-defaults write com.apple.Safari HomePage -string "about:blank"
-
-echo "Prevent Safari from opening ‘safe’ files automatically after downloading"
-defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
-
-echo "Allow hitting the Backspace key to go to the previous page in history"
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
-
-echo "Hide Safari’s bookmarks bar by default"
-defaults write com.apple.Safari ShowFavoritesBar -bool false
-
-echo "Hide Safari’s sidebar in Top Sites"
-defaults write com.apple.Safari ShowSidebarInTopSites -bool false
-
-echo "Enable Safari’s debug menu"
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-
-echo "Make Safari’s search banners default to Contains instead of Starts With"
-defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
-
-echo "Remove useless icons from Safari’s bookmarks bar"
-defaults write com.apple.Safari ProxiesInBookmarksBar "()"
-
-echo "Enable the Develop menu and the Web Inspector in Safari"
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
-
-echo "Add a context menu item for showing the Web Inspector in web views"
-defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
-
 
 ###############################################################################
 # Spotlight                                                                   #
@@ -408,26 +341,6 @@ sudo mdutil -E / > /dev/null
 
 
 ###############################################################################
-# Google Chrome & Google Chrome Canary                                        #
-###############################################################################
-echo "Disable the all too sensitive backswipe on trackpads"
-defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
-defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
-
-echo "Disable the all too sensitive backswipe on Magic Mouse"
-defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false
-defaults write com.google.Chrome.canary AppleEnableMouseSwipeNavigateWithScrolls -bool false
-
-echo "Use the system-native print preview dialog"
-defaults write com.google.Chrome DisablePrintPreview -bool true
-defaults write com.google.Chrome.canary DisablePrintPreview -bool true
-
-echo "Expand the print dialog by default"
-defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
-defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
-
-
-###############################################################################
 # other util
 ###############################################################################
 echo "Copy Color Swatch"
@@ -437,4 +350,4 @@ sudo cp ~/.config/etc/colors/swatches/mtc.clr ~/Library/Colors/mtc.clr
 ###############################################################################
 # application language
 ###############################################################################
-defaults write com.kedisoft.Totals AppleLanguages '(ja)'
+# defaults write com.kedisoft.Totals AppleLanguages '(ja)'

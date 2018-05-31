@@ -1,0 +1,1 @@
+/Users/shuto-y/.config/fisherman/z/functions/z.awk

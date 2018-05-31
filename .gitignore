@@ -1,11 +1,13 @@
 .DS_Store
-nvim/plugged
+vim/plugged
 ycm_extra_conf.pyc
 ranger/bookmarks
 ranger/history
 ranger/tagged
 local/
 .zprezto/
+.mono/
+configstore/
 plugin/
 .zhistory
 .zcompdump*
@@ -43,3 +45,7 @@ cfg/SublimeText/Installed Packages/pyv8/osx-p3/
 !Preferences.sublime-settings
 !HTMLPrettify.sublime-settings
 !cfg/SublimeText/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc
+
+fishd.*
+fish_history
+generated_completions
