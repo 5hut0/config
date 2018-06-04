@@ -23,11 +23,7 @@ brew tap homebrew/x11
 # Brew Update
 brew update
 
-# lib
-brew install --without-x11 cairo
-brew install --without-x11 pango
-
-# terminal
+# :)
 brew install reattach-to-user-namespace
 brew install fish
 brew install tmux
@@ -39,8 +35,6 @@ brew install tree
 brew Install htop
 brew install highlight
 brew install gnu-sed
-
-# ranger
 brew install ranger
 brew install lynx
 brew install w3m
@@ -48,45 +42,37 @@ brew install libcaca --with-imlib2
 brew install mediainfo
 brew install xpdf
 brew install imlib2
-
-# files
 brew install ag
 brew install xz
 brew install nkf
-brew install atool
-
-# version
 brew install git
 brew install git-flow
 brew install tig
-
-# editors
-brew install vim --with-lua
-
-# tools
 brew install gpg
 brew install curl
 brew install wget
+brew install --without-x11 cairo
+brew install --without-x11 pango
+
+# editors
+brew install vim --with-lua
 
 # images
 brew install pngquant
 brew install imagemagick
 
-# js
-brew install node
-brew install phantomjs
+# dev
+brew install atool
 brew install jq
 brew install jo
-
-# C/C++
-brew install uncrustify
-
-# python
+brew install rust
+brew install cmake
+brew install node
+brew install go
 brew install python
 brew install python3
-
-# web dev
-brew install go
+brew install uncrustify
+brew install mono
 
 # fonts
 brew tap sanemat/font
