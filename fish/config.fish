@@ -1,4 +1,5 @@
-set PATH ~/.config/bin ~/.config/local/bin $HOME/.cargo/bin $PATH
+# set PATH ~/.config/bin ~/.config/local/bin $HOME/.cargo/bin $PATH
+set PATH ~/.config/bin ~/.config/local/bin $PATH
 abbr ta 'tig --all'
 abbr ts 'tig status'
 alias vi='vim'

@@ -417,10 +417,10 @@ if executable('uncrustify')
   let g:uncrustify_cfg_file_path = "~/.uncrustify.cfg"
   augroup cpp_uncrustify
     autocmd!
-    autocmd BufRead,BufNewFile *.[ch]pp let g:uncrustify_cfg_file_path = "~/.uncrustify.cfg"
+    autocmd BufRead,BufNewFile *.[chi]pp let g:uncrustify_cfg_file_path = "~/.uncrustify.cfg"
     autocmd BufRead,BufNewFile *.[ch] let g:uncrustify_cfg_file_path = "~/.uncrustify.cfg"
     autocmd BufRead,BufNewFile *.cs let g:uncrustify_cfg_file_path = "~/.uncrustify_cs.cfg"
-    autocmd BufWrite,FileWritePre,FileAppendPre *.[ch]pp call uncrustify#UncrustifyAuto()
+    autocmd BufWrite,FileWritePre,FileAppendPre *.[chi]pp call uncrustify#UncrustifyAuto()
     autocmd BufWrite,FileWritePre,FileAppendPre *.[ch] call uncrustify#UncrustifyAuto()
     autocmd BufWrite,FileWritePre,FileAppendPre *.cs call uncrustify#UncrustifyAuto()
   augroup END
