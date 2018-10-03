@@ -1,1 +1,1 @@
-/Users/shuto-y/.config/fisherman/z/conf.d/z.fish
+/Users/yotaro.shuto/.config/fisherman/z/conf.d/z.fish

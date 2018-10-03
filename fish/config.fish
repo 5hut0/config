@@ -2,6 +2,8 @@
 set PATH ~/.config/bin ~/.config/local/bin $PATH
 abbr ta 'tig --all'
 abbr ts 'tig status'
+abbr sketchtool '/Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool'
+abbr sketchmigrate '/Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchmigrate'
 alias vi='vim'
 set -U EDITOR vim
 set -U VISUAL vim

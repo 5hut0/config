@@ -1,1 +1,1 @@
-/Users/shuto-y/.config/fisherman/z/functions/zadd.awk
+/Users/yotaro.shuto/.config/fisherman/z/functions/zadd.awk

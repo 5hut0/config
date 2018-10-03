@@ -55,7 +55,7 @@ Plug 'sk1418/HowMuch'
 Plug 'mattn/emoji-vim'
 
 " Completer
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --omnisharp-completer --tern-completer --clang-completer --system-libclang' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --clang-completer --system-libclang' }
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 " Signature
@@ -65,7 +65,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'scrooloose/nerdcommenter'
 
 " Snippets
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " C / C++
@@ -76,7 +76,8 @@ Plug 'jeaye/color_coded' , { 'for': ['c','cpp'],'do': 'cmake . -DDOWNLOAD_CLANG=
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','javascript'] }
 
 " Code Formatter
-Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript','css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+Plug 'maksimr/vim-jsbeautify', { 'do': 'git submodule update --init --recursive', 'for': ['html'] }
 
 if executable('uncrustify')
   Plug 'ompugao/uncrustify-vim' , { 'for': ['c','cpp','cs'] }
@@ -472,7 +473,8 @@ let g:ycm_auto_stop_csharp_server = 1
 " 'prettier/vim-prettier'
 " ==============================================================================
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue Prettier
+autocmd BufWritePre *.html call HtmlBeautify()
 
 
 " ==============================================================================
@@ -653,6 +655,11 @@ if executable("clang++")
         \ 'type': 'cpp/clang++'
         \ }
 endif
+
+let g:quickrun_config['javascript.jsx'] = {
+      \   "command": "node",
+      \   "tempfile": "{tempname()}.js"
+      \ }
 
 
 " ==============================================================================
