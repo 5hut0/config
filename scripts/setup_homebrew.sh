@@ -87,8 +87,6 @@ brew cask install --appdir="/Applications" keycastr
 brew cask install --appdir="/Applications" macvim
 brew cask install --appdir="/Applications" shiftit
 brew cask install --appdir="/Applications" sketch
-brew cask install --appdir="/Applications" sketch-toolbox
-brew cask install --appdir="/Applications" sketchpacks
 brew cask install --appdir="/Applications" sourcetree
 brew cask install --appdir="/Applications" visual-studio-code
 
