@@ -6,9 +6,7 @@ function fish_prompt
 
   # Main
   echo -n (set_color blue)(prompt_pwd) (set_color red)'❯'(set_color yellow)'❯'(set_color green)'❯ '
-
 end
-
 
 function fish_right_prompt
   # last status
@@ -24,7 +22,10 @@ function fish_right_prompt
     # Need optimization on this block (eliminate space)
     git name-rev --name-only HEAD
 
-    printf (set_color yellow)'%s ' (__fish_git_prompt)
+    # Merging state
+    git merge -q 2>/dev/null
+    or printf ':'(set_color red)'merge'
+    printf ' '
 
     # Symbols
     for i in (git branch -qv --no-color|grep \*|cut -d' ' -f4-|cut -d] -f1|tr , \n)\
