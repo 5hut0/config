@@ -55,7 +55,7 @@ Plug 'sk1418/HowMuch'
 Plug 'mattn/emoji-vim'
 
 " Completer
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --clang-completer --system-libclang' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer --clang-completer --system-libclang' }
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 " Signature
