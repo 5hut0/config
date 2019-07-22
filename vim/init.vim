@@ -55,7 +55,7 @@ Plug 'sk1418/HowMuch'
 Plug 'mattn/emoji-vim'
 
 " Completer
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer --clang-completer --system-libclang' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 " Signature
@@ -73,10 +73,10 @@ Plug 'vim-scripts/a.vim' , { 'for': ['c','cpp'] }
 Plug 'jeaye/color_coded' , { 'for': ['c','cpp'],'do': 'cmake . -DDOWNLOAD_CLANG=0 && make && make install'}
 
 " HTML, CSS, JS
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','javascript'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','javascript','vue'] }
 
 " Code Formatter
-Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript','css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript','css', 'less', 'scss', 'json', 'graphql', 'vue'] }
 Plug 'maksimr/vim-jsbeautify', { 'do': 'git submodule update --init --recursive', 'for': ['html'] }
 
 if executable('uncrustify')
@@ -84,7 +84,7 @@ if executable('uncrustify')
 endif
 
 " linter
-Plug 'w0rp/ale'  , { 'for': ['javascript'] }
+Plug 'w0rp/ale'  , { 'for': ['vue','javascript','markdown'] }
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -96,6 +96,7 @@ Plug 'altercation/vim-colors-solarized'
 " Syntax
 Plug 'OrangeT/vim-csharp'
 Plug 'sheerun/vim-polyglot'
+Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -221,18 +222,11 @@ hi ZenkakuSpace guibg=NONE gui=underline ctermfg=LightBlue cterm=underline
 match ZenkakuSpace /　/
 
 set listchars=tab:·-,trail:·,nbsp:·,extends:»,precedes:«
-" set listchars+=eol:¬
-" set listchars+=tab:·-
-" set listchars+=trail:·
-" set listchars+=nbsp:·
-" set listchars+=extends:»
-" set listchars+=precedes:«
 
 highlight SpecialKey ctermfg=black " 不可視文字の文字色を指定する
 highlight SpecialKey guibg=NONE " 不可視文字の背景なし
 highlight SpecialKey ctermbg=NONE " 不可視文字の背景なし
 
-" set ambiwidth=double
 
 " ==============================================================================
 " CURSOR MOVE
@@ -366,6 +360,9 @@ let g:airline#extensions#ycm#warning_symbol = '◬'
 " ==============================================================================
 let g:user_emmet_leader_key='<c-e>'
 let g:user_emmet_settings = {
+      \  'vue' : {
+      \      'extends' : 'html',
+      \  },
       \  'javascript' : {
       \      'extends' : 'jsx',
       \  },
@@ -410,6 +407,27 @@ let g:NERDTrimTrailingWhitespace = 1
 
 nmap <C-c> <plug>NERDCommenterToggle
 vmap <C-c> <plug>NERDCommenterToggle
+
+" Vue comments
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+      endif
+    endif
+  endif
+endfunction
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction
 
 " ==============================================================================
 " uncrustify-vim
@@ -456,11 +474,10 @@ nnoremap <leader>ff :YcmCompleter FixIt<CR>
 augroup YouCompleteMe
   autocmd!
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType vue setlocal omnifunc=javascriptcomplete#CompleteJS
 augroup END
 
-" let g:ycm_global_ycm_extra_conf = '~/.config/vim/ycm_extra_conf.py'
 let g:ycm_global_ycm_extra_conf = ''
-" let g:ycm_collect_identifiers_from_tags_files = 1
 let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
@@ -473,7 +490,7 @@ let g:ycm_auto_stop_csharp_server = 1
 " 'prettier/vim-prettier'
 " ==============================================================================
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue Prettier
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue Prettier
 autocmd BufWritePre *.html call HtmlBeautify()
 
 
@@ -663,11 +680,6 @@ let g:quickrun_config['javascript.jsx'] = {
 
 
 " ==============================================================================
-" 'jiangmiao/auto-pairs'
-" ==============================================================================
-" let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<':'>'}
-
-" ==============================================================================
 " w0rp/ale
 " ==============================================================================
 let g:ale_set_quickfix = 1
@@ -679,13 +691,22 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#ale#open_lnum_symbol = ':'
 let g:airline#extensions#ale#close_lnum_symbol = ''
 
+let b:ale_linters = {
+\   'javascript': ['eslint'],
+\   'css': ['stylelint'],
+\   'vue': ['eslint', 'stylelint'],
+\}
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
+\   'vue': ['eslint'],
 \}
 
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = '◬'
 let g:ale_sign_warning = '◬'
+
+let g:ale_markdown_remark_lint_use_global = 1
+let g:ale_fixers.markdown = ['textlint']
 
 " ==============================================================================
 " 'sheerun/vim-polyglot'
@@ -697,3 +718,12 @@ let g:polyglot_disabled = ['graphql']
 " ==============================================================================
 " Markdown
 let g:vim_markdown_conceal = 0
+" Vue
+let g:polyglot_disabled = ['vue']
+
+" ==============================================================================
+" posva/vim-vue
+" ==============================================================================
+autocmd FileType vue syntax sync fromstart
+let g:vue_disable_pre_processors=1
+
