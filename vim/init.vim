@@ -57,6 +57,7 @@ Plug 'mattn/emoji-vim'
 " Completer
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'tenfyzhong/CompleteParameter.vim'
 
 " Signature
 Plug 'kshenoy/vim-signature'
@@ -430,6 +431,12 @@ function! NERDCommenter_after()
 endfunction
 
 " ==============================================================================
+" 'jiangmiao/auto-pairs'
+" ==============================================================================
+let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
+
+" ==============================================================================
 " uncrustify-vim
 " ==============================================================================
 if executable('uncrustify')
@@ -484,6 +491,16 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 let g:EclimCompletionMethod = 'omnifunc'
 let g:ycm_auto_start_csharp_server = 1
 let g:ycm_auto_stop_csharp_server = 1
+
+
+" ==============================================================================
+" 'tenfyzhong/CompleteParameter.vim'
+" ==============================================================================
+inoremap <silent><expr> ( complete_parameter#pre_complete("()")
+smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
 
 
 " ==============================================================================
@@ -726,4 +743,5 @@ let g:polyglot_disabled = ['vue']
 " ==============================================================================
 autocmd FileType vue syntax sync fromstart
 let g:vue_disable_pre_processors=1
+
 
