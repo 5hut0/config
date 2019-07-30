@@ -1,41 +1,41 @@
-[![Build Status][travis-badge]][travis-link]
-[![Slack Room][slack-badge]][slack-link]
+[![Build Status](https://travis-ci.org/jethrokuan/z.svg?branch=master)](https://travis-ci.org/jethrokuan/z)
 
 # Z
 
-**z** is a fish port of [z](http://github.com/rupa/z).
+**z** is a port of [z](https://github.com/rupa/z) for the [fish shell](https://fishshell.com).
 
-**z** tracks the directories you visit. With a combination of
-frequency and recency, it enables you to jump to the directory in
-mind.
+**z** tracks the directories you visit. With a combination of frequency and recency, it enables you to jump to the directory in mind.
 
-A _pure-fish_ port means it is _fast_ and _fish-friendly_, with
-tab-completions and lazy-loading. Top that off with greater
-customizability and a small amount of added functionality.
+A _pure-fish_ port means **z** is _fast_ and _fish-friendly_, with tab-completions and lazy-loading. Top that off with great customizability and a small amount of added functionality.
 
-## Install
-> Note: fish version >2.2.0 is required.
+Originally written by [@jethrokuan](https://github.com/jethrokuan/), co-maintained with [@krobelus](https://github.com/krobelus).
+
+## Installation
+
+We recommend using [fisher](https://github.com/jorgebucaran/fisher) to install **z**.
 
 ### fish >=2.7.0
-With [fisherman]
 
 ```
-fisher z
+fisher add jethrokuan/z
 ```
 
 ### fish <2.7.0
+
 Install the legacy z plugin:
 
 ```
-fisher z@pre27
+fisher add z@pre27
 ```
 
-For usage information, [read me](https://github.com/fisherman/z/blob/master/man/man1/z.md).
+### fish 2.2.0 :warning:
 
-[slack-link]: https://fisherman-wharf.herokuapp.com
-[slack-badge]: https://fisherman-wharf.herokuapp.com/badge.svg
+Z is not available for fish 2.2.0 or older. Please upgrade your shell.
 
-[travis-link]: https://travis-ci.org/fisherman/z
-[travis-badge]: https://travis-ci.org/fisherman/z.svg?branch=master
+## Usage
 
-[fisherman]: https://github.com/fisherman/fisherman
+See [man/man1/z.md](https://github.com/jethrokuan/z/blob/master/man/man1/z.md) for details.
+
+## License
+
+Z is MIT licensed. See the [LICENSE](LICENSE) for details.

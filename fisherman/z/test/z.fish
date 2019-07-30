@@ -3,9 +3,12 @@ set pth $DIRNAME/$TESTNAME
 function setup
   set -U Z_DATA "$pth/.z"
   mkdir -p $pth/{foo,bar}
+  # we can't have | because it is the separator in $Z_DATA
+  set -xg special '(){}#$%^<>?*"\'\\ &	'
+  mkdir -p $pth/{foo,bar,$special}
   touch $Z_DATA
 
-  for i in foo bar
+  for i in foo bar $special
     cd $pth/$i
   end
 end
@@ -30,6 +33,10 @@ test "has bar"
   0 -eq (grep -q bar $Z_DATA; echo $status)
 end
 
+test "has special"
+  0 -eq (fish -c 'grep -qF $special $Z_DATA'; echo $status)
+end
+
 test "! has kid"
   1 -eq (grep -q kid $Z_DATA; echo $status)
 end
@@ -50,7 +57,7 @@ test "z -e foo"
 end
 
 test "! z -e kid"
-  "'kid' did not match any results1" = (z -e kid; echo $status)
+  (printf "'kid' did not match any results\n1") = (z -e kid; echo $status)
 end
 
 test "z -h"
@@ -65,8 +72,20 @@ test "z bar"
   $pth/bar = (z bar; and echo $PWD)
 end
 
+test "f oo"
+  $pth/foo = (z f oo; and echo $PWD)
+end
+
+test "fo oo"
+  $pth/foo != (z fo oo; and echo $PWD)
+end
+
 test "z kid"
-  "'kid' did not match any results1" = (z kid; and echo $PWD $status; or echo $status)
+  (printf "'kid' did not match any results\n1") = (z kid; and echo $PWD $status; or echo $status)
+end
+
+test "z special"
+  0 -eq (fish -c 'z $special' >/dev/null; echo $status)
 end
 
 test "z --list foo"
@@ -78,5 +97,5 @@ test "list common path on stderr"
 end
 
 test "z -x works"
-  "'foo' did not match any results1" = (z foo; and z -x; and cd ..; and z foo; and echo $PWD $status; or echo $status;)
+  (printf "'foo' did not match any results\n1") = (z foo; and z -x; and cd ..; and z foo; and echo $PWD $status; or echo $status;)
 end
