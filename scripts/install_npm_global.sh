@@ -7,8 +7,7 @@ cat <<-'EOT'
       |_|                |___/
 EOT
 
-npm install -g babel-core
-npm install -g gulp
+npm install -g @vue/cli
 npm install -g webpack
 npm install -g parcel-bundler
 npm install -g typescript
