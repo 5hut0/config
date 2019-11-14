@@ -588,51 +588,34 @@ set updatetime=250
 " ==============================================================================
 " justinmk/vim-dirvish
 " ==============================================================================
-nnoremap <silent><C-d> :call <SID>toggle_dirvish()<CR>
+let g:dirvish_mode = ':sort ,^.*[\/],'
 
 augroup dirvish_plugin
   autocmd!
   " Map t to open in new tab.
   autocmd FileType dirvish
-        \  nnoremap <buffer> t :call dirvish#open('tabedit', 0)<CR>
-        \ |xnoremap <buffer> t :call dirvish#open('tabedit', 0)<CR>
+        \  nnoremap <silent><buffer> t :call dirvish#open('tabedit', 0)<CR>
+        \ |xnoremap <silent><buffer> t :call dirvish#open('tabedit', 0)<CR>
         \ |nnoremap <buffer> s :call dirvish#open('split', 0)<CR>
         \ |xnoremap <buffer> s :call dirvish#open('split', 0)<CR>
         \ |nnoremap <buffer> v :call dirvish#open('vsplit', 0)<CR>
         \ |xnoremap <buffer> v :call dirvish#open('vsplit', 0)<CR>
 
-  " Enable :Gstatus and friends.
-  autocmd FileType dirvish call fugitive#detect(@%)
-  autocmd FileType dirvish sort ir /^.*[^\/]$/
+  autocmd FileType dirvish nmap <buffer> q gq
+
+  " Hide meta files
   autocmd FileType dirvish silent keeppatterns g/.*.meta\|\.DS_Store/d
 
-  " Map CTRL-R to reload the Dirvish buffer.
-  autocmd FileType dirvish nnoremap <buffer> <C-R> :<C-U>Dirvish %<CR>:sort r /[^\/]$/<CR>
+  "" Map `gr` to reload.
+  autocmd FileType dirvish nnoremap <silent><buffer>
+        \ gr :<C-U>Dirvish %<CR>
+
 
   " Map `gh` to hide dot-prefixed files.
-  autocmd FileType dirvish nnoremap <buffer>
-        \ gh :keeppatterns g@\v/\.[^\/]+/?$@d<cr>
+  autocmd FileType dirvish nnoremap <silent><buffer>
+        \ gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>:setl cole=3<cr>
+
 augroup END
-
-function! s:toggle_dirvish()
-  if &filetype == 'dirvish'
-    if exists('b:dirvish')
-      if winnr('$') > 1
-        wincmd c
-      else
-        bdelete
-      endif
-    endif
-  else
-    let l:path = expand('%:~:h')
-
-    if len(l:path) == 0
-      execute 'Dirvish'
-    else
-      execute 'Dirvish %'
-    endif
-  endif
-endfunction
 
 " ==============================================================================
 " vim-scripts/a.vim
