@@ -1,1 +1,0 @@
-/Users/shuto/.config/fisherman/z/conf.d/z.fish

@@ -26,14 +26,11 @@ brew install tmux
 brew install fzf
 brew install z
 brew install figlet
-brew install peco
 brew install tree
 brew Install htop
 brew install highlight
 brew install gnu-sed
-brew install ranger
 brew install lynx
-brew install w3m
 brew install libcaca --with-imlib2
 brew install mediainfo
 brew install imlib2
@@ -57,6 +54,7 @@ brew install pngquant
 brew install imagemagick
 
 # dev
+brew install ripgrep
 brew install atool
 brew install jq
 brew install jo
@@ -70,8 +68,7 @@ brew install uncrustify
 brew install mono
 
 # fonts
-brew tap sanemat/font
-brew install ricty --with-powerline
+brew cask install font-cica
 
 # Cask Packages
 brew cask install --appdir="/Applications" alfred
@@ -95,8 +92,4 @@ brew cask install webpquicklook
 brew cask install suspicious-package
 brew cask install provisionql
 brew cask install quicklookapk
-
-echo "Copy Ricty Font"
-cp -f /usr/local/Cellar/ricty/*/share/fonts/Ricty*.ttf ~/Library/Fonts/
-fc-cache -vf
 

@@ -1,1 +1,0 @@
-/Users/shuto/.config/fisherman/fzf/functions/__fzfcmd.fish
