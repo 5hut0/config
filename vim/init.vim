@@ -55,9 +55,7 @@ Plug 'sk1418/HowMuch'
 Plug 'mattn/emoji-vim'
 
 " Completer
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'tenfyzhong/CompleteParameter.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Signature
 Plug 'kshenoy/vim-signature'
@@ -70,29 +68,13 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'honza/vim-snippets'
 
 " C / C++
+Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': ['c','cpp'] }
 Plug 'vim-scripts/a.vim' , { 'for': ['c','cpp'] }
-Plug 'jeaye/color_coded' , { 'for': ['c','cpp'],'do': 'cmake . -DDOWNLOAD_CLANG=0 && make && make install'}
-
-" HTML, CSS, JS
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','javascript','vue'] }
-
-" Code Formatter
-Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript','css', 'less', 'scss', 'json', 'graphql', 'vue'] }
-Plug 'maksimr/vim-jsbeautify', { 'do': 'git submodule update --init --recursive', 'for': ['html'] }
-
-if executable('uncrustify')
-  Plug 'ompugao/uncrustify-vim' , { 'for': ['c','cpp','cs'] }
-endif
-
-" linter
-Plug 'w0rp/ale'  , { 'for': ['vue','javascript','markdown'] }
-
-" git
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+Plug 'kana/vim-operator-user' , { 'for': ['c','cpp'] }
+Plug 'rhysd/vim-clang-format' , { 'for': ['c','cpp'] }
 
 " Color Scheme
-Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 
 " Syntax
 Plug 'OrangeT/vim-csharp'
@@ -153,10 +135,19 @@ set autoread          " 更新時自動再読み込み
 set switchbuf=useopen " 新しく開く代わりにすでに開いてあるバッファを開く
 set hidden            " 編集中でも他のファイルを開けるようにする
 set noswapfile        " スワップファイルを作らない
+set nowritebackup
 set nobackup          " バックアップを取らない
 set noreadonly        " リードオンリーにしない
 set undofile          " undo履歴ファイルを作る
 set undodir=$HOME/.vimundo
+" Better display for messages
+set cmdheight=2
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" always show signcolumns
+set signcolumn=yes
 
 
 " 保存時に行末の空白を除去する
@@ -175,16 +166,6 @@ augroup vimrc_checktime
   autocmd!
   autocmd WinEnter,BufNewFile,BufEnter,FocusGained,FocusLost,BufRead * :checktime
 augroup END
-
-" ==============================================================================
-" FILE TYPES
-" ==============================================================================
-autocmd BufNewFile,BufRead *.tag set filetype=html
-" au BufNewFile,BufRead *.tag setlocal ft=javascript
-autocmd BufNewFile,BufRead *.jade set filetype=pug
-autocmd BufNewFile,BufRead *.cson set filetype=coffee
-autocmd BufNewFile,BufRead *.es6 set filetype=javascript
-
 
 " ==============================================================================
 " VIEW
@@ -214,15 +195,17 @@ set showtabline=2               " 常にタブラインを表示
 set showmatch                   " 括弧の対応をハイライト
 set matchpairs& matchpairs+=<:> " 対応括弧に<と>のペアを追加
 set matchtime=3                 " 対応括弧の表示秒数を3秒にする
+set ambiwidth=double
 " set list                        " 不可視文字を表示
 
 set background=dark
-colorscheme solarized
+let g:solarized_use16=1
+colorscheme solarized8_flat
 
 hi ZenkakuSpace guibg=NONE gui=underline ctermfg=LightBlue cterm=underline
 match ZenkakuSpace /　/
 
-set listchars=tab:·-,trail:·,nbsp:·,extends:»,precedes:«
+" set listchars=tab:·-,trail:·,nbsp:·,extends:»,precedes:«
 
 highlight SpecialKey ctermfg=black " 不可視文字の文字色を指定する
 highlight SpecialKey guibg=NONE " 不可視文字の背景なし
@@ -349,25 +332,11 @@ endif
 let g:airline_section_y=''
 let g:airline_section_z = '%l:%c'
 let g:airline_powerline_fonts = 0
-let g:airline#extensions#fugitiveline#enabled = 1
-let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#branch#enabled = 0
-let g:airline#extensions#ycm#enabled = 1
-let g:airline#extensions#ycm#error_symbol = '◬'
-let g:airline#extensions#ycm#warning_symbol = '◬'
-
-" ==============================================================================
-" emmet-vim
-" ==============================================================================
-let g:user_emmet_leader_key='<c-e>'
-let g:user_emmet_settings = {
-      \  'vue' : {
-      \      'extends' : 'html',
-      \  },
-      \  'javascript' : {
-      \      'extends' : 'jsx',
-      \  },
-      \}
+let g:airline#extensions#coc#enabled = 0
+let airline#extensions#coc#error_symbol = 'Error:'
+let airline#extensions#coc#warning_symbol = 'Warning:'
+let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
 " ==============================================================================
 " vim-easy-align
@@ -437,155 +406,6 @@ let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
 inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
 
 " ==============================================================================
-" uncrustify-vim
-" ==============================================================================
-if executable('uncrustify')
-  let g:uncrustify_cfg_file_path = "~/.uncrustify.cfg"
-  augroup cpp_uncrustify
-    autocmd!
-    autocmd BufRead,BufNewFile *.[chi]pp let g:uncrustify_cfg_file_path = "~/.uncrustify.cfg"
-    autocmd BufRead,BufNewFile *.[ch] let g:uncrustify_cfg_file_path = "~/.uncrustify.cfg"
-    autocmd BufRead,BufNewFile *.cs let g:uncrustify_cfg_file_path = "~/.uncrustify_cs.cfg"
-    autocmd BufWrite,FileWritePre,FileAppendPre *.[chi]pp call uncrustify#UncrustifyAuto()
-    autocmd BufWrite,FileWritePre,FileAppendPre *.[ch] call uncrustify#UncrustifyAuto()
-    autocmd BufWrite,FileWritePre,FileAppendPre *.cs call uncrustify#UncrustifyAuto()
-  augroup END
-endif
-
-" ==============================================================================
-" YouCompleteMe
-" ==============================================================================
-" 色設定
-hi Pmenu guifg=#073642 guibg=#586e75 ctermfg=0 ctermbg=10 gui=reverse
-hi PmenuSel guifg=#586e75 guibg=#93a1a1 ctermfg=10 ctermbg=8 gui=reverse
-hi PmenuSbar guifg=#073642 guibg=#073642 ctermfg=0 ctermbg=0
-hi PmenuThumb guifg=#586e75 ctermfg=10
-
-let g:ycm_always_populate_location_list = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_cache_omnifunc = 1
-let g:ycm_auto_trigger = 1
-let g:ycm_use_ultisnips_completer = 1
-let g:ycm_complete_in_comments_and_strings = 1
-let g:ycm_min_num_identifier_candidate_chars = 2
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_error_symbol = '◬'
-let g:ycm_warning_symbol = '◬'
-let g:ycm_confirm_extra_conf = 0
-
-nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>kk :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>ff :YcmCompleter FixIt<CR>
-augroup YouCompleteMe
-  autocmd!
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType vue setlocal omnifunc=javascriptcomplete#CompleteJS
-augroup END
-
-let g:ycm_global_ycm_extra_conf = ''
-let g:UltiSnipsExpandTrigger = '<c-j>'
-let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-let g:EclimCompletionMethod = 'omnifunc'
-let g:ycm_auto_start_csharp_server = 1
-let g:ycm_auto_stop_csharp_server = 1
-
-
-" ==============================================================================
-" 'tenfyzhong/CompleteParameter.vim'
-" ==============================================================================
-inoremap <silent><expr> ( complete_parameter#pre_complete("()")
-smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-
-
-" ==============================================================================
-" 'prettier/vim-prettier'
-" ==============================================================================
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue Prettier
-autocmd BufWritePre *.html call HtmlBeautify()
-
-
-" ==============================================================================
-" jeaye/color_coded
-" ==============================================================================
-let g:color_coded_enabled = 1
-let g:color_coded_filetypes = ['c', 'cpp', 'objc']
-
-" Gray ctermfg=11 guifg=#586e75
-hi NamespaceRef                  ctermfg=11 guifg=#586e75
-
-" Cyan ctermfg=6  guifg=#2aa198
-hi Constant                      ctermfg=6  guifg=#2aa198
-hi MacroInstantiation            ctermfg=6  guifg=#2aa198
-hi EnumConstant                  ctermfg=6  guifg=#2aa198
-hi EnumConstantDecl              ctermfg=6  guifg=#2aa198
-
-" Orange ctermfg=9  guifg=#cb4b16
-hi PreProc                       ctermfg=9  guifg=#cb4b16
-hi MacroDefinition               ctermfg=9  guifg=#cb4b16
-hi Special                       ctermfg=9  guifg=#cb4b16
-hi Constructor                   ctermfg=9  guifg=#cb4b16
-hi Destructor                    ctermfg=9  guifg=#cb4b16
-
-" Yellow ctermfg=3 guifg=#b58900
-hi Type                          ctermfg=3 guifg=#b58900
-hi VariableRef                   ctermfg=3 guifg=#b58900
-hi Variable                      ctermfg=3 guifg=#b58900
-hi StorageClass                  ctermfg=3 guifg=#b58900
-hi NamespaceAlias                ctermfg=3 guifg=#b58900
-hi Structure                     ctermfg=3 guifg=#b58900
-hi Member                        ctermfg=3 guifg=#b58900
-hi MemberRef                     ctermfg=3 guifg=#b58900
-hi MemberRefExprCall             ctermfg=3 guifg=#b58900
-hi MemberRefExprVar              ctermfg=3 guifg=#b58900
-hi EnumDecl                      ctermfg=3 guifg=#b58900
-
-" Blue ctermfg=4 guifg=#268bd2
-hi Namespace                     ctermfg=4 guifg=#268bd2
-hi Function                      ctermfg=4 guifg=#268bd2
-hi MemberRefExpr                 ctermfg=4 guifg=#268bd2
-hi FunctionDecl                  ctermfg=4 guifg=#268bd2
-hi ParmDecl                      ctermfg=4 guifg=#268bd2
-hi VarDecl                       ctermfg=4 guifg=#268bd2
-hi FieldDecl                     ctermfg=4 guifg=#268bd2
-hi TypeRef                       ctermfg=4 guifg=#268bd2
-hi ClassDecl                     ctermfg=4 guifg=#268bd2
-hi ClassTemplate                 ctermfg=4 guifg=#268bd2
-hi UnionDecl                     ctermfg=4 guifg=#268bd2
-hi StructDecl                    ctermfg=4 guifg=#268bd2
-hi CXXMethod                     ctermfg=4 guifg=#268bd2
-
-" Purple ctermfg=13 guifg=#6c71c4
-hi TemplateRef                   ctermfg=13 guifg=#6c71c4
-
-" Green ctermfg=2 guifg=#859900
-
-" Magenta ctermfg=5  guifg=#d33682
-hi TemplateNoneTypeParameter     ctermfg=5  guifg=#d33682
-hi TemplateTypeParameter         ctermfg=5  guifg=#d33682
-hi TemplateTemplateParameter     ctermfg=5  guifg=#d33682
-hi BlockExpr                     ctermfg=5  guifg=#d33682
-hi FirstExpr                     ctermfg=5  guifg=#d33682
-hi Punctuation                   ctermfg=5  guifg=#d33682
-
-" ==============================================================================
-" airblade/vim-gitgutter
-" ==============================================================================
-let g:gitgutter_max_signs = 500
-let g:gitgutter_diff_args = '-w'
-let g:gitgutter_sign_added = '∙'
-let g:gitgutter_sign_modified = '∙'
-let g:gitgutter_sign_removed = '∙'
-let g:gitgutter_sign_modified_removed = '∙'
-set updatetime=250
-
-" ==============================================================================
 " justinmk/vim-dirvish
 " ==============================================================================
 let g:dirvish_mode = ':sort ,^.*[\/],'
@@ -604,6 +424,7 @@ augroup dirvish_plugin
   autocmd FileType dirvish nmap <buffer> q gq
 
   " Hide meta files
+  autocmd FileType dirvish sort ir /^.*[^\/]$/
   autocmd FileType dirvish silent keeppatterns g/.*.meta\|\.DS_Store/d
 
   "" Map `gr` to reload.
@@ -668,7 +489,7 @@ let g:quickrun_config._ = {
       \ }
 if executable("clang++")
   let g:quickrun_config['cpp'] = {
-        \ 'cmdopt': '-x c++ --std=c++14 --stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk',
+        \ 'cmdopt': '-x c++ --std=c++14 --stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk',
         \ 'type': 'cpp/clang++'
         \ }
 endif
@@ -678,35 +499,6 @@ let g:quickrun_config['javascript.jsx'] = {
       \   "tempfile": "{tempname()}.js"
       \ }
 
-
-" ==============================================================================
-" w0rp/ale
-" ==============================================================================
-let g:ale_set_quickfix = 1
-let g:ale_echo_msg_error_str = '◬'
-let g:ale_echo_msg_warning_str = '◬'
-let g:ale_echo_msg_format = '[%severity%] %code: %%s'
-
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#ale#open_lnum_symbol = ':'
-let g:airline#extensions#ale#close_lnum_symbol = ''
-
-let b:ale_linters = {
-\   'javascript': ['eslint'],
-\   'css': ['stylelint'],
-\   'vue': ['eslint', 'stylelint'],
-\}
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\   'vue': ['eslint'],
-\}
-
-let g:ale_fix_on_save = 1
-let g:ale_sign_error = '◬'
-let g:ale_sign_warning = '◬'
-
-let g:ale_markdown_remark_lint_use_global = 1
-let g:ale_fixers.markdown = ['textlint']
 
 " ==============================================================================
 " 'sheerun/vim-polyglot'
@@ -728,3 +520,147 @@ autocmd FileType vue syntax sync fromstart
 let g:vue_disable_pre_processors=1
 
 
+" ==============================================================================
+" neoclide/coc.nvim
+" ==============================================================================
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <leader>kk <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+
+
+" ==============================================================================
+" rhysd/vim-clang-format
+" ==============================================================================
+
+let g:clang_format#code_style ="llvm"
+let g:clang_format#auto_format=1
+let g:clang_format#auto_formatexpr=1
+" let g:clang_format#style_options = {
+"           \ "AccessModifierOffset" : -4,
+"           \ "AllowShortIfStatementsOnASingleLine" : "true",
+"           \ "AlwaysBreakTemplateDeclarations" : "true",
+"           \ "Standard" : "C++11",
+"           \ "BreakBeforeBraces" : "Stroustrup"}
+
+let s:dir = getcwd()
+let s:ans = findfile("compile_commands.json", fnameescape(s:dir) . ";")
+
+if len(s:ans) > 1
+  let s:rc = fnamemodify(s:ans, ":p:h") . "/.vimrc"
+  call feedkeys(":echo".s:rc."\<cr>")
+endif
+
+
+" ==============================================================================
+" 'vim-scripts/DoxygenToolkit.vim'
+" ==============================================================================
+let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
+let g:DoxygenToolkit_paramTag_pre="@Param "
+let g:DoxygenToolkit_returnTag="@Returns   "
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_authorName="Yotaro Shuto"
