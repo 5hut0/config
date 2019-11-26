@@ -9,6 +9,7 @@ local/
 .mono/
 configstore/
 plugin/
+node_modules/
 .zhistory
 .zcompdump*
 chromium
