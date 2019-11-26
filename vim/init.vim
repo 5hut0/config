@@ -158,18 +158,6 @@ set noreadonly        " リードオンリーにしない
 set undofile          " undo履歴ファイルを作る
 set undodir=$HOME/.vimundo
 
-
-" 保存時に行末の空白を除去する
-fun! StripTrailingWhitespace()
-  " Don't strip on these filetypes
-  if &ft =~ 'markdown\|perl'
-    return
-  endif
-  %s/\s\+$//ge
-endfun
-
-autocmd BufWritePre * call StripTrailingWhitespace()
-
 " 外部保存をチェックする
 augroup vimrc_checktime
   autocmd!
