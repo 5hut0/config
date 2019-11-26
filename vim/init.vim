@@ -639,12 +639,6 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 let g:clang_format#code_style ="llvm"
 let g:clang_format#auto_format=1
 let g:clang_format#auto_formatexpr=1
-" let g:clang_format#style_options = {
-"           \ "AccessModifierOffset" : -4,
-"           \ "AllowShortIfStatementsOnASingleLine" : "true",
-"           \ "AlwaysBreakTemplateDeclarations" : "true",
-"           \ "Standard" : "C++11",
-"           \ "BreakBeforeBraces" : "Stroustrup"}
 
 let s:dir = getcwd()
 let s:ans = findfile("compile_commands.json", fnameescape(s:dir) . ";")
@@ -655,12 +649,3 @@ if len(s:ans) > 1
 endif
 
 
-" ==============================================================================
-" 'vim-scripts/DoxygenToolkit.vim'
-" ==============================================================================
-let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
-let g:DoxygenToolkit_paramTag_pre="@Param "
-let g:DoxygenToolkit_returnTag="@Returns   "
-let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
-let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
-let g:DoxygenToolkit_authorName="Yotaro Shuto"
