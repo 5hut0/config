@@ -5,7 +5,6 @@ ranger/bookmarks
 ranger/history
 ranger/tagged
 local/
-.zprezto/
 .mono/
 configstore/
 plugin/
@@ -18,34 +17,19 @@ menus/
 .netrwhist
 dconf/user
 
-*.sublime_license
-SFTP.sublime-settings
-SVN.sublime-settings
-*.sublime_session
+coc/history.json
+coc/mru
+coc/memos.json
+coc/extensions/db.json
+
+vim/log/vim-lsp.log
+vim/sessions/default.vim
+
 *.last-run
 *.merged-ca-bundle
 *.system-ca-bundle
 *.user-ca-bundle
 *.cache
-*.sublime-package
-
-cfg/SublimeText/Backup
-cfg/SublimeText/Cache
-cfg/SublimeText/Index
-cfg/SublimeText/Packages/*
-!cfg/SublimeText/Packages/User/
-cfg/SublimeText/Packages/User/*
-!cfg/SublimeText/Packages/HTML-CSS-JS Prettify/
-cfg/SublimeText/Packages/HTML-CSS-JS Prettify/*
-cfg/SublimeText/Installed Packages/pyv8/osx-p3/pack.zip
-cfg/SublimeText/Installed Packages/pyv8/osx-p3/config.json
-cfg/SublimeText/Installed Packages/pyv8/osx-p3/
-
-!Package Control.sublime-package
-!Package Control.sublime-settings
-!Preferences.sublime-settings
-!HTMLPrettify.sublime-settings
-!cfg/SublimeText/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc
 
 fishd.*
 fish_history
