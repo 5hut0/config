@@ -1,0 +1,3 @@
+document.jumpToNextSymbol
+workspace.renameCurrentFile
+document.renameCurrentWord

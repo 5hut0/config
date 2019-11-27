@@ -1,5 +1,5 @@
-set guifont=Cica:h15
-set guifontwide=Cica:h15
+set guifont=Cica:h16
+set guifontwide=Cica:h16
 set visualbell t_vb=
 
 "ツールバーなし

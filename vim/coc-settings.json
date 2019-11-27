@@ -1,10 +1,21 @@
 {
+  "coc.source.omni.filetypes": ["*"],
+  "codeLens.enable": true,
+  "coc.source.syntax.enable": true,
+  "git.addedSign.text": "+",
+  "git.changedSign.text": "~",
+  "git.removedSign.text": "_",
+  "git.changeRemovedSign.text": "≃",
+  "git.topRemovedSign.text": "‾",
+  "coc.source.emoji.enable": true,
+  "coc.source.emoji.triggerCharacters": [":"],
+  "coc.preferences.formatOnSaveFiletypes": ["json", "jsonc"],
+  "json.format.enable": true,
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "󿬤",
   "list.selectedSignText": "*",
-  "codeLens.enable": true,
   "coc.source.file.trimSameExts": [],
   "coc.source.around.enable": false,
   "coc.source.buffer.enable": false,
@@ -33,5 +44,33 @@
   "typescript.suggest.autoImports": true,
   "typescript.validate.enable": true,
   "javascript.suggest.autoImports": true,
-  "javascript.validate.enable": true
+  "javascript.validate.enable": true,
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        },
+        "highlight": { "lsRanges": true },
+        "clang": {
+          "resourceDir": "/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0",
+          "extraArgs": [
+            "-isystem",
+            "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1",
+            "-I",
+            "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/"
+          ]
+        }
+      }
+    }
+  }
 }

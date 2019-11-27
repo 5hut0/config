@@ -66,7 +66,10 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'honza/vim-snippets'
 
 " C / C++
+Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': ['c','cpp'] }
 Plug 'vim-scripts/a.vim' , { 'for': ['c','cpp'] }
+Plug 'kana/vim-operator-user' , { 'for': ['c','cpp'] }
+Plug 'rhysd/vim-clang-format' , { 'for': ['c','cpp'] }
 
 " HTML, CSS, JS
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','javascript','vue'] }
@@ -133,6 +136,7 @@ set autoread          " 更新時自動再読み込み
 set switchbuf=useopen " 新しく開く代わりにすでに開いてあるバッファを開く
 set hidden            " 編集中でも他のファイルを開けるようにする
 set noswapfile        " スワップファイルを作らない
+set nowritebackup
 set nobackup          " バックアップを取らない
 set nowritebackup
 set noreadonly        " リードオンリーにしない
@@ -144,7 +148,6 @@ augroup vimrc_checktime
   autocmd!
   autocmd WinEnter,BufNewFile,BufEnter,FocusGained,FocusLost,BufRead * :checktime
 augroup END
-
 
 " ==============================================================================
 " VIEW
@@ -179,7 +182,6 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes    " always show signcolumns
 set ambiwidth=double
-" set list                        " 不可視文字を表示
 
 set background=dark
 let g:solarized_use16=1
@@ -187,8 +189,6 @@ colorscheme solarized8_flat
 
 hi ZenkakuSpace guibg=NONE gui=underline ctermfg=LightBlue cterm=underline
 match ZenkakuSpace /　/
-
-set listchars=tab:·-,trail:·,nbsp:·,extends:»,precedes:«
 
 highlight SpecialKey ctermfg=black " 不可視文字の文字色を指定する
 highlight SpecialKey guibg=NONE " 不可視文字の背景なし
@@ -313,25 +313,11 @@ endif
 let g:airline_section_y=''
 let g:airline_section_z = '%l:%c'
 let g:airline_powerline_fonts = 0
-let g:airline#extensions#fugitiveline#enabled = 1
-let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#branch#enabled = 0
-let g:airline#extensions#ycm#enabled = 1
-let g:airline#extensions#ycm#error_symbol = '◬'
-let g:airline#extensions#ycm#warning_symbol = '◬'
-
-" ==============================================================================
-" emmet-vim
-" ==============================================================================
-let g:user_emmet_leader_key='<c-e>'
-let g:user_emmet_settings = {
-      \  'vue' : {
-      \      'extends' : 'html',
-      \  },
-      \  'javascript' : {
-      \      'extends' : 'jsx',
-      \  },
-      \}
+let g:airline#extensions#coc#enabled = 0
+let airline#extensions#coc#error_symbol = 'Error:'
+let airline#extensions#coc#warning_symbol = 'Warning:'
+let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
 " ==============================================================================
 " vim-easy-align
@@ -393,7 +379,8 @@ function! NERDCommenter_after()
     let g:ft = ''
   endif
 endfunction
-                
+
+
 " ==============================================================================
 " justinmk/vim-dirvish
 " ==============================================================================
@@ -413,6 +400,7 @@ augroup dirvish_plugin
   autocmd FileType dirvish nmap <buffer> q gq
 
   " Hide meta files
+  autocmd FileType dirvish sort ir /^.*[^\/]$/
   autocmd FileType dirvish silent keeppatterns g/.*.meta\|\.DS_Store/d
 
   "" Map `gr` to reload.
@@ -477,7 +465,7 @@ let g:quickrun_config._ = {
       \ }
 if executable("clang++")
   let g:quickrun_config['cpp'] = {
-        \ 'cmdopt': '-x c++ --std=c++14 --stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk',
+        \ 'cmdopt': '-x c++ --std=c++14 --stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk',
         \ 'type': 'cpp/clang++'
         \ }
 endif
@@ -509,7 +497,7 @@ let g:vue_disable_pre_processors=1
 
 
 " ==============================================================================
-" 'neoclide/coc.nvim'
+" neoclide/coc.nvim
 " ==============================================================================
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -572,10 +560,6 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
@@ -586,10 +570,6 @@ xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
-
-" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <C-d> <Plug>(coc-range-select)
-xmap <silent> <C-d> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -605,7 +585,6 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
-" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
@@ -620,3 +599,18 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" ==============================================================================
+" rhysd/vim-clang-format
+" ==============================================================================
+let g:clang_format#code_style ="llvm"
+let g:clang_format#auto_format=1
+let g:clang_format#auto_formatexpr=1
+
+let s:dir = getcwd()
+let s:ans = findfile("compile_commands.json", fnameescape(s:dir) . ";")
+
+if len(s:ans) > 1
+  let s:rc = fnamemodify(s:ans, ":p:h") . "/.vimrc"
+  call feedkeys(":echo".s:rc."\<cr>")
+endif

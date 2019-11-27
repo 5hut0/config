@@ -28,25 +28,15 @@ rm -rf ~/.gvimrc
 rm -rf ~/.xvimrc
 rm -rf ~/.editorconfig
 rm -rf ~/.tigrc
-rm -rf ~/.uncrustify.cfg
 rm -rf ~/.agignore
-rm -rf ~/.tern-project
 
 # =============================================================================
 # vim
 # =============================================================================
-echo 'link .vim/'
-ln -s ~/.config/vim ~/.vim
-
 echo 'link .vimrc'
+ln -s ~/.config/vim ~/.vim
 ln -s ~/.config/vim/init.vim ~/.vimrc
-ln -s ~/.config/cfg/color_coded ~/.color_coded
-ln -s ~/.config/cfg/agignore ~/.agignore
-
-echo 'link .gvimrc'
 ln -s ~/.config/vim/gvimrc ~/.gvimrc
-
-echo 'link .xvimrc'
 ln -s ~/.config/vim/xvimrc ~/.xvimrc
 
 # =============================================================================
@@ -59,11 +49,7 @@ ln -s ~/.config/cfg/tmux.conf ~/.tmux.conf
 # editorconfig
 # =============================================================================
 echo 'link .editorconfig'
-if [[ "$OSTYPE" != darwin* ]]; then
-  ln -s ~/.config/cfg/editorconfig_arch ~/.editorconfig
-else
-  ln -s ~/.config/cfg/editorconfig ~/.editorconfig
-fi
+ln -s ~/.config/cfg/editorconfig ~/.editorconfig
 
 # =============================================================================
 # tig
@@ -72,14 +58,7 @@ echo 'link .tigrc'
 ln -s ~/.config/cfg/tigrc ~/.tigrc
 
 # =============================================================================
-# tig
+# tmux
 # =============================================================================
-echo 'link .tern-project'
-ln -s ~/.config/cfg/tern-project ~/.tern-project
-
-# =============================================================================
-# uncrustify
-# =============================================================================
-echo 'link .uncrustify.cfg'
-ln -s ~/.config/cfg/uncrustify.cfg ~/.uncrustify.cfg
-
+echo 'link .agignore'
+ln -s ~/.config/cfg/agignore ~/.agignore
