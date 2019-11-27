@@ -21,6 +21,8 @@ coc/history.json
 coc/mru
 coc/memos.json
 coc/extensions/db.json
+coc/sessions
+coc/commands
 
 vim/log/vim-lsp.log
 vim/sessions/default.vim

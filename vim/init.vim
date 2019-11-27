@@ -33,12 +33,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'justinmk/vim-dirvish'
 Plug 'ryanoasis/vim-devicons'
 
-" Search and Replace
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
-Plug 'thinca/vim-qfreplace'
-
 " Doxygen
 Plug 'vim-scripts/DoxygenToolkit.vim'
 
@@ -193,6 +187,7 @@ match ZenkakuSpace /　/
 highlight SpecialKey ctermfg=black " 不可視文字の文字色を指定する
 highlight SpecialKey guibg=NONE " 不可視文字の背景なし
 highlight SpecialKey ctermbg=NONE " 不可視文字の背景なし
+hi! EndOfBuffer ctermbg=NONE ctermfg=NONE
 
 
 " ==============================================================================
@@ -419,37 +414,6 @@ augroup END
 " ==============================================================================
 nnoremap <silent> <Leader>h :A<CR>
 
-" ==============================================================================
-" 'junegunn/fzf.vim'
-" ==============================================================================
-let $FZF_DEFAULT_COMMAND = 'ag --nocolor -g ""'
-let $FZF_CTRL_T_COMMAND = "$FZF_DEFAULT_COMMAND"
-set rtp+=/usr/local/opt/fzf
-set rtp+=~/.fzf
-nnoremap <c-t> :Files<CR>
-nnoremap <Leader>a :Ag<CR>
-nnoremap <silent><C-Space> :Buffers<CR>
-
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-
-" ==============================================================================
-" 'mileszs/ack.vim'
-" ==============================================================================
-let g:ackprg = 'ag --vimgrep'
 
 " ==============================================================================
 " thinca/vim-quickrun
@@ -580,6 +544,9 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+command! -nargs=+ -complete=custom,s:SearchOptions  Ack    :call coc#rpc#notify('search', [<f-args>])
+command! -nargs=+ -complete=custom,s:SearchOptions  Grep    :call coc#rpc#notify('search', [<f-args>])
+
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
@@ -593,6 +560,11 @@ nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+
+nnoremap <silent><C-Space> :CocList buffers<CR>
+nnoremap <c-t> :CocList files<CR>
+nnoremap <Leader>a :CocList grep<CR>
+
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
