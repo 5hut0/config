@@ -33,4 +33,5 @@ vim/sessions/default.vim
 
 fishd.*
 fish_history
+fish_variables
 generated_completions
