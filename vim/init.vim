@@ -225,6 +225,9 @@ noremap <c-k> 10k
 " ==============================================================================
 " SEARCH
 " ==============================================================================
+set grepprg=rg\ --vimgrep\ --no-heading
+set grepformat=%f:%l:%c:%m,%f:%l:%m
+
 set wrapscan   " 最後まで検索したら先頭へ戻る
 set ignorecase " 大文字小文字無視
 set smartcase  " 大文字ではじめたら大文字小文字無視しない
@@ -307,12 +310,12 @@ endif
 " ==============================================================================
 let g:airline_section_y=''
 let g:airline_section_z = '%l:%c'
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#coc#enabled = 0
-let airline#extensions#coc#error_symbol = 'Error:'
-let airline#extensions#coc#warning_symbol = 'Warning:'
-let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#coc#enabled = 1
+let airline#extensions#coc#error_symbol = ' '
+let airline#extensions#coc#warning_symbol = ' '
+let airline#extensions#coc#stl_format_err = '%{[%e(#%fe)]}'
+let airline#extensions#coc#stl_format_warn = '%{[%w(#%fw)]}'
 
 " ==============================================================================
 " vim-easy-align
@@ -586,3 +589,22 @@ if len(s:ans) > 1
   let s:rc = fnamemodify(s:ans, ":p:h") . "/.vimrc"
   call feedkeys(":echo".s:rc."\<cr>")
 endif
+
+
+" ==============================================================================
+" highlight
+" ==============================================================================
+highlight default link LspCxxHlSymConstructor Macro
+highlight default link LspCxxHlSymEnumMember Constant
+highlight default link LspCxxHlGroupEnumConstant Constant
+highlight default link LspCxxHlGroupNamespace LineNr
+highlight default link LspCxxHlSymNamespace LineNr
+highlight LspCxxHlSymClass ctermfg=9 guifg=#6c71c4
+highlight default link LspCxxHlSymField Normal
+highlight default link LspCxxHlGroupMemberVariable Normal
+highlight cocErrorSign ctermfg=12 guifg=#cb4b16
+highlight cocWarningSign ctermfg=10 guifg=#b58900
+highlight cocInfoSign ctermfg=11 guifg=#268bd2
+highlight cocHintSign ctermfg=13 guifg=#2aa198
+highlight cocErrorHighlight cterm=undercurl gui=undercurl ctermfg=12 guifg=#cb4b16
+highlight cocWarningHighlight cterm=undercurl gui=undercurl ctermfg=10 guifg=#b58900
