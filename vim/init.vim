@@ -606,5 +606,5 @@ highlight cocErrorSign ctermfg=12 guifg=#cb4b16
 highlight cocWarningSign ctermfg=10 guifg=#b58900
 highlight cocInfoSign ctermfg=11 guifg=#268bd2
 highlight cocHintSign ctermfg=13 guifg=#2aa198
-highlight cocErrorHighlight cterm=undercurl gui=undercurl ctermfg=12 guifg=#cb4b16
-highlight cocWarningHighlight cterm=undercurl gui=undercurl ctermfg=10 guifg=#b58900
+highlight cocErrorHighlight cterm=undercurl gui=undercurl
+highlight cocWarningHighlight cterm=undercurl gui=undercurl
