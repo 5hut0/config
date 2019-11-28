@@ -316,6 +316,10 @@ let airline#extensions#coc#error_symbol = ' '
 let airline#extensions#coc#warning_symbol = ' '
 let airline#extensions#coc#stl_format_err = '%{[%e(#%fe)]}'
 let airline#extensions#coc#stl_format_warn = '%{[%w(#%fw)]}'
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = '󿠽'
 
 " ==============================================================================
 " vim-easy-align
