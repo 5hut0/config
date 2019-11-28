@@ -187,7 +187,7 @@ match ZenkakuSpace /　/
 highlight SpecialKey ctermfg=black " 不可視文字の文字色を指定する
 highlight SpecialKey guibg=NONE " 不可視文字の背景なし
 highlight SpecialKey ctermbg=NONE " 不可視文字の背景なし
-hi! EndOfBuffer ctermbg=NONE ctermfg=NONE
+hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 
 
 " ==============================================================================

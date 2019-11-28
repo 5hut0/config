@@ -12,6 +12,8 @@
   "diagnostic.hintSign": "󿬤",
   "diagnostic.infoSign": "",
   "diagnostic.warningSign": "",
+  "highlight.colors.enable": false,
+  "coc.preferences.colorSupport": false,
   "git.addedSign.text": "+",
   "git.changeRemovedSign.text": "≃",
   "git.changedSign.text": "~",
