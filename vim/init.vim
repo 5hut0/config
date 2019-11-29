@@ -32,6 +32,10 @@ Plug 'vim-airline/vim-airline-themes'
 " File Explorer
 Plug 'justinmk/vim-dirvish'
 Plug 'ryanoasis/vim-devicons'
+Plug 'qpkorr/vim-renamer'
+
+" Git
+Plug 'tpope/vim-fugitive'
 
 " Doxygen
 Plug 'vim-scripts/DoxygenToolkit.vim'
@@ -56,7 +60,6 @@ Plug 'kshenoy/vim-signature'
 Plug 'scrooloose/nerdcommenter'
 
 " Snippets
-" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " C / C++
@@ -312,14 +315,26 @@ let g:airline_section_y=''
 let g:airline_section_z = '%l:%c'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#fugitiveline#enabled = 1
 let airline#extensions#coc#error_symbol = ' '
 let airline#extensions#coc#warning_symbol = ' '
 let airline#extensions#coc#stl_format_err = '%{[%e(#%fe)]}'
 let airline#extensions#coc#stl_format_warn = '%{[%w(#%fw)]}'
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = '󿠽'
+let g:airline_left_sep = '󾂰'
+let g:airline_left_alt_sep = '󾂱'
+let g:airline_right_sep = '󾂲'
+let g:airline_right_alt_sep = '󾂳'
+let g:airline_symbols={
+      \ 'readonly'  : '󿠽',
+      \ 'crypt'     : '󿠽',
+      \ 'branch'    : '',
+      \ 'linenr'    : '',
+      \ 'maxlinenr' : '',
+      \ 'dirty'     : '',
+      \ }
+
 
 " ==============================================================================
 " vim-easy-align
