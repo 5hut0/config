@@ -10,6 +10,7 @@ abbr ts 'tig status'
 # Sketch
 abbr sketchtool '/Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool'
 abbr sketchmigrate '/Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchmigrate'
+alias juce='/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer'
 
 # Editor
 alias vi='vim'
