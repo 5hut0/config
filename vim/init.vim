@@ -627,3 +627,4 @@ highlight cocInfoSign ctermfg=11 guifg=#268bd2
 highlight cocHintSign ctermfg=13 guifg=#2aa198
 highlight cocErrorHighlight cterm=undercurl gui=undercurl
 highlight cocWarningHighlight cterm=undercurl gui=undercurl
+highlight Comment cterm=NONE gui=NONE
