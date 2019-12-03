@@ -628,3 +628,6 @@ highlight cocHintSign ctermfg=13 guifg=#2aa198
 highlight cocErrorHighlight cterm=undercurl gui=undercurl
 highlight cocWarningHighlight cterm=undercurl gui=undercurl
 highlight Comment cterm=NONE gui=NONE
+highlight DiffChange ctermbg=none guibg=none
+highlight DiffAdd ctermbg=none guibg=none
+highlight DiffDelete ctermbg=none guibg=none
