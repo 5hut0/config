@@ -621,13 +621,19 @@ highlight default link LspCxxHlSymNamespace LineNr
 highlight LspCxxHlSymClass ctermfg=9 guifg=#6c71c4
 highlight default link LspCxxHlSymField Normal
 highlight default link LspCxxHlGroupMemberVariable Normal
-highlight cocErrorSign ctermfg=12 guifg=#cb4b16
-highlight cocWarningSign ctermfg=10 guifg=#b58900
-highlight cocInfoSign ctermfg=11 guifg=#268bd2
-highlight cocHintSign ctermfg=13 guifg=#2aa198
+highlight cocErrorSign ctermfg=9 guifg=#cb4b16
+highlight cocWarningSign ctermfg=3 guifg=#b58900
+highlight cocInfoSign ctermfg=4 guifg=#268bd2
+highlight cocHintSign ctermfg=6 guifg=#2aa198
 highlight cocErrorHighlight cterm=undercurl gui=undercurl
 highlight cocWarningHighlight cterm=undercurl gui=undercurl
 highlight Comment cterm=NONE gui=NONE
-highlight DiffChange ctermbg=none guibg=none
-highlight DiffAdd ctermbg=none guibg=none
-highlight DiffDelete ctermbg=none guibg=none
+highlight DiffChange ctermbg=NONE guibg=NONE
+highlight DiffAdd ctermbg=NONE guibg=NONE
+highlight DiffDelete ctermbg=NONE guibg=NONE
+
+highlight Normal ctermbg=NONE
+highlight NonText ctermbg=NONE
+highlight LineNr ctermbg=NONE
+highlight Folded ctermbg=NONE
+highlight default link EndOfBuffer Comment
