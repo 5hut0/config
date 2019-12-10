@@ -65,6 +65,7 @@ Plug 'honza/vim-snippets'
 " C / C++
 Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': ['c','cpp'] }
 Plug 'vim-scripts/a.vim' , { 'for': ['c','cpp'] }
+Plug 'Shougo/vimproc.vim' , { 'for': ['c','cpp'] }
 Plug 'kana/vim-operator-user' , { 'for': ['c','cpp'] }
 Plug 'rhysd/vim-clang-format' , { 'for': ['c','cpp'] }
 
@@ -655,3 +656,5 @@ highlight NonText ctermbg=NONE
 highlight LineNr ctermbg=NONE
 highlight Folded ctermbg=NONE
 highlight default link EndOfBuffer Comment
+highlight default link DirvishPathHead Normal
+highlight default link DirvishSuffix Normal
