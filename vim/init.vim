@@ -53,8 +53,7 @@ Plug 'haya14busa/incsearch.vim'
 " Completer
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Signature
-Plug 'kshenoy/vim-signature'
+" Signature Plug 'kshenoy/vim-signature'
 
 " Comments
 Plug 'scrooloose/nerdcommenter'
@@ -313,7 +312,7 @@ endif
 " vim-airline
 " ==============================================================================
 let g:airline_section_y=''
-let g:airline_section_z = '%l:%c'
+" let g:airline_section_z = ' %l:%c '
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
@@ -321,6 +320,9 @@ let airline#extensions#coc#error_symbol = ' '
 let airline#extensions#coc#warning_symbol = ' '
 let airline#extensions#coc#stl_format_err = '%{[%e(#%fe)]}'
 let airline#extensions#coc#stl_format_warn = '%{[%w(#%fw)]}'
+" let g:airline#extensions#tabline#show_splits = 0
+" let g:airline#extensions#whitespace#mixed_indent_algo = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 let g:airline_left_sep = '󾂰'
@@ -637,7 +639,7 @@ highlight default link LspCxxHlSymEnumMember Constant
 highlight default link LspCxxHlGroupEnumConstant Constant
 highlight default link LspCxxHlGroupNamespace LineNr
 highlight default link LspCxxHlSymNamespace LineNr
-highlight LspCxxHlSymClass ctermfg=9 guifg=#6c71c4
+highlight LspCxxHlSymClass ctermfg=13 guifg=#6c71c4
 highlight default link LspCxxHlSymField Normal
 highlight default link LspCxxHlGroupMemberVariable Normal
 highlight cocErrorSign ctermfg=9 guifg=#cb4b16
