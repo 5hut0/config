@@ -660,3 +660,9 @@ highlight Folded ctermbg=NONE
 highlight default link EndOfBuffer Comment
 highlight default link DirvishPathHead Normal
 highlight default link DirvishSuffix Normal
+
+
+" ==============================================================================
+" vim-scripts/DoxygenToolkit.vim
+" ==============================================================================
+let g:DoxygenToolkit_authorName="Yotaro Shuto"
