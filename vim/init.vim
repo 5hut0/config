@@ -53,8 +53,6 @@ Plug 'haya14busa/incsearch.vim'
 " Completer
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Signature Plug 'kshenoy/vim-signature'
-
 " Comments
 Plug 'scrooloose/nerdcommenter'
 
@@ -69,7 +67,8 @@ Plug 'kana/vim-operator-user' , { 'for': ['c','cpp'] }
 Plug 'rhysd/vim-clang-format' , { 'for': ['c','cpp'] }
 
 " HTML, CSS, JS
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','javascript','vue'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','typescriptreact','typescript','javascript','vue'] }
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Color Scheme
 Plug 'lifepillar/vim-solarized8'
@@ -325,10 +324,10 @@ let airline#extensions#coc#stl_format_warn = '%{[%w(#%fw)]}'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
-let g:airline_left_sep = '󾂰'
-let g:airline_left_alt_sep = '󾂱'
-let g:airline_right_sep = '󾂲'
-let g:airline_right_alt_sep = '󾂳'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline_symbols={
       \ 'readonly'  : '󿠽',
       \ 'crypt'     : '󿠽',
@@ -475,6 +474,7 @@ let g:polyglot_disabled = ['graphql']
 " ==============================================================================
 " Markdown
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks=0
 " Vue
 let g:polyglot_disabled = ['vue']
 
