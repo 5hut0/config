@@ -138,8 +138,10 @@
         },
         "highlight": { "lsRanges": true },
         "clang": {
-          "resourceDir": "/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1",
+          "resourceDir": "/usr/local/opt/llvm/lib/clang/10.0.0",
           "extraArgs": [
+            "-isysroot",
+            "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
             "-isystem",
             "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1",
             "-I",
