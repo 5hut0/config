@@ -93,7 +93,7 @@
   ],
   "suggest.autoTrigger": "always",
   "suggest.enablePreview": true,
-  "suggest.floatEnable": true,
+  "suggest.floatEnable": false,
   "suggest.triggerAfterInsertEnter": true,
   "suggest.timeout": 500,
   "suggest.noselect": false,
@@ -108,6 +108,8 @@
     "typescript",
     "typescriptreact"
   ],
+  "clangd.semanticHighlighting": true,
+  "clangd.arguments": ["-cross-file-rename", "-clang-tidy"],
   "vetur.completion.autoImport": true,
   "vetur.validation.template": true,
   "vetur.experimental.templateInterpolationService": false,
@@ -121,34 +123,5 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.suggest.autoImports": true,
   "javascript.validate.enable": true,
-  "languageserver": {
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        },
-        "highlight": { "lsRanges": true },
-        "clang": {
-          "resourceDir": "/usr/local/opt/llvm/lib/clang/10.0.0",
-          "extraArgs": [
-            "-isysroot",
-            "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
-            "-isystem",
-            "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1",
-            "-I",
-            "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"
-          ]
-        }
-      }
-    }
-  }
+  "clangd.path": "/Users/yotaro.shuto/.config/coc/extensions/coc-clangd-data/install/10rc3/clangd_10rc3/bin/clangd"
 }
