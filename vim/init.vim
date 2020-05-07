@@ -463,6 +463,14 @@ let g:quickrun_config['javascript.jsx'] = {
       \   "tempfile": "{tempname()}.js"
       \ }
 
+let g:quickrun_config['typescript'] = { 'type' : 'typescript/tsc' }
+let g:quickrun_config['typescript/tsc'] = {
+\   'command': 'tsc',
+\   'exec': ['%c --target esnext --module commonjs %o %s', 'node %s:r.js'],
+\   'tempfile': '%{tempname()}.ts',
+\   'hook/sweep/files': ['%S:p:r.js'],
+\ }
+
 
 " ==============================================================================
 " 'sheerun/vim-polyglot'
@@ -493,6 +501,8 @@ let g:user_emmet_leader_key='<C-e>'
 " ==============================================================================
 " neoclide/coc.nvim
 " ==============================================================================
+let g:coc_node_path = '/Users/yotaro.shuto/.anyenv/envs/nodenv/versions/13.8.0/bin/node'
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -557,7 +567,7 @@ augroup end
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>ff  <Plug>(coc-fix-current)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)
