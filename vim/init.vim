@@ -55,6 +55,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Comments
 Plug 'scrooloose/nerdcommenter'
+Plug 'kkoomen/vim-doge'
 
 " Snippets
 Plug 'honza/vim-snippets'
@@ -453,7 +454,7 @@ let g:quickrun_config._ = {
       \ }
 if executable("clang++")
   let g:quickrun_config['cpp'] = {
-        \ 'cmdopt': '-x c++ --std=c++14 --stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk',
+        \ 'cmdopt': '-x c++ -stdlib=libc++ -std=c++17 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk',
         \ 'type': 'cpp/clang++'
         \ }
 endif

@@ -48,11 +48,8 @@ scrolling:
   # Number of lines the viewport will move for every line scrolled when
   multiplier: 3
 
-  # Scroll to the bottom when new text is written to the terminal.
-  auto_scroll: false
-
 # Spaces per Tab (changes require restart)
-tabspaces: 2
+# tabspaces: 2
 
 # Font configuration
 font:

@@ -1,7 +1,5 @@
 # path
 set PATH ~/.config/bin ~/.config/local/bin $PATH
-set PATH ~/.nodebrew/current/bin $PATH
-set NODEBREW_ROOT /usr/local/var/nodebrew
 
 # tig
 abbr ta 'tig --all'
@@ -25,3 +23,5 @@ set -U FZF_DEFAULT_OPTS '--color fg:-1,bg:-1,hl:33,fg+:254,bg+:235,hl+:33 --colo
 set -U FZF_TMUX 1
 
 set -g fish_user_paths "/usr/local/opt/llvm/bin" $fish_user_paths
+status --is-interactive; and source (anyenv init -|psub)
+

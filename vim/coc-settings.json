@@ -1,12 +1,17 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
+    "html",
+    "sass",
+    "scss",
     "typescript",
     "typescriptreact",
     "json",
     "jsonc",
-    "markdown"
+    "markdown",
+    "markdown.mdx"
   ],
+  "markdownlint.onSave": true,
   "markdownlint.config": {
     "no-duplicate-header": false
   },
@@ -17,7 +22,7 @@
   "coc.source.file.trimSameExts": [],
   "coc.source.omni.filetypes": ["*"],
   "coc.source.syntax.enable": true,
-  "codeLens.enable": true,
+  "codeLens.enable": false,
   "diagnostic.errorSign": "",
   "diagnostic.hintSign": "󿬤",
   "diagnostic.infoSign": "",
@@ -40,8 +45,6 @@
     "<C-s>": "action:split",
     "<C-v>": "action:vsplit"
   },
-  "list.autoResize": true,
-  "list.maxHeight": 30,
   "list.maxPreviewHeight": 30,
   "list.previewHighlightGroup": "Search",
   "list.selectedSignText": "*",
@@ -92,15 +95,15 @@
     "**/*.jpg"
   ],
   "suggest.autoTrigger": "always",
-  "suggest.enablePreview": true,
+  "suggest.enablePreview": false,
   "suggest.floatEnable": false,
   "suggest.triggerAfterInsertEnter": true,
-  "suggest.timeout": 500,
+  "suggest.timeout": 2000,
   "suggest.noselect": false,
   "suggest.minTriggerInputLength": 1,
   "suggest.acceptSuggestionOnCommitCharacter": false,
   "eslint.autoFixOnSave": true,
-  "eslint.packageManager": "npm",
+  "eslint.packageManager": "yarn",
   "eslint.filetypes": [
     "vue",
     "javascript",
@@ -117,6 +120,8 @@
   "vetur.validation.script": true,
   "vetur.format.enable": false,
   "tsserver.formatOnType": false,
+  "tsserver.disableAutomaticTypeAcquisition": true,
+  "typescript.updateImportsOnFileMove.enable": true,
   "typescript.suggest.autoImports": true,
   "typescript.validate.enable": true,
   "typescript.suggest.paths": true,
