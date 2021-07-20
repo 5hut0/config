@@ -53,23 +53,24 @@ Plug 'haya14busa/incsearch.vim'
 " Completer
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Signature Plug 'kshenoy/vim-signature'
-
 " Comments
 Plug 'scrooloose/nerdcommenter'
+Plug 'kkoomen/vim-doge'
 
 " Snippets
 Plug 'honza/vim-snippets'
 
 " C / C++
 Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': ['c','cpp'] }
+
 Plug 'vim-scripts/a.vim' , { 'for': ['c','cpp'] }
 Plug 'Shougo/vimproc.vim' , { 'for': ['c','cpp'] }
 Plug 'kana/vim-operator-user' , { 'for': ['c','cpp'] }
 Plug 'rhysd/vim-clang-format' , { 'for': ['c','cpp'] }
 
 " HTML, CSS, JS
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','javascript','vue'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','typescriptreact','typescript','javascript','vue'] }
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Color Scheme
 Plug 'lifepillar/vim-solarized8'
@@ -115,9 +116,8 @@ set timeout ttimeout timeoutlen=500 ttimeoutlen=100
 command! DisableClipboard set clipboard&
 command! EnableClipboard set clipboard=unnamedplus
 
-set clipboard=unnamed,autoselect
-set clipboard&
-set clipboard^=unnamed
+set clipboard=unnamed
+set clipboard+=unnamedplus
 
 " Turn off paste mode when leaving insert
 autocmd InsertLeave * set nopaste
@@ -325,10 +325,10 @@ let airline#extensions#coc#stl_format_warn = '%{[%w(#%fw)]}'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
-let g:airline_left_sep = '󾂰'
-let g:airline_left_alt_sep = '󾂱'
-let g:airline_right_sep = '󾂲'
-let g:airline_right_alt_sep = '󾂳'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline_symbols={
       \ 'readonly'  : '󿠽',
       \ 'crypt'     : '󿠽',
@@ -454,7 +454,7 @@ let g:quickrun_config._ = {
       \ }
 if executable("clang++")
   let g:quickrun_config['cpp'] = {
-        \ 'cmdopt': '-x c++ --std=c++14 --stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk',
+        \ 'cmdopt': '-x c++ -stdlib=libc++ -std=c++17 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk',
         \ 'type': 'cpp/clang++'
         \ }
 endif
@@ -463,6 +463,14 @@ let g:quickrun_config['javascript.jsx'] = {
       \   "command": "node",
       \   "tempfile": "{tempname()}.js"
       \ }
+
+let g:quickrun_config['typescript'] = { 'type' : 'typescript/tsc' }
+let g:quickrun_config['typescript/tsc'] = {
+\   'command': 'tsc',
+\   'exec': ['%c --target esnext --module commonjs %o %s', 'node %s:r.js'],
+\   'tempfile': '%{tempname()}.ts',
+\   'hook/sweep/files': ['%S:p:r.js'],
+\ }
 
 
 " ==============================================================================
@@ -475,6 +483,7 @@ let g:polyglot_disabled = ['graphql']
 " ==============================================================================
 " Markdown
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks=0
 " Vue
 let g:polyglot_disabled = ['vue']
 
@@ -493,6 +502,8 @@ let g:user_emmet_leader_key='<C-e>'
 " ==============================================================================
 " neoclide/coc.nvim
 " ==============================================================================
+" let g:coc_node_path = '/Users/yotaro.shuto/.anyenv/envs/nodenv/versions/13.8.0/bin/node'
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -557,7 +568,7 @@ augroup end
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>ff  <Plug>(coc-fix-current)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)
@@ -591,7 +602,7 @@ nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 
-nnoremap <silent><C-Space> :CocList buffers<CR>
+nnoremap <silent><C-P> :CocList buffers<CR>
 nnoremap <c-t> :CocList files<CR>
 nnoremap <Leader>a :CocList grep<CR>
 
@@ -614,11 +625,14 @@ endfunction
 " Keymapping for grep word under cursor with interactive mode
 nnoremap <silent> <Leader>oo :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 
 " ==============================================================================
 " rhysd/vim-clang-format
 " ==============================================================================
 let g:clang_format#code_style ="llvm"
+let g:clang_format#command ="/opt/homebrew/opt/llvm/bin/clang-format"
 let g:clang_format#auto_format=1
 let g:clang_format#auto_formatexpr=1
 
@@ -662,6 +676,7 @@ highlight default link DirvishPathHead Normal
 highlight default link DirvishSuffix Normal
 
 
+let g:lsp_cxx_hl_use_text_props = 1
 " ==============================================================================
 " vim-scripts/DoxygenToolkit.vim
 " ==============================================================================

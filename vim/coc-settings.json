@@ -1,5 +1,20 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["json", "jsonc"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "html",
+    "sass",
+    "scss",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "jsonc",
+    "markdown",
+    "markdown.mdx"
+  ],
+  "markdownlint.onSave": true,
+  "markdownlint.config": {
+    "no-duplicate-header": false
+  },
   "coc.source.around.enable": false,
   "coc.source.buffer.enable": false,
   "coc.source.emoji.enable": true,
@@ -7,16 +22,14 @@
   "coc.source.file.trimSameExts": [],
   "coc.source.omni.filetypes": ["*"],
   "coc.source.syntax.enable": true,
-  "codeLens.enable": true,
+  "codeLens.enable": false,
   "diagnostic.errorSign": "",
   "diagnostic.hintSign": "󿬤",
   "diagnostic.infoSign": "",
   "diagnostic.warningSign": "",
   "highlight.colors.enable": false,
   "diagnostic.highlightOffset": 9999999,
-  "diagnostic.signOffset": 9999999,
   "coc.preferences.colorSupport": false,
-  "git.signOffset": 10,
   "git.addedSign.text": "+",
   "git.changeRemovedSign.text": "≃",
   "git.changedSign.text": "~",
@@ -30,8 +43,6 @@
     "<C-s>": "action:split",
     "<C-v>": "action:vsplit"
   },
-  "list.autoResize": true,
-  "list.maxHeight": 30,
   "list.maxPreviewHeight": 30,
   "list.previewHighlightGroup": "Search",
   "list.selectedSignText": "*",
@@ -82,22 +93,17 @@
     "**/*.jpg"
   ],
   "suggest.autoTrigger": "always",
-  "suggest.enablePreview": true,
-  "suggest.floatEnable": true,
+  "suggest.enablePreview": false,
+  "suggest.floatEnable": false,
   "suggest.triggerAfterInsertEnter": true,
-  "suggest.timeout": 500,
+  "suggest.timeout": 2000,
   "suggest.noselect": false,
   "suggest.minTriggerInputLength": 1,
   "suggest.acceptSuggestionOnCommitCharacter": false,
   "eslint.autoFixOnSave": true,
-  "eslint.packageManager": "npm",
-  "eslint.filetypes": [
-    "vue",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
+  "eslint.packageManager": "yarn",
+  "clangd.semanticHighlighting": true,
+  "clangd.arguments": ["-cross-file-rename", "-clang-tidy"],
   "vetur.completion.autoImport": true,
   "vetur.validation.template": true,
   "vetur.experimental.templateInterpolationService": false,
@@ -105,36 +111,13 @@
   "vetur.validation.script": true,
   "vetur.format.enable": false,
   "tsserver.formatOnType": false,
+  "tsserver.disableAutomaticTypeAcquisition": true,
+  "typescript.updateImportsOnFileMove.enable": true,
   "typescript.suggest.autoImports": true,
   "typescript.validate.enable": true,
+  "typescript.suggest.paths": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.suggest.autoImports": true,
   "javascript.validate.enable": true,
-  "languageserver": {
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        },
-        "highlight": { "lsRanges": true },
-        "clang": {
-          "resourceDir": "/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0",
-          "extraArgs": [
-            "-isystem",
-            "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1",
-            "-I",
-            "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/"
-          ]
-        }
-      }
-    }
-  }
+  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd"
 }
