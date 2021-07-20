@@ -1,18 +1,8 @@
 #!/bin/bash
-selectType=()
-selectType+=("UpdateHomebrew")
-selectType+=("RelinkDotfiles")
-
-for v in $selectType; do
- echo $v
-done | peco | while read i; do
-
-case $i in
 
 #==============================================================================
 # Update Homebrew
 #==============================================================================
-"UpdateHomebrew")
 cat << 'EOT'
  _   _                      _
 | | | | ___  _ __ ___   ___| |__  _ __ _____      __
@@ -25,8 +15,3 @@ echo 'Update Homebrew'
 brew update
 brew upgrade
 brew cleanup
-;;
-
-
-esac
-done

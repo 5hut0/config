@@ -29,9 +29,7 @@
   "diagnostic.warningSign": "",
   "highlight.colors.enable": false,
   "diagnostic.highlightOffset": 9999999,
-  "diagnostic.signOffset": 9999999,
   "coc.preferences.colorSupport": false,
-  "git.signOffset": 10,
   "git.addedSign.text": "+",
   "git.changeRemovedSign.text": "≃",
   "git.changedSign.text": "~",
@@ -104,13 +102,6 @@
   "suggest.acceptSuggestionOnCommitCharacter": false,
   "eslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn",
-  "eslint.filetypes": [
-    "vue",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
   "clangd.semanticHighlighting": true,
   "clangd.arguments": ["-cross-file-rename", "-clang-tidy"],
   "vetur.completion.autoImport": true,
@@ -128,5 +119,5 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.suggest.autoImports": true,
   "javascript.validate.enable": true,
-  "clangd.path": "/Users/yotaro.shuto/.config/coc/extensions/coc-clangd-data/install/10rc3/clangd_10rc3/bin/clangd"
+  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd"
 }
