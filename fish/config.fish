@@ -23,4 +23,6 @@ set -U FZF_TMUX 1
 set -g fish_user_paths "/usr/local/opt/llvm/bin" $fish_user_paths
 
 eval (/opt/homebrew/bin/brew shellenv)
-# starship init fish | source
+
+# nodenv
+eval (nodenv init - | source)

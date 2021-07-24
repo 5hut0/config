@@ -53,6 +53,9 @@ brew install atool
 brew install jq
 brew install cmake
 
+# node
+brew install nodenv
+
 # fonts
 brew tap homebrew/cask-fonts
 brew install font-cica
