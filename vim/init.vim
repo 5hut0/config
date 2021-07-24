@@ -72,6 +72,9 @@ Plug 'rhysd/vim-clang-format' , { 'for': ['c','cpp'] }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','typescriptreact','typescript','javascript','vue'] }
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
+" Markdown
+Plug 'mzlogin/vim-markdown-toc'
+
 " Color Scheme
 Plug 'lifepillar/vim-solarized8'
 
@@ -502,7 +505,7 @@ let g:user_emmet_leader_key='<C-e>'
 " ==============================================================================
 " neoclide/coc.nvim
 " ==============================================================================
-" let g:coc_node_path = '/Users/yotaro.shuto/.anyenv/envs/nodenv/versions/13.8.0/bin/node'
+" let g:coc_node_path = '/Users/yotaro.shuto/.nodenv/shims/node'
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -675,9 +678,18 @@ highlight default link EndOfBuffer Comment
 highlight default link DirvishPathHead Normal
 highlight default link DirvishSuffix Normal
 
-
 let g:lsp_cxx_hl_use_text_props = 1
+
 " ==============================================================================
 " vim-scripts/DoxygenToolkit.vim
 " ==============================================================================
 let g:DoxygenToolkit_authorName="Yotaro Shuto"
+
+" ==============================================================================
+" mzlogin/vim-markdown-toc
+" ==============================================================================
+let g:vmt_list_item_char="-"
+let g:vmt_fense_text="TOC"
+let g:vmt_fense_closing_text="/TOC"
+let g:vmt_fense_hidden_markdown_style="GFM"
+
