@@ -34,9 +34,6 @@ brew install highlight
 brew install curl
 brew install wget
 
-# editors
-brew install vim
-
 # version control
 brew install git
 brew install tig
@@ -47,6 +44,8 @@ brew install imagemagick
 brew install ffmpeg
 
 # dev
+brew install rust
+brew install llvm
 brew install ag
 brew install ripgrep
 brew install atool

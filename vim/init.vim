@@ -505,7 +505,39 @@ let g:user_emmet_leader_key='<C-e>'
 " ==============================================================================
 " neoclide/coc.nvim
 " ==============================================================================
-" let g:coc_node_path = '/Users/yotaro.shuto/.nodenv/shims/node'
+let g:coc_global_extensions = [
+      \  'coc-yank'
+      \, 'coc-calc'
+      \, 'coc-clangd'
+      \, 'coc-diagnostic'
+      \, 'coc-dictionary'
+      \, 'coc-emmet'
+      \, 'coc-emoji'
+      \, 'coc-eslint'
+      \, 'coc-fish'
+      \, 'coc-git'
+      \, 'coc-github'
+      \, 'coc-gitignore'
+      \, 'coc-highlight'
+      \, 'coc-html'
+      \, 'coc-json'
+      \, 'coc-lists'
+      \, 'coc-markdownlint'
+      \, 'coc-marketplace'
+      \, 'coc-omni'
+      \, 'coc-pairs'
+      \, 'coc-prettier'
+      \, 'coc-snippets'
+      \, 'coc-styled-components'
+      \, 'coc-syntax'
+      \, 'coc-tag'
+      \, 'coc-tsserver'
+      \, 'coc-vetur'
+      \, 'coc-vimlsp'
+      \, 'coc-word'
+      \, ]
+
+let g:coc_node_path = '/Users/yotaro.shuto/.nodenv/shims/node'
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
