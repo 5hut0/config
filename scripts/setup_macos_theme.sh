@@ -25,9 +25,6 @@ sudo pmset -a standbydelay 86400
 echo "Disable the sound effects on boot"
 sudo nvram SystemAudioVolume=" "
 
-echo "Disable transparency in the menu bar and elsewhere on Yosemite"
-defaults write com.apple.universalaccess reduceTransparency -bool true
-
 echo "Set highlight color to red"
 defaults write NSGlobalDomain AppleHighlightColor -string "1 0.337254902 0.247058824"
 
@@ -189,9 +186,6 @@ defaults write com.apple.finder EmptyTrashSecurely -bool true
 
 echo "Enable AirDrop over Ethernet"
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
-
-echo "Enable the MacBook Air SuperDrive on any Mac"
-sudo nvram boot-args="mbasd=1"
 
 echo "Set a blazingly fast keyboard repeat rate"
 defaults write NSGlobalDomain KeyRepeat -int 1

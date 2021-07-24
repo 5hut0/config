@@ -10,6 +10,6 @@ cat <<-'EOT'
 EOT
 
 sudo sh -c "echo '/usr/local/bin/fish' >> /etc/shells"
-chsh -s /usr/local/bin/fish
+chsh -s /opt/homebrew/bin/fish
 fish --version
 

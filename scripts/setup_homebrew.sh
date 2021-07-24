@@ -10,7 +10,8 @@ cat <<-'EOT'
 EOT
 
 # Install Homebrew
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Keep-alive: update existing `sudo` time stamp until
 sudo -v
@@ -34,7 +35,7 @@ brew install curl
 brew install wget
 
 # editors
-brew install vim --with-lua
+brew install vim
 
 # version control
 brew install git
@@ -53,17 +54,17 @@ brew install jq
 brew install cmake
 
 # fonts
-brew cask install font-cica
+brew tap homebrew/cask-fonts
+brew install font-cica
 
 # Cask Packages
-brew cask install --appdir="/Applications" alfred
-brew cask install --appdir="/Applications" google-chrome
-brew cask install --appdir="/Applications" keycastr
-brew cask install --appdir="/Applications" macvim
-brew cask install --appdir="/Applications" shiftit
-brew cask install --appdir="/Applications" sketch
-brew cask install --appdir="/Applications" sourcetree
-brew cask install --appdir="/Applications" visual-studio-code
-brew cask install google-japanese-ime
-brew cask install karabiner-elements
+brew install --cask alfred
+# brew install --cask google-chrome
+brew install --cask keycastr
+brew install --cask macvim
+# brew install --cask sketch
+brew install --cask sourcetree
+brew install --cask visual-studio-code
+brew install --cask google-japanese-ime
+brew install --cask karabiner-elements
 
