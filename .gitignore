@@ -23,6 +23,8 @@ coc/memos.json
 coc/extensions/db.json
 coc/sessions
 coc/commands
+coc/lists
+coc/extensions/package-lock.json
 
 vim/log/vim-lsp.log
 vim/sessions/default.vim
