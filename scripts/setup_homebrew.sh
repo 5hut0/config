@@ -61,11 +61,12 @@ brew install font-cica
 
 # Cask Packages
 brew install --cask alfred
-# brew install --cask google-chrome
+brew install --cask google-chrome
 brew install --cask keycastr
 brew install --cask macvim
-# brew install --cask sketch
+brew install --cask sketch
 brew install --cask sourcetree
+brew install --cask typora
 brew install --cask visual-studio-code
 brew install --cask google-japanese-ime
 brew install --cask karabiner-elements
