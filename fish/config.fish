@@ -1,6 +1,8 @@
 # path
 set PATH ~/.config/bin ~/.config/local/bin $PATH
 
+set fish_greeting
+
 # tig
 abbr ta 'tig --all'
 abbr ts 'tig status'
