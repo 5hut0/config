@@ -9,7 +9,7 @@ cat <<-'EOT'
 
 EOT
 
-sudo sh -c "echo '/usr/local/bin/fish' >> /etc/shells"
+sudo sh -c "echo '/opt/homebrew/bin/fish' >> /etc/shells"
 chsh -s /opt/homebrew/bin/fish
 fish --version
 
