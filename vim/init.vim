@@ -508,9 +508,9 @@ let g:user_emmet_leader_key='<C-e>'
 " neoclide/coc.nvim
 " ==============================================================================
 let g:coc_global_extensions = [
-      \  'coc-yank'
-      \, 'coc-calc'
+      \  'coc-calc'
       \, 'coc-clangd'
+      \, 'coc-cmake'
       \, 'coc-diagnostic'
       \, 'coc-dictionary'
       \, 'coc-emmet'
@@ -537,6 +537,7 @@ let g:coc_global_extensions = [
       \, 'coc-vetur'
       \, 'coc-vimlsp'
       \, 'coc-word'
+      \, 'coc-yank'
       \, ]
 
 let g:coc_node_path = '/Users/yotaro.shuto/.nodenv/shims/node'
