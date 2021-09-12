@@ -737,4 +737,5 @@ let g:vmt_fense_closing_text="/TOC"
 let g:vmt_fense_hidden_markdown_style="GFM"
 
 
+let g:asyncrun_open = 6
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
