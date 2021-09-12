@@ -55,6 +55,10 @@ Plug 'haya14busa/incsearch.vim'
 " Completer
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Async Tasks
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
+
 " Comments
 Plug 'scrooloose/nerdcommenter'
 Plug 'kkoomen/vim-doge'
@@ -529,10 +533,12 @@ let g:coc_global_extensions = [
       \, 'coc-omni'
       \, 'coc-pairs'
       \, 'coc-prettier'
+      \, 'coc-project'
       \, 'coc-snippets'
       \, 'coc-styled-components'
       \, 'coc-syntax'
       \, 'coc-tag'
+      \, 'coc-tasks'
       \, 'coc-tsserver'
       \, 'coc-vetur'
       \, 'coc-vimlsp'
@@ -616,6 +622,8 @@ omap af <Plug>(coc-funcobj-a)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Refactor :call CocAction('refactor')
+command! -nargs=0 Do exe 'CocList tasks'
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -728,3 +736,5 @@ let g:vmt_fense_text="TOC"
 let g:vmt_fense_closing_text="/TOC"
 let g:vmt_fense_hidden_markdown_style="GFM"
 
+
+let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']

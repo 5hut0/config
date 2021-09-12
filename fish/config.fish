@@ -1,6 +1,7 @@
 # path
 set PATH ~/.config/bin ~/.config/local/bin $PATH
 
+# disable greeting message
 set fish_greeting
 
 # tig
@@ -8,7 +9,7 @@ abbr ta 'tig --all'
 abbr ts 'tig status'
 
 # Sketch
-alias juce='/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer'
+# alias juce='/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer'
 
 # Editor
 alias vi='vim'
@@ -24,11 +25,19 @@ set -U FZF_TMUX 1
 
 set -g fish_user_paths "/usr/local/opt/llvm/bin" $fish_user_paths
 
+fish_add_path /opt/homebrew/bin
 eval (/opt/homebrew/bin/brew shellenv)
 
 # nodenv
 eval (nodenv init - | source)
 
+# pyenv
+set -x PYENV_ROOT $HOME/.pyenv
+set -x PATH  $PYENV_ROOT/bin $PATH
+pyenv init - | source
+
+# llvm
 fish_add_path /opt/homebrew/opt/llvm/bin
-set -gx LDFLAGS "-L/opt/homebrew/opt/llvm/lib"
-set -gx CPPFLAGS "-I/opt/homebrew/opt/llvm/include"
+# set -gx LDFLAGS "-L/opt/homebrew/opt/llvm/lib"
+# set -gx CPPFLAGS "-I/opt/homebrew/opt/llvm/include"
+

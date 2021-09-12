@@ -1,20 +1,25 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
+    "cmake",
     "html",
-    "sass",
-    "scss",
-    "typescript",
-    "typescriptreact",
+    "javascript",
     "json",
     "jsonc",
     "markdown",
-    "markdown.mdx"
+    "markdown.mdx",
+    "sass",
+    "scss",
+    "typescript",
+    "typescriptreact"
   ],
   "markdownlint.onSave": true,
   "markdownlint.config": {
     "no-duplicate-header": false
   },
+  "cmake.cmakePath": "/opt/homebrew/bin/cmake",
+  "cmake.formatter": "/opt/homebrew/bin/cmake-format",
+  "cmake.lsp.enable": true,
+  "cmake.lsp.serverPath": "/opt/homebrew/bin/cmake-language-server",
   "coc.source.around.enable": false,
   "coc.source.buffer.enable": false,
   "coc.source.emoji.enable": true,

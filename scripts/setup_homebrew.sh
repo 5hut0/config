@@ -51,9 +51,12 @@ brew install ripgrep
 brew install atool
 brew install jq
 brew install cmake
+brew install ninja
 
 # node
 brew install nodenv
+brew install pyenv
+
 
 # fonts
 brew tap homebrew/cask-fonts
