@@ -8,6 +8,7 @@ set fish_greeting
 abbr ta 'tig --all'
 abbr ts 'tig status'
 
+abbr task 'asynctask -f'
 # Sketch
 # alias juce='/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer'
 
