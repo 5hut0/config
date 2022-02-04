@@ -66,9 +66,6 @@ Plug 'kkoomen/vim-doge'
 " Snippets
 Plug 'honza/vim-snippets'
 
-" C / C++
-Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': ['c','cpp'] }
-
 Plug 'vim-scripts/a.vim' , { 'for': ['c','cpp'] }
 Plug 'Shougo/vimproc.vim' , { 'for': ['c','cpp'] }
 Plug 'kana/vim-operator-user' , { 'for': ['c','cpp'] }
@@ -673,6 +670,7 @@ nnoremap <silent> <Leader>oo :exe 'CocList -I --input='.expand('<cword>').' grep
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+let g:coc_default_semantic_highlight_groups = 1
 
 " ==============================================================================
 " rhysd/vim-clang-format
@@ -690,18 +688,14 @@ if len(s:ans) > 1
   call feedkeys(":echo".s:rc."\<cr>")
 endif
 
-
 " ==============================================================================
 " highlight
 " ==============================================================================
-highlight default link LspCxxHlSymConstructor Macro
-highlight default link LspCxxHlSymEnumMember Constant
-highlight default link LspCxxHlGroupEnumConstant Constant
-highlight default link LspCxxHlGroupNamespace LineNr
-highlight default link LspCxxHlSymNamespace LineNr
-highlight LspCxxHlSymClass ctermfg=13 guifg=#6c71c4
-highlight default link LspCxxHlSymField Normal
-highlight default link LspCxxHlGroupMemberVariable Normal
+highlight default link CocSemEnumMember Constant
+highlight default link CocSemNamespace LineNr
+highlight CocSemClass ctermfg=13 guifg=#6c71c4
+highlight default link CocSemParameter Normal
+
 highlight cocErrorSign ctermfg=9 guifg=#cb4b16
 highlight cocWarningSign ctermfg=3 guifg=#b58900
 highlight cocInfoSign ctermfg=4 guifg=#268bd2
