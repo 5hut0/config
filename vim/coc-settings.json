@@ -27,7 +27,6 @@
   "coc.source.file.trimSameExts": [],
   "coc.source.omni.filetypes": ["*"],
   "coc.source.syntax.enable": true,
-  "coc.preferences.semanticTokensHighlights": false,
   "codeLens.enable": false,
   "diagnostic.errorSign": "",
   "diagnostic.hintSign": "󿬤",
@@ -35,7 +34,6 @@
   "diagnostic.warningSign": "",
   "highlight.colors.enable": false,
   "diagnostic.highlightOffset": 9999999,
-  "coc.preferences.colorSupport": false,
   "git.addedSign.text": "+",
   "git.changeRemovedSign.text": "≃",
   "git.changedSign.text": "~",
@@ -108,8 +106,18 @@
   "suggest.acceptSuggestionOnCommitCharacter": false,
   "eslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn",
-  "clangd.semanticHighlighting": true,
-  "clangd.arguments": ["-cross-file-rename", "-clang-tidy"],
+  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd",
+  "clangd.arguments": [
+    "-cross-file-rename",
+    "-clang-tidy",
+    "--pch-storage=memory",
+    "-j",
+    "20",
+    "--completion-style=detailed",
+    "--background-index",
+    "--all-scopes-completion=true"
+  ],
+  "clangd.fallbackFlags": ["-std=c++2a"],
   "vetur.completion.autoImport": true,
   "vetur.validation.template": true,
   "vetur.experimental.templateInterpolationService": false,
@@ -125,5 +133,5 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.suggest.autoImports": true,
   "javascript.validate.enable": true,
-  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd"
+  "semanticTokens.filetypes": ["*"]
 }
