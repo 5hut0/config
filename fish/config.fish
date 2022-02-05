@@ -9,6 +9,9 @@ abbr ta 'tig --all'
 abbr ts 'tig status'
 
 abbr task 'asynctask -f'
+abbr push 'git push origin'
+abbr pull 'git pull origin'
+
 # Sketch
 # alias juce='/Applications/JUCE/Projucer.app/Contents/MacOS/Projucer'
 
