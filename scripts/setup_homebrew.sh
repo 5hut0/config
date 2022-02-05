@@ -44,14 +44,12 @@ brew install imagemagick
 brew install ffmpeg
 
 # dev
-brew install rust
 brew install llvm
 brew install ag
 brew install ripgrep
 brew install atool
 brew install jq
 brew install cmake
-brew install ninja
 
 # node
 brew install nodenv

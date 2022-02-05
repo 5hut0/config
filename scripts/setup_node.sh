@@ -11,12 +11,9 @@ EOT
 
 nodenv init
 
-nodenv install 15.3.0
 nodenv install 16.5.0
 nodenv global 16.5.0
 
 eval (nodenv init - | source)
 npm install -g yarn
 
-cd ~/.config/coc/extensions
-npm i
