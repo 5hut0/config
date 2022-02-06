@@ -34,6 +34,7 @@ eval (/opt/homebrew/bin/brew shellenv)
 
 # nodenv
 eval (nodenv init - | source)
+set -x PATH (yarn global bin) $PATH
 
 # pyenv
 set -x PYENV_ROOT $HOME/.pyenv
