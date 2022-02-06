@@ -1,5 +1,5 @@
 # path
-set PATH ~/.config/bin ~/.config/local/bin $PATH
+set PATH ~/.config/bin ~/.config/local/bin ~/.cargo/bin $PATH
 
 # disable greeting message
 set fish_greeting

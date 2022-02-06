@@ -10,7 +10,8 @@
     "sass",
     "scss",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "rust"
   ],
   "markdownlint.onSave": true,
   "markdownlint.config": {

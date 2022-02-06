@@ -541,6 +541,7 @@ let g:coc_global_extensions = [
       \, 'coc-vimlsp'
       \, 'coc-word'
       \, 'coc-yank'
+      \, 'coc-rust-analyzer'
       \, ]
 
 let g:coc_node_path = '/Users/yotaro.shuto/.nodenv/shims/node'
@@ -729,7 +730,6 @@ let g:vmt_list_item_char="-"
 let g:vmt_fense_text="TOC"
 let g:vmt_fense_closing_text="/TOC"
 let g:vmt_fense_hidden_markdown_style="GFM"
-
 
 let g:asyncrun_open = 6
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
