@@ -10,10 +10,15 @@ set fish_greeting
 abbr ta 'tig --all'
 abbr ts 'tig status'
 
-abbr task 'asynctask -f'
+abbr t 'asynctask -f'
+abbr r 'asynctask'
 abbr push 'git push origin'
 abbr pull 'git pull origin'
 abbr fetch 'git fetch origin'
+abbr fetch 'git fetch origin'
+abbr merge 'git merge'
+abbr co 'git checkout'
+abbr cob 'git checkout -b'
 
 # Editor
 alias vi='vim'
