@@ -139,7 +139,7 @@ colors:
 
 
 # Background opacity
-background_opacity: 0.95
+window.opacity: 0.95
 
 # Visual Bell
 #
