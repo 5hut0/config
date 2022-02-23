@@ -313,8 +313,6 @@ let airline#extensions#coc#error_symbol = ' '
 let airline#extensions#coc#warning_symbol = ' '
 let airline#extensions#coc#stl_format_err = '%{[%e(#%fe)]}'
 let airline#extensions#coc#stl_format_warn = '%{[%w(#%fw)]}'
-" let g:airline#extensions#tabline#show_splits = 0
-" let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
@@ -413,18 +411,15 @@ let g:coc_global_extensions = [
       \, 'coc-omni'
       \, 'coc-pairs'
       \, 'coc-prettier'
-      \, 'coc-project'
+      \, 'coc-rust-analyzer'
       \, 'coc-snippets'
       \, 'coc-styled-components'
       \, 'coc-syntax'
-      \, 'coc-tag'
       \, 'coc-tasks'
       \, 'coc-tsserver'
-      \, 'coc-vetur'
       \, 'coc-vimlsp'
       \, 'coc-word'
       \, 'coc-yank'
-      \, 'coc-rust-analyzer'
       \, ]
 
 let g:coc_node_path = '/Users/yotaro.shuto/.nodenv/shims/node'
@@ -580,8 +575,6 @@ highlight NonText ctermbg=NONE
 highlight LineNr ctermbg=NONE
 highlight Folded ctermbg=NONE
 highlight default link EndOfBuffer Comment
-highlight default link DirvishPathHead Normal
-highlight default link DirvishSuffix Normal
 
 let g:lsp_cxx_hl_use_text_props = 1
 

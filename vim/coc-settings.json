@@ -121,12 +121,6 @@
     "--all-scopes-completion=true"
   ],
   "clangd.fallbackFlags": ["-std=c++2a"],
-  "vetur.completion.autoImport": true,
-  "vetur.validation.template": true,
-  "vetur.experimental.templateInterpolationService": false,
-  "vetur.validation.style": true,
-  "vetur.validation.script": true,
-  "vetur.format.enable": false,
   "tsserver.formatOnType": false,
   "tsserver.disableAutomaticTypeAcquisition": true,
   "typescript.updateImportsOnFileMove.enable": true,
