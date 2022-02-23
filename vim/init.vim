@@ -23,18 +23,20 @@ if has('vim_starting')
 endif
 
 call plug#begin('~/.config/vim/plugged')
+" Syntax
+Plug 'sheerun/vim-polyglot'
 
-" Quick Run
-Plug 'thinca/vim-quickrun'
+" Color Scheme
+Plug 'lifepillar/vim-solarized8'
 
 " Status Line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
 
 " File Explorer
-Plug 'justinmk/vim-dirvish'
-Plug 'ryanoasis/vim-devicons'
-Plug 'qpkorr/vim-renamer'
+Plug 'mattn/vim-molder'
+Plug 'mattn/vim-molder-operations'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -66,24 +68,12 @@ Plug 'kkoomen/vim-doge'
 " Snippets
 Plug 'honza/vim-snippets'
 
-Plug 'vim-scripts/a.vim' , { 'for': ['c','cpp'] }
-Plug 'Shougo/vimproc.vim' , { 'for': ['c','cpp'] }
-Plug 'kana/vim-operator-user' , { 'for': ['c','cpp'] }
-Plug 'rhysd/vim-clang-format' , { 'for': ['c','cpp'] }
-
 " HTML, CSS, JS
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','typescriptreact','typescript','javascript','vue'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','typescriptreact','typescript','javascript'] }
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Markdown
-Plug 'mzlogin/vim-markdown-toc'
-
-" Color Scheme
-Plug 'lifepillar/vim-solarized8'
-
-" Syntax
-Plug 'sheerun/vim-polyglot'
-Plug 'posva/vim-vue'
+Plug 'mzlogin/vim-markdown-toc', { 'for': ['markdown'] }
 
 call plug#end()
 
@@ -113,8 +103,6 @@ set novisualbell    " ビープ音を消す
 set t_Co=256
 set mouse=a         " マウスモード有効
 set timeout ttimeout timeoutlen=500 ttimeoutlen=100
-
-
 
 " ==============================================================================
 " CLIPBOARD
@@ -262,7 +250,6 @@ nnoremap g# g#zz
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 
-
 " ==============================================================================
 " EDITOR
 " ==============================================================================
@@ -344,6 +331,10 @@ let g:airline_symbols={
       \ 'dirty'     : '',
       \ }
 
+" ==============================================================================
+" mattn/vim-molder
+" ==============================================================================
+let g:molder_show_hidden = 1
 
 " ==============================================================================
 " vim-easy-align
@@ -385,120 +376,12 @@ let g:NERDTrimTrailingWhitespace = 1
 nmap <C-c> <plug>NERDCommenterToggle
 vmap <C-c> <plug>NERDCommenterToggle
 
-" Vue comments
-let g:ft = ''
-function! NERDCommenter_before()
-  if &ft == 'vue'
-    let g:ft = 'vue'
-    let stack = synstack(line('.'), col('.'))
-    if len(stack) > 0
-      let syn = synIDattr((stack)[0], 'name')
-      if len(syn) > 0
-        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
-      endif
-    endif
-  endif
-endfunction
-function! NERDCommenter_after()
-  if g:ft == 'vue'
-    setf vue
-    let g:ft = ''
-  endif
-endfunction
-
-
-" ==============================================================================
-" justinmk/vim-dirvish
-" ==============================================================================
-let g:dirvish_mode = ':sort ,^.*[\/],'
-
-augroup dirvish_plugin
-  autocmd!
-  " Map t to open in new tab.
-  autocmd FileType dirvish
-        \  nnoremap <silent><buffer> t :call dirvish#open('tabedit', 0)<CR>
-        \ |xnoremap <silent><buffer> t :call dirvish#open('tabedit', 0)<CR>
-        \ |nnoremap <buffer> s :call dirvish#open('split', 0)<CR>
-        \ |xnoremap <buffer> s :call dirvish#open('split', 0)<CR>
-        \ |nnoremap <buffer> v :call dirvish#open('vsplit', 0)<CR>
-        \ |xnoremap <buffer> v :call dirvish#open('vsplit', 0)<CR>
-
-  autocmd FileType dirvish nmap <buffer> q gq
-
-  " Hide meta files
-  autocmd FileType dirvish sort ir /^.*[^\/]$/
-  autocmd FileType dirvish silent keeppatterns g/.*.meta\|\.DS_Store/d
-
-  "" Map `gr` to reload.
-  autocmd FileType dirvish nnoremap <silent><buffer>
-        \ gr :<C-U>Dirvish %<CR>
-
-
-  " Map `gh` to hide dot-prefixed files.
-  autocmd FileType dirvish nnoremap <silent><buffer>
-        \ gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>:setl cole=3<cr>
-
-augroup END
-
-" ==============================================================================
-" vim-scripts/a.vim
-" ==============================================================================
-nnoremap <silent> <Leader>h :A<CR>
-
-
-" ==============================================================================
-" thinca/vim-quickrun
-" ==============================================================================
-let g:quickrun_config = get(g:, 'quickrun_config', {})
-let g:quickrun_config._ = {
-      \ 'runner'    : 'job',
-      \ 'outputter' : 'error',
-      \ 'outputter/error/success' : 'buffer',
-      \ 'outputter/error/error'   : 'quickfix',
-      \ 'outputter/buffer/split'  : ':rightbelow 8sp',
-      \ 'outputter/buffer/close_on_empty' : 1,
-      \ }
-if executable("clang++")
-  let g:quickrun_config['cpp'] = {
-        \ 'cmdopt': '-x c++ -stdlib=libc++ -std=c++17 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk',
-        \ 'type': 'cpp/clang++'
-        \ }
-endif
-
-let g:quickrun_config['javascript.jsx'] = {
-      \   "command": "node",
-      \   "tempfile": "{tempname()}.js"
-      \ }
-
-let g:quickrun_config['typescript'] = { 'type' : 'typescript/tsc' }
-let g:quickrun_config['typescript/tsc'] = {
-\   'command': 'tsc',
-\   'exec': ['%c --target esnext --module commonjs %o %s', 'node %s:r.js'],
-\   'tempfile': '%{tempname()}.ts',
-\   'hook/sweep/files': ['%S:p:r.js'],
-\ }
-
-
-" ==============================================================================
-" 'sheerun/vim-polyglot'
-" ==============================================================================
-let g:polyglot_disabled = ['graphql']
-
 " ==============================================================================
 " 'sheerun/vim-polyglot'
 " ==============================================================================
 " Markdown
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks=0
-" Vue
-let g:polyglot_disabled = ['vue']
-
-" ==============================================================================
-" posva/vim-vue
-" ==============================================================================
-autocmd FileType vue syntax sync fromstart
-let g:vue_disable_pre_processors=1
-
 
 " ==============================================================================
 " mattn/emmet-vim
@@ -672,22 +555,6 @@ nnoremap <silent> <Leader>oo :exe 'CocList -I --input='.expand('<cword>').' grep
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 let g:coc_default_semantic_highlight_groups = 1
-
-" ==============================================================================
-" rhysd/vim-clang-format
-" ==============================================================================
-let g:clang_format#code_style ="llvm"
-let g:clang_format#command ="/opt/homebrew/opt/llvm/bin/clang-format"
-let g:clang_format#auto_format=1
-let g:clang_format#auto_formatexpr=1
-
-let s:dir = getcwd()
-let s:ans = findfile("compile_commands.json", fnameescape(s:dir) . ";")
-
-if len(s:ans) > 1
-  let s:rc = fnamemodify(s:ans, ":p:h") . "/.vimrc"
-  call feedkeys(":echo".s:rc."\<cr>")
-endif
 
 " ==============================================================================
 " highlight
