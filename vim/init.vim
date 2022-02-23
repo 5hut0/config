@@ -333,6 +333,10 @@ let g:airline_symbols={
 " mattn/vim-molder
 " ==============================================================================
 let g:molder_show_hidden = 1
+set autochdir
+if mapcheck('-', 'n') ==# '' 
+  nnoremap <silent> - :e .<CR>
+endif
 
 " ==============================================================================
 " vim-easy-align
