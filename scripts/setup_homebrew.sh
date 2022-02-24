@@ -50,6 +50,8 @@ brew install ripgrep
 brew install atool
 brew install jq
 brew install cmake
+brew install doxygen
+brew install graphviz
 
 # node
 brew install nodenv

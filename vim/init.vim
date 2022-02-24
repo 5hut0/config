@@ -35,8 +35,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 
 " File Explorer
-Plug 'mattn/vim-molder'
-Plug 'mattn/vim-molder-operations'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -302,6 +305,37 @@ endif
 " ==============================================================================
 
 " ==============================================================================
+" lambdalisue/fern.vim
+" ==============================================================================
+let g:fern#renderer = "nerdfont"
+function! s:init_fern() abort
+  " Use 'select' instead of 'edit' for default 'open' action
+  nmap <buffer> <Plug>(fern-action-open) <Plug>(fern-action-open:select)
+
+  nmap <buffer> - :<C-u>Fern <C-r>=<SID>smart_path()<CR><CR>
+
+endfunction
+
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
+
+
+nnoremap <silent> <Leader>ee :<C-u>Fern <C-r>=<SID>smart_path()<CR><CR>
+" nnoremap <silent> - :<C-u>Fern . -reveal=% -drawer -width=40<CR>
+nnoremap <silent> - :<C-u>Fern . -reveal=%<CR>
+
+" Return a parent directory of the current buffer when the buffer is a file.
+" Otherwise it returns a current working directory.
+function! s:smart_path() abort
+  if !empty(&buftype) || bufname('%') =~# '^[^:]\+://'
+    return fnamemodify('.', ':p')
+  endif
+  return fnamemodify(expand('%'), ':p:h')
+endfunction
+
+" ==============================================================================
 " vim-airline
 " ==============================================================================
 let g:airline_section_y=''
@@ -328,15 +362,6 @@ let g:airline_symbols={
       \ 'maxlinenr' : '',
       \ 'dirty'     : '',
       \ }
-
-" ==============================================================================
-" mattn/vim-molder
-" ==============================================================================
-let g:molder_show_hidden = 1
-set autochdir
-if mapcheck('-', 'n') ==# '' 
-  nnoremap <silent> - :e .<CR>
-endif
 
 " ==============================================================================
 " vim-easy-align
@@ -520,13 +545,15 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Using CocList
 " Show all diagnostics
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nmap <space>e <Cmd>CocCommand explorer<CR>
 " Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>h :<C-u>CocCommand clangd.switchSourceHeader<cr>
 
 nnoremap <silent><C-P> :CocList buffers<CR>
 nnoremap <c-t> :CocList files<CR>

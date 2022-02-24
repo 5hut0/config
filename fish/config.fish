@@ -6,6 +6,8 @@ fish_add_path ~/.local/bin
 # disable greeting message
 set fish_greeting
 
+abbr - 'cd (git rev-parse --show-toplevel)'
+
 # tig
 abbr ta 'tig --all'
 abbr ts 'tig status'
