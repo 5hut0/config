@@ -312,7 +312,7 @@ function! s:init_fern() abort
   " Use 'select' instead of 'edit' for default 'open' action
   nmap <buffer> <Plug>(fern-action-open) <Plug>(fern-action-open:select)
 
-  nmap <buffer> - :<C-u>Fern <C-r>=<SID>smart_path()<CR><CR>
+  nmap <buffer> - <C-h>
 
 endfunction
 
@@ -324,7 +324,8 @@ augroup END
 
 nnoremap <silent> <Leader>ee :<C-u>Fern <C-r>=<SID>smart_path()<CR><CR>
 " nnoremap <silent> - :<C-u>Fern . -reveal=% -drawer -width=40<CR>
-nnoremap <silent> - :<C-u>Fern . -reveal=%<CR>
+nnoremap <silent> - :<C-u>Fern %:h -reveal=%<CR>
+" nnoremap <silent> - :<C-u>Fern . -reveal=%<CR>
 
 " Return a parent directory of the current buffer when the buffer is a file.
 " Otherwise it returns a current working directory.
