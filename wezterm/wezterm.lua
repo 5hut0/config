@@ -17,10 +17,10 @@ local config = {
 
         cursor_bg = "#268bd2",
         cursor_fg = "#002b36",
-        cursor_border = "#839496",
+        cursor_border = "#268bd2",
 
-        selection_bg = "#073642",
-        selection_fg = "#93a1a1",
+        selection_bg = "#268bd2",
+        selection_fg = "#002b36",
 
         ansi = {"#073642","#dc322f","#859900","#b58900","#268bd2","#d33682","#2aa198","#eee8d5"},
         brights = {"#002b36","#cb4b16","#586e75","#657b83","#839496","#6c71c4","#93a1a1","#fdf6e3"},
@@ -46,8 +46,8 @@ local config = {
     window_padding = {
         left = 40,
         right = 40,
-        top = 40,
-        bottom = 40,
+        top = 20,
+        bottom = 20,
     },
     -- launch_menu = {},
     leader = { key="g", mods="CTRL" },
