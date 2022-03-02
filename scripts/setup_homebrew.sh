@@ -28,7 +28,7 @@ brew install fzf
 brew install z
 brew install figlet
 brew install tree
-brew install htop
+brew install gotop
 brew install highlight
 
 brew install curl
@@ -62,6 +62,8 @@ brew install pyenv
 brew tap homebrew/cask-fonts
 brew install font-cica
 
+brew tap wez/wezterm
+
 # Cask Packages
 brew install --cask alfred
 brew install --cask google-chrome
@@ -73,4 +75,5 @@ brew install --cask typora
 brew install --cask visual-studio-code
 brew install --cask google-japanese-ime
 brew install --cask karabiner-elements
+brew install --cask wez/wezterm/wezterm
 
