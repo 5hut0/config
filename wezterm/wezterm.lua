@@ -3,6 +3,8 @@ local wezterm = require("wezterm")
 local config = {
     check_for_updates = true,
     use_ime = true,
+    initial_cols=180,
+    initial_rows=70,
     audible_bell="Disabled",
     default_prog = { '/opt/homebrew/bin/fish', '-l' },
 
