@@ -28,6 +28,7 @@ Plug 'sheerun/vim-polyglot'
 
 " Color Scheme
 Plug 'lifepillar/vim-solarized8'
+Plug 'jszakmeister/vim-togglecursor'
 
 " Status Line
 Plug 'vim-airline/vim-airline'
@@ -151,9 +152,19 @@ if !has('gui_running')
   set lazyredraw
 endif
 
-let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+" let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+" let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+" let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+" let &t_SR = "\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+let g:togglecursor_force = 'xterm'
 
 syntax on                       " シンタックスカラーリング有効
 set synmaxcol=300               " ハイライト処理を300列までに限定
