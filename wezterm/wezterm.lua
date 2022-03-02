@@ -2,6 +2,7 @@ local wezterm = require("wezterm")
 
 local config = {
     check_for_updates = true,
+    use_ime = true,
     audible_bell="Disabled",
     default_prog = { '/opt/homebrew/bin/fish', '-l' },
 
@@ -9,7 +10,7 @@ local config = {
     hide_tab_bar_if_only_one_tab=true,
 
     bold_brightens_ansi_colors = false,
-    window_background_opacity = 0.95,
+    window_background_opacity = 0.98,
 
     colors = {
         background = "#002b36",
@@ -32,7 +33,12 @@ local config = {
     inactive_pane_hsb = {
         hue = 1.0,
         saturation = 1.0,
-        brightness = 0.8,
+        brightness = 0.6,
+    },
+    foreground_text_hsb = {
+        hue = 1.0,
+        saturation = 1.0,
+        brightness = 1.5,
     },
 
     font = wezterm.font("Cica"),
@@ -49,6 +55,7 @@ local config = {
         top = 20,
         bottom = 20,
     },
+
     -- launch_menu = {},
     leader = { key="g", mods="CTRL" },
     keys = {
@@ -64,6 +71,7 @@ local config = {
         { key = "j", mods = "OPT", action=wezterm.action{ActivatePaneDirection="Down"}},
         { key = "k", mods = "OPT", action=wezterm.action{ActivatePaneDirection="Up"}},
         { key = "l", mods = "OPT", action=wezterm.action{ActivatePaneDirection="Right"}},
+        { key = "f", mods = "SHIFT|CTRL", action="ToggleFullScreen"},
     },
 }
 
