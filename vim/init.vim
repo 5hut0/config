@@ -136,7 +136,6 @@ set nobackup          " バックアップを取らない
 set nowritebackup
 set noreadonly        " リードオンリーにしない
 set undofile          " undo履歴ファイルを作る
-set undodir=$HOME/.vimundo
 
 " 外部保存をチェックする
 augroup vimrc_checktime
@@ -186,7 +185,13 @@ set cmdheight=2      " Better display for messages
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes    " always show signcolumns
-set ambiwidth=double
+
+if !has('nvim')
+  set undodir=$HOME/.nvimundo
+else
+  set undodir=$HOME/.vimundo
+  set ambiwidth=double
+endif
 
 set background=dark
 let g:solarized_use16=1
