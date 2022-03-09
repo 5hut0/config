@@ -23,9 +23,10 @@ abbr co 'git checkout'
 abbr cob 'git checkout -b'
 
 # Editor
-alias vi='vim'
-set -U EDITOR vim
-set -U VISUAL vim
+alias vi='nvim'
+alias vim='nvim'
+set -U EDITOR nvim
+set -U VISUAL nvim
 
 # fzf
 set -U FZF_DEFAULT_COMMAND 'ag --nocolor -g ""'
