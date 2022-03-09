@@ -186,7 +186,7 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes    " always show signcolumns
 
-if !has('nvim')
+if has('nvim')
   set undodir=$HOME/.nvimundo
 else
   set undodir=$HOME/.vimundo

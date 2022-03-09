@@ -20,7 +20,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Brew Update
 brew update
 
-# shell
+# terminal
 brew install fish
 brew install tmux
 brew install reattach-to-user-namespace
@@ -30,7 +30,6 @@ brew install figlet
 brew install tree
 brew install gotop
 brew install highlight
-
 brew install curl
 brew install wget
 
@@ -38,12 +37,8 @@ brew install wget
 brew install git
 brew install tig
 
-# media
-brew install pngquant
-brew install imagemagick
-brew install ffmpeg
-
 # dev
+brew install neovim
 brew install llvm
 brew install ag
 brew install ripgrep
