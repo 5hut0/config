@@ -205,6 +205,7 @@ highlight SpecialKey guibg=NONE " 不可視文字の背景なし
 highlight SpecialKey ctermbg=NONE " 不可視文字の背景なし
 hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 
+command! VimShowHlItem echo synIDattr(synID(line("."), col("."), 1), "name")
 
 " ==============================================================================
 " CURSOR MOVE
@@ -532,7 +533,7 @@ augroup mygroup
 augroup end
 
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap ma <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>ff  <Plug>(coc-fix-current)
 
