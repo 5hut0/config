@@ -16,6 +16,7 @@ fcitx
 menus/
 .netrwhist
 dconf/user
+gh/hosts.yml
 
 coc
 

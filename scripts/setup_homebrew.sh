@@ -35,6 +35,8 @@ brew install wget
 
 # version control
 brew install git
+brew install gh
+brew install hub
 brew install tig
 
 # dev
