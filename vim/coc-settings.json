@@ -131,6 +131,7 @@
   "typescript.validate.enable": true,
   "typescript.suggest.paths": true,
   "typescript.referencesCodeLens.enable": false,
+  "typescript.implementationsCodeLens.enable": false,
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.suggest.autoImports": true,
   "javascript.validate.enable": true,
