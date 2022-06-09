@@ -44,6 +44,7 @@ Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'github/copilot.vim'
 
 " Doxygen
 Plug 'vim-scripts/DoxygenToolkit.vim'
