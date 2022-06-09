@@ -17,6 +17,7 @@ menus/
 .netrwhist
 dconf/user
 gh/hosts.yml
+yarn/global
 
 coc
 
