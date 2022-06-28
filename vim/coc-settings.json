@@ -112,6 +112,7 @@
   "suggest.acceptSuggestionOnCommitCharacter": false,
   "eslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn",
+  "clangd.inlayHints.enable": false,
   "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd",
   "clangd.arguments": [
     "-cross-file-rename",

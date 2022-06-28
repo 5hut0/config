@@ -44,7 +44,7 @@ Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 
 " Doxygen
 Plug 'vim-scripts/DoxygenToolkit.vim'
@@ -534,7 +534,8 @@ augroup mygroup
 augroup end
 
 " Remap for do codeAction of current line
-nmap ma <Plug>(coc-codeaction)
+nmap ma <Plug>(coc-codeaction-cursor)
+
 " Fix autofix problem of current line
 nmap <leader>ff  <Plug>(coc-fix-current)
 
