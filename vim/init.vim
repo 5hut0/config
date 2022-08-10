@@ -626,6 +626,8 @@ highlight NonText ctermbg=NONE
 highlight LineNr ctermbg=NONE
 highlight Folded ctermbg=NONE
 highlight default link EndOfBuffer Comment
+highlight CocMenuSel ctermfg=7 ctermbg=11 guifg=#eee8d5 guibg=#657b83
+highlight CocSearch cterm=bold ctermfg=6
 
 let g:lsp_cxx_hl_use_text_props = 1
 
