@@ -1,20 +1,6 @@
 {
   "coc.preferences.extensionUpdateCheck": "daily",
-  "coc.preferences.formatOnSaveFiletypes": [
-    "cmake",
-    "html",
-    "javascript",
-    "json",
-    "jsonc",
-    "cpp",
-    "markdown",
-    "markdown.mdx",
-    "sass",
-    "scss",
-    "typescript",
-    "typescriptreact",
-    "rust"
-  ],
+  "coc.preferences.formatOnSave": true,
   "markdownlint.onSave": true,
   "markdownlint.config": {
     "no-duplicate-header": false
@@ -102,9 +88,8 @@
     "**/*.pdf",
     "**/*.jpg"
   ],
+  "inlayHint.enable": false,
   "suggest.autoTrigger": "always",
-  "suggest.enablePreview": false,
-  "suggest.floatEnable": true,
   "suggest.triggerAfterInsertEnter": true,
   "suggest.timeout": 2000,
   "suggest.noselect": false,
@@ -112,7 +97,6 @@
   "suggest.acceptSuggestionOnCommitCharacter": false,
   "eslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn",
-  "clangd.inlayHints.enable": false,
   "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd",
   "clangd.arguments": [
     "-cross-file-rename",
@@ -125,17 +109,12 @@
     "--all-scopes-completion=true"
   ],
   "clangd.fallbackFlags": ["-std=c++2a"],
-  "tsserver.formatOnType": false,
   "tsserver.disableAutomaticTypeAcquisition": true,
-  "typescript.updateImportsOnFileMove.enable": true,
   "typescript.suggest.autoImports": true,
   "typescript.validate.enable": true,
   "typescript.suggest.paths": true,
-  "typescript.referencesCodeLens.enable": false,
-  "typescript.implementationsCodeLens.enable": false,
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.suggest.autoImports": true,
   "javascript.validate.enable": true,
-  "rust-analyzer.inlayHints.enable": false,
-  "semanticTokens.filetypes": ["*"]
+  "semanticTokens.enable": true
 }
