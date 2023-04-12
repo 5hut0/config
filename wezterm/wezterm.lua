@@ -45,10 +45,11 @@ local config = {
 
     font = wezterm.font("Cica"),
     font_size = 16.0,
+    -- font_size = 24.0,
     unicode_version=14,
-    font_antialias = "Greyscale",
-    font_hinting = "None",
-    dpi=96.0,
+    -- font_antialias = "Greyscale",
+    -- font_hinting = "None",
+    dpi=144.0,
 
     window_close_confirmation="NeverPrompt",
     window_decorations="RESIZE",
