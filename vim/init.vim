@@ -78,6 +78,9 @@ Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'stylus','typescriptreact','typescript','javascript'] }
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
+" Astro
+Plug 'wuelnerdotexe/vim-astro'
+
 " Markdown
 Plug 'mzlogin/vim-markdown-toc', { 'for': ['markdown'] }
 
@@ -469,6 +472,7 @@ let g:coc_global_extensions = [
       \, 'coc-vimlsp'
       \, 'coc-word'
       \, 'coc-yank'
+      \, '@yaegassy/coc-astro'
       \, ]
 
 let g:coc_node_path = '/Users/yotaro.shuto/.nodenv/shims/node'
