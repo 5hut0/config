@@ -45,7 +45,12 @@ Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
+
+" Copilot chat
+Plug 'zbirenbaum/copilot.lua'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
 
 " Doxygen
 Plug 'vim-scripts/DoxygenToolkit.vim'
@@ -651,3 +656,18 @@ let g:vmt_fense_hidden_markdown_style="GFM"
 
 let g:asyncrun_open = 6
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
+
+" ==============================================================================
+" github/copilot.vim
+" ==============================================================================
+let g:copilot_filetypes = #{
+  \   markdown: v:true,
+  \   text: v:true,
+  \ }
+
+lua << EOF
+require("CopilotChat").setup {
+  debug = true, -- Enable debugging
+  -- See Configuration section for rest
+}
+EOF

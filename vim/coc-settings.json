@@ -3,7 +3,8 @@
   "coc.preferences.formatOnSave": true,
   "markdownlint.onSave": true,
   "markdownlint.config": {
-    "no-duplicate-header": false
+    "no-duplicate-header": false,
+    "line-length": false
   },
   "cmake.cmakePath": "/opt/homebrew/bin/cmake",
   "cmake.formatter": "/opt/homebrew/bin/cmake-format",
@@ -95,7 +96,17 @@
   "suggest.noselect": false,
   "suggest.minTriggerInputLength": 1,
   "suggest.acceptSuggestionOnCommitCharacter": false,
-  "eslint.autoFixOnSave": true,
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "astro"
+  ],
+  "eslint.autoFixOnSave": false,
   "eslint.packageManager": "yarn",
   "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd",
   "clangd.arguments": [
