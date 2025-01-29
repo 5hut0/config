@@ -11,8 +11,8 @@ EOT
 
 nodenv init
 
-nodenv install 16.5.0
-nodenv global 16.5.0
+nodenv install 21.7.3
+nodenv global 21.7.3
 
 eval (nodenv init - | source)
 npm install -g yarn

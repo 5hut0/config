@@ -23,7 +23,6 @@ brew update
 # terminal
 brew install fish
 brew install tmux
-brew install reattach-to-user-namespace
 brew install fzf
 brew install z
 brew install figlet
@@ -45,15 +44,11 @@ brew install llvm
 brew install ag
 brew install ripgrep
 brew install atool
-brew install jq
 brew install cmake
 brew install doxygen
 brew install graphviz
-
-# node
 brew install nodenv
 brew install pyenv
-
 
 # fonts
 brew tap homebrew/cask-fonts
@@ -67,8 +62,6 @@ brew install --cask google-chrome
 brew install --cask keycastr
 brew install --cask macvim
 brew install --cask sketch
-brew install --cask sourcetree
-brew install --cask typora
 brew install --cask visual-studio-code
 brew install --cask google-japanese-ime
 brew install --cask karabiner-elements

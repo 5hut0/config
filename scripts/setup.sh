@@ -31,9 +31,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
   # nodenv
   sh ~/.config/scripts/setup_node.sh
-
-  #rust
-  sh ~/.config/scripts/setup_rust.sh
 fi
 
 #==============================================================================
