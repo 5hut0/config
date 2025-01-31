@@ -615,6 +615,9 @@ let g:coc_default_semantic_highlight_groups = 1
 " ==============================================================================
 " highlight
 " ==============================================================================
+" ansi = {"#073642","#dc322f","#859900","#b58900","#268bd2","#d33682","#2aa198","#eee8d5"},
+" brights = {"#002b36","#cb4b16","#586e75","#657b83","#839496","#6c71c4","#93a1a1","#fdf6e3"},
+
 highlight default link CocSemEnumMember Constant
 highlight default link CocSemNamespace LineNr
 highlight CocSemClass ctermfg=13 guifg=#6c71c4
@@ -626,6 +629,8 @@ highlight cocInfoSign ctermfg=4 guifg=#268bd2
 highlight cocHintSign ctermfg=6 guifg=#2aa198
 highlight cocErrorHighlight cterm=undercurl gui=undercurl
 highlight cocWarningHighlight cterm=undercurl gui=undercurl
+" highlight default link CocInlayHint Comment
+highlight CocInlayHint guifg=#586E75
 highlight Comment cterm=NONE gui=NONE
 highlight DiffChange ctermbg=NONE guibg=NONE
 highlight DiffAdd ctermbg=NONE guibg=NONE
@@ -640,6 +645,59 @@ highlight CocMenuSel ctermfg=7 ctermbg=11 guifg=#eee8d5 guibg=#657b83
 highlight CocSearch cterm=bold ctermfg=6
 
 let g:lsp_cxx_hl_use_text_props = 1
+
+
+" bold
+" underline
+" undercurl	curly underline
+" underdouble	double underline
+" underdotted	dotted underline
+" underdashed	dashed underline
+" strikethrough
+" reverse
+" inverse		same as reverse
+" italic
+" standout
+" altfont
+" nocombine	override attributes instead of combining them
+"
+" NONE		no attributes used (used to reset it)
+" Diagnostics related
+" highlight CocDeprecatedHighlight guifg=NONE guibg=NONE gui=NONE
+highlight CocErrorSign guifg=#cb4b16
+highlight CocErrorVirtualText guifg=#cb4b16
+" highlight CocErrorLine gui=undercurl
+highlight CocErrorHighlight gui=undercurl
+
+" highlight CocFadeOut  guifg=#b58900
+"
+highlight CocHintHighlight gui=undercurl
+" highlight CocHintLine
+highlight CocHintSign guifg=#2AA198
+highlight CocHintVirtualText guifg=#2AA198
+"
+" highlight CocInfoHighlight
+" highlight CocInfoLine
+highlight CocInfoSign guifg=#268bd2
+highlight CocInfoVirtualText guifg=#268bd2
+"
+" highlight CocUnusedHighlight
+
+highlight CocWarningHighlight  gui=undercurl
+" highlight CocWarningLine
+highlight cocWarningSign guifg=#b58900
+highlight CocWarningVirtualText guifg=#b58900
+
+
+" Float window/popup related
+highlight CocFloating guifg=#586E75 guibg=#073642
+highlight CocFloatActive guifg=#586E75 guibg=#073642
+" highlight CocFloatThumb guifg=#b58900
+" highlight CocFloatSbar
+" highlight CocFloatDividingLine
+highlight CocErrorFloat guifg=#cb4b16
+highlight CocHintFloat guifg=#2AA198
+highlight CocWarningFloat guifg=#b58900
 
 " ==============================================================================
 " vim-scripts/DoxygenToolkit.vim
