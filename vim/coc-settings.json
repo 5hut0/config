@@ -127,5 +127,6 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.suggest.autoImports": true,
   "javascript.validate.enable": true,
-  "semanticTokens.enable": true
+  "semanticTokens.enable": true,
+  "snippets.ultisnips.pythonPrompt": false
 }
