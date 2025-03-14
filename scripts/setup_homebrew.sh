@@ -45,6 +45,8 @@ brew install ag
 brew install ripgrep
 brew install atool
 brew install cmake
+brew install ninja
+brew install cmake-language-server
 brew install doxygen
 brew install graphviz
 brew install nodenv
@@ -53,8 +55,6 @@ brew install pyenv
 # fonts
 brew tap homebrew/cask-fonts
 brew install font-cica
-
-brew tap wez/wezterm
 
 # Cask Packages
 brew install --cask alfred
@@ -65,5 +65,5 @@ brew install --cask sketch
 brew install --cask visual-studio-code
 brew install --cask google-japanese-ime
 brew install --cask karabiner-elements
-brew install --cask wez/wezterm/wezterm
+brew install --cask wezterm
 

@@ -1,5 +1,5 @@
 {
-  "coc.preferences.extensionUpdateCheck": "daily",
+  "extensions.updateCheck": "daily",
   "coc.preferences.formatOnSave": true,
   "markdownlint.onSave": true,
   "markdownlint.config": {
@@ -90,7 +90,7 @@
     "**/*.pdf",
     "**/*.jpg"
   ],
-  "inlayHint.enable": true,
+  "inlayHint.enable": false,
   "suggest.autoTrigger": "always",
   "suggest.triggerAfterInsertEnter": true,
   "suggest.timeout": 2000,

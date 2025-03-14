@@ -41,7 +41,6 @@ eval (/opt/homebrew/bin/brew shellenv)
 
 # nodenv
 eval (nodenv init - | source)
-set -x PATH (yarn global bin) $PATH
 
 # llvm
 fish_add_path /opt/homebrew/opt/llvm/bin

@@ -1,65 +1,43 @@
 {
-  "global": {
-    "check_for_updates_on_startup": true,
-    "show_in_menu_bar": true,
-    "show_profile_name_in_menu_bar": false
-  },
-  "profiles": [
-    {
-      "complex_modifications": {
-        "parameters": {
-          "basic.simultaneous_threshold_milliseconds": 20,
-          "basic.to_delayed_action_delay_milliseconds": 100,
-          "basic.to_if_alone_timeout_milliseconds": 500,
-          "basic.to_if_held_down_threshold_milliseconds": 100
-        },
-        "rules": [
-          {
-            "description": "shift + escape to tilde",
-            "manipulators": [
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "escape",
-                  "modifiers": {
-                    "mandatory": ["shift"],
-                    "optional": ["any"]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "grave_accent_and_tilde",
-                    "modifiers": ["shift"]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "devices": [
+    "profiles": [
         {
-          "disable_built_in_keyboard_if_exists": false,
-          "fn_function_keys": [],
-          "identifiers": {
-            "is_keyboard": true,
-            "is_pointing_device": false,
-            "product_id": 631,
-            "vendor_id": 1452
-          },
-          "ignore": false,
-          "manipulate_caps_lock_led": true,
-          "simple_modifications": []
+            "complex_modifications": {
+                "parameters": {
+                    "basic.simultaneous_threshold_milliseconds": 20,
+                    "basic.to_delayed_action_delay_milliseconds": 100,
+                    "basic.to_if_alone_timeout_milliseconds": 500,
+                    "basic.to_if_held_down_threshold_milliseconds": 100
+                },
+                "rules": [
+                    {
+                        "description": "shift + escape to tilde",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": {
+                                        "mandatory": ["shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "grave_accent_and_tilde",
+                                        "modifiers": ["shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": {
+                "country_code": 0,
+                "keyboard_type_v2": "ansi"
+            }
         }
-      ],
-      "fn_function_keys": [],
-      "name": "Default profile",
-      "selected": true,
-      "simple_modifications": [],
-      "virtual_hid_keyboard": {
-        "country_code": 0
-      }
-    }
-  ]
+    ]
 }
-

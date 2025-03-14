@@ -10,10 +10,10 @@ cat <<-'EOT'
 EOT
 
 nodenv init
+eval (nodenv init - | source)
 
 nodenv install 21.7.3
 nodenv global 21.7.3
 
-eval (nodenv init - | source)
 npm install -g yarn
 
