@@ -51,6 +51,7 @@ Plug 'github/copilot.vim'
 Plug 'zbirenbaum/copilot.lua'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'CopilotC-Nvim/CopilotChat.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Doxygen
 Plug 'vim-scripts/DoxygenToolkit.vim'
@@ -446,6 +447,7 @@ let g:user_emmet_leader_key='<C-e>'
 " ==============================================================================
 " neoclide/coc.nvim
 " ==============================================================================
+let g:python3_host_prog = expand('~/.pyenv/versions/neovim-env/bin/python')
 let g:coc_global_extensions = [
       \  'coc-calc'
       \, 'coc-clangd'
@@ -480,7 +482,7 @@ let g:coc_global_extensions = [
       \, '@yaegassy/coc-astro'
       \, ]
 
-let g:coc_node_path = '~/.nodenv/shims/node'
+let g:coc_node_path = trim(system('which node'))
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.

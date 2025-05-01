@@ -6,6 +6,9 @@ fish_add_path ~/.local/bin
 # disable greeting message
 set fish_greeting
 
+set -gx LANG en_US.utf8
+set -gx LC_CTYPE en_US.utf8
+
 abbr - 'cd (git rev-parse --show-toplevel)'
 
 # tig
@@ -44,6 +47,3 @@ eval (nodenv init - | source)
 
 # llvm
 fish_add_path /opt/homebrew/opt/llvm/bin
-
-# cargo
-fish_add_path ~/.cargo/bin
