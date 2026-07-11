@@ -134,7 +134,6 @@ autocmd InsertLeave * set nopaste
 " ==============================================================================
 " FILES
 " ==============================================================================
-set termencoding=utf-8
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,cp932
 set ffs=unix,dos,mac

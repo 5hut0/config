@@ -47,3 +47,6 @@ eval (nodenv init - | source)
 
 # llvm
 fish_add_path /opt/homebrew/opt/llvm/bin
+
+# go
+fish_add_path $(go env GOPATH)/bin
